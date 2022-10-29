@@ -11,17 +11,21 @@ class Image(models.Model):
 
 
 class PairSet(models.Model):
+    name = models.CharField(max_length=100)
+    notes = models.TextField(blank=True)
     pass
 
 
 class Pair(models.Model):
-    old_image = models.ForeignKey(Image, on_delete=models.CASCADE)
-    new_image = models.ForeignKey(Image, on_delete=models.CASCADE)
-    pairset = models.ForeignKey(PairSet, on_delete=models.CASCADE)
+    old_image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='old_image')
+    new_image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='new_image')
+    pairset = models.ForeignKey(PairSet, on_delete=models.CASCADE, blank=True)
 
     class Meta:
         unique_together = ['old_image', 'new_image']
 
+
 class Annotation(models.Model):
     shape = models.PolygonField()
     notes = models.TextField()
+    # classification = models.Choices([])

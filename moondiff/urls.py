@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from moondiff.core.views import PairDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('pair/<slug:slug>/', PairDetailView.as_view(), name='pair-detail')
 ]
