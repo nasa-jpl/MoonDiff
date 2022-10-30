@@ -1,1 +1,16 @@
-{{ pair }}
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="https://js.arcgis.com/next/esri/themes/light/main.css">
+{% endblock head %}
+
+{% block content %}
+    <div id="leftmap" style="width: 50vw; height: 100vw; position: absolute; left: 0">{{ pair.old_image }}</div>
+    <div id="rightmap" style="width: 50vw; height: 100vw; position: absolute; right: 0">{{ pair.new_image }}</div>
+    {% load render_bundle from webpack_loader %}
+    {% render_bundle 'main' %}
+    <script type="text/javascript">
+        makeTileMap('{{ pair.old_image.file_data.url }}', 'leftmap')
+        makeTileMap('{{ pair.new_image.file_data.url }}', 'rightmap')
+    </script>
+{% endblock content %}

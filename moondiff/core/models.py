@@ -12,7 +12,7 @@ class SpacecraftCamera(models.Model):
 class Image(models.Model):
     spacecraft_camera = models.ForeignKey(SpacecraftCamera, on_delete=models.CASCADE)
     product_id = models.CharField(max_length=100)
-    file_data = models.FileField()
+    file_data = models.FileField(upload_to='images/')
 
     def __str__(self):
         return self.product_id
