@@ -1,5 +1,6 @@
 from django.contrib.gis.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 class SpacecraftCamera(models.Model):
     name = models.CharField(max_length=100)
@@ -30,7 +31,10 @@ class Pair(models.Model):
     pairset = models.ForeignKey(PairSet, on_delete=models.CASCADE, blank=True)
 
     def __str__(self):
-        return f"{self.old_image}xx{self.new_image}"
+        return f"{self.old_image} compared to {self.new_image}"
+
+    def get_absolute_url(self):
+        return reverse('pair-detail', kwargs={'pk': self.pk})
 
     class Meta:
         unique_together = ['old_image', 'new_image']

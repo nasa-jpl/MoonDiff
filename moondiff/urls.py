@@ -19,5 +19,5 @@ from moondiff.core.views import PairDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('pair/<slug:slug>/', PairDetailView.as_view(), name='pair-detail')
+    path('pair/<int:pk>/', PairDetailView.as_view(), name='pair-detail')
 ]
