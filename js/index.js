@@ -3,6 +3,13 @@ import MapView from "@arcgis/core/views/MapView";
 import ImageryTileLayer from "@arcgis/core/layers/ImageryTileLayer";
 import Draw from "@arcgis/core/views/draw/Draw"
 
+// TODO sourcemap
+// TODO link maps
+// TODO drawing
+// TODO drawing submission
+// TODO next / prev buttons, viewed by user recording
+// TODO offsets
+
 // TODO find a better way than using window for making this function accessible from the django template
 window.makeTileMap = (tile_url, container)=>{
     const webmap = new Map({});
@@ -15,4 +22,5 @@ window.makeTileMap = (tile_url, container)=>{
         container: container,
         map: webmap
     })
+    return view
 }

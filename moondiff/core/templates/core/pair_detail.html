@@ -10,7 +10,14 @@
     {% load render_bundle from webpack_loader %}
     {% render_bundle 'main' %}
     <script type="text/javascript">
-        makeTileMap('{{ pair.old_image.file_data.url }}', 'leftmap')
-        makeTileMap('{{ pair.new_image.file_data.url }}', 'rightmap')
+    const urlParams = new URLSearchParams(window.location.search)
+    if (urlParams.get('comparer')=='blink') {
+        console.log("Blink / fade mode not yet implemented")
+    } else {
+        // assuming we're in side-by-side mode
+        const leftmap = makeTileMap('{{ pair.old_image.file_data.url }}', 'leftmap')
+        const rightmap = makeTileMap('{{ pair.new_image.file_data.url }}', 'rightmap')
+        console.log({leftmap:leftmap, rightmap:rightmap})
+    }
     </script>
 {% endblock content %}
