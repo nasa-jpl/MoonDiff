@@ -5,8 +5,8 @@
 {% endblock head %}
 
 {% block content %}
-    <div id="leftmap" style="width: 50vw; height: 100vw; position: absolute; left: 0">{{ pair.old_image }}</div>
-    <div id="rightmap" style="width: 50vw; height: 100vw; position: absolute; right: 0">{{ pair.new_image }}</div>
+    <div id="left_mapview_container" style="width: 50vw height: 100vw position: absolute left: 0">{{ pair.old_image }}</div>
+    <div id="right_mapview_container" style="width: 50vw height: 100vw position: absolute right: 0">{{ pair.new_image }}</div>
     {% load render_bundle from webpack_loader %}
     {% render_bundle 'main' %}
     <script type="text/javascript">
@@ -15,9 +15,39 @@
         console.log("Blink / fade mode not yet implemented")
     } else {
         // assuming we're in side-by-side mode
-        const leftmap = makeTileMap('{{ pair.old_image.file_data.url }}', 'leftmap')
-        const rightmap = makeTileMap('{{ pair.new_image.file_data.url }}', 'rightmap')
-        console.log({leftmap:leftmap, rightmap:rightmap})
+
+        
+        // TODO move this function into a utils file
+        const sync = (source) => {
+            console.log('syncing')
+            // Sets the center and zoom of all views to the center and zoom of source
+            if (!active || !active.viewpoint || active !== source) {
+                return
+            }
+
+            for (const view of views) {
+                if (view !== source) {
+                    view.viewpoint = source.viewpoint
+                }
+            }
+        }
+
+        const leftview = makeTileMap('{{ pair.old_image.file_data.url }}', 'left_mapview_container')
+        const rightview = makeTileMap('{{ pair.new_image.file_data.url }}', 'right_mapview_container')
+        console.log({leftview, rightview})
+
+        const views = [leftview, rightview]
+        let active = leftview
+        
+        for (const view of views) {
+            view.watch(["interacting", "animation"], () => {
+                active = view
+                sync(active)
+            })
+
+            view.watch("viewpoint", () => sync(view))
+        }
+        
     }
     </script>
 {% endblock content %}

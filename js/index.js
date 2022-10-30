@@ -4,7 +4,6 @@ import ImageryTileLayer from "@arcgis/core/layers/ImageryTileLayer";
 import Draw from "@arcgis/core/views/draw/Draw"
 
 // TODO sourcemap
-// TODO link maps
 // TODO drawing
 // TODO drawing submission
 // TODO next / prev buttons, viewed by user recording
@@ -20,7 +19,10 @@ window.makeTileMap = (tile_url, container)=>{
     webmap.layers.add(locog);
     const view = new MapView({
         container: container,
-        map: webmap
+        map: webmap,
+        constraints: {
+            snapToZoom: false
+        }
     })
     return view
 }
