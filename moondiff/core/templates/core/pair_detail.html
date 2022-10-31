@@ -3,11 +3,29 @@
 {% block head %}
 <link rel="stylesheet" href="https://js.arcgis.com/next/esri/themes/light/main.css">
 <script src="https://js.arcgis.com/next/"></script>
+<style>
+
+.right-title, .left-title{
+    width: 50%;
+    z-index: 10;
+    bottom: 30px;
+    text-align: center;
+    position: absolute;
+}
+.right-title {
+    right: 0
+}
+.left-title {
+    left: 0
+}
+</style>
 {% endblock head %}
 
 {% block content %}
-    <div id="left_mapview_container" style="width: 50vw; height: 100vw; position: absolute; left: 0">{{ pair.old_image }}</div>
-    <div id="right_mapview_container" style="width: 50vw; height: 100vw; position: absolute; right: 0">{{ pair.new_image }}</div>
+    <div class="left-title">{{ pair.old_image }}</div>
+    <div class="right-title">{{ pair.new_image }}</div>
+    <div id="left_mapview_container" style="width: 50vw; height: 100vw; position: absolute; left: 0"></div>
+    <div id="right_mapview_container" style="width: 50vw; height: 100vw; position: absolute; right: 0"></div>
     <script type="text/javascript">
 
     const setupSideBySide = ()=>{
