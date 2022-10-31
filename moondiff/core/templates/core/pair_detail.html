@@ -11,26 +11,38 @@
     <script type="text/javascript">
 
     const setupSideBySide = ()=>{
-        require(["esri/Map", "esri/views/MapView", "esri/layers/ImageryTileLayer"], function (Map, MapView, ImageryTileLayer){
+        require(["esri/Map",
+            "esri/views/MapView",
+            "esri/layers/ImageryTileLayer",
+            "esri/views/draw/Draw",
+            "esri/layers/GraphicsLayer",
+            "esri/widgets/Sketch"
+        ], function (
+                Map, MapView, ImageryTileLayer, Draw, GraphicsLayer, Sketch){
             const makeTileMap = (tile_url, container)=>{
                 const webmap = new Map({});
                 const locog = new ImageryTileLayer({
                     url: tile_url,
                 })
                 webmap.layers.add(locog);
-                const view = new MapView({
+                return new MapView({
                     container: container,
                     map: webmap,
                     constraints: {
                         snapToZoom: false
                     }
                 })
-                return view
             }
+
+            const leftview = makeTileMap('{{ pair.old_image.file_data.url }}', 'left_mapview_container')
+            const rightview = makeTileMap('{{ pair.new_image.file_data.url }}', 'right_mapview_container')
+            const views = [leftview, rightview]
+            console.log(views)
+            let active = leftview
+
 
             // TODO move this function into a utils file
             const sync = (source) => {
-                console.log('syncing')
                 // Sets the center and zoom of all views to the center and zoom of source
                 if (!active || !active.viewpoint || active !== source) {
                     return
@@ -43,11 +55,6 @@
                 }
             }
             
-            const leftview = makeTileMap('{{ pair.old_image.file_data.url }}', 'left_mapview_container')
-            const rightview = makeTileMap('{{ pair.new_image.file_data.url }}', 'right_mapview_container')
-            const views = [leftview, rightview]
-            let active = leftview
-            
             for (const view of views) {
                 view.watch(["interacting", "animation"], () => {
                     active = view
@@ -56,10 +63,28 @@
 
                 view.watch("viewpoint", () => sync(view))
             }
+
+            // Drawing stuff
+            const annotationLayer = new GraphicsLayer()
+            const annotationLayerCopy = new GraphicsLayer()
+            console.log('annotation layer')
+            console.log(annotationLayer)
+            leftview.map.layers.add(annotationLayer)
+            rightview.map.layers.add(annotationLayerCopy)
+            const sketch = new Sketch({
+                layer: annotationLayer,
+                view: leftview,
+                availableCreateTools: ["polygon"]
+            });
+            annotationLayer.graphics.on('after-add', (evt) => {
+                console.log(evt.item)
+                annotationLayerCopy.graphics.add(evt.item.clone())
+            })
+            leftview.ui.add(sketch, "top-right")
         })
     }
     const urlParams = new URLSearchParams(window.location.search)
-    if (urlParams.get('comparer')=='blink') {
+    if (urlParams.get('comparer')==='blink') {
         console.log("Blink / fade mode not yet implemented")
     } else {
         // assuming we're in side-by-side mode
