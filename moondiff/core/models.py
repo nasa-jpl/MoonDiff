@@ -41,7 +41,7 @@ class Pair(models.Model):
 
 
 class Annotation(models.Model):
-    creator = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, editable=False)
     shape = models.PolygonField()
     notes = models.TextField()
     created_at = models.DateField(auto_now=True)

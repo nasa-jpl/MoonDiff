@@ -14,12 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from moondiff.core.views import PairDetailView
+from django.urls import include, path
+from moondiff.core.views import PairDetailView, AnnotationViewSet
 from django.conf.urls.static import static
 from django.conf import settings
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'annotations', AnnotationViewSet, basename='annotation')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('pair/<int:pk>/', PairDetailView.as_view(), name='pair-detail')
+    path('pair/<int:pk>/', PairDetailView.as_view(), name='pair-detail'),
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

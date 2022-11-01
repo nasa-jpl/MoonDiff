@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.gis',
-    'webpack_loader',
+    'rest_framework',
     'moondiff.core'
 ]
 
@@ -131,7 +131,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # GDAL_LIBRARY_PATH = 'C:\\OSGeo4W64\\bin\\gdal301.dll'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'dist'),
+    os.path.join(BASE_DIR, 'static'),
 )
 
 WEBPACK_LOADER = {
