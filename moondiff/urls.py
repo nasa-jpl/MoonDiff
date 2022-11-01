@@ -26,6 +26,6 @@ router.register(r'annotations', AnnotationViewSet, basename='annotation')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('pair/<int:pk>/', PairDetailView.as_view(), name='pair-detail'),
-    path('', include(router.urls)),
+    path('', include(router.urls)), # API urls
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

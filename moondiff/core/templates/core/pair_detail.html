@@ -106,7 +106,7 @@
                 annotationData.append('notes','js test')
                 annotationData.append('shape',wkt_geometry)
                 annotationLayerCopy.graphics.add(evt.item.clone())
-                fetch('/annotations/', {
+                fetch('{% url 'annotation-list' %}', {
                     method: 'POST',
                     credentials: 'same-origin',
                     body: annotationData
