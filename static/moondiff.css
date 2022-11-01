@@ -1,0 +1,14 @@
+
+.right-title, .left-title{
+    width: 50%;
+    z-index: 10;
+    bottom: 30px;
+    text-align: center;
+    position: absolute;
+}
+.right-title {
+    right: 0
+}
+.left-title {
+    left: 0
+}

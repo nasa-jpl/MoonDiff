@@ -15,22 +15,6 @@
 <link rel="stylesheet" href="https://js.arcgis.com/next/esri/themes/light/main.css">
 <link rel="stylesheet" href="/static/MicroModal.css">
 <script src="https://js.arcgis.com/next/"></script>
-<style>
-
-.right-title, .left-title{
-    width: 50%;
-    z-index: 10;
-    bottom: 30px;
-    text-align: center;
-    position: absolute;
-}
-.right-title {
-    right: 0
-}
-.left-title {
-    left: 0
-}
-</style>
 {% endblock head %}
 
 {% block content %}
@@ -154,7 +138,7 @@
                 const wkt_points = evt.item.geometry.rings[0].map(pt=>`${pt[0]} ${pt[1]}`).toString()
                 const wkt_geometry = `SRID=${wkt_srid};POLYGON ((${wkt_points}))`
                 annotationLayerCopy.graphics.add(evt.item.clone())
-                await submitAnnotationModal()
+                await submitAnnotationModal() //TODO handle errors
                 const annotationData = new FormData(document.querySelector("#annotation-notes-form"));
                 annotationData.append('csrfmiddlewaretoken',document.querySelector('[name=csrfmiddlewaretoken]').value)
                 annotationData.append('shape',wkt_geometry)

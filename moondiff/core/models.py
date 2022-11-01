@@ -19,7 +19,7 @@ class Image(models.Model):
 
 class PairSet(models.Model):
     name = models.CharField(max_length=100)
-    notes = models.TextField(blank=True)
+    notes = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -28,7 +28,8 @@ class PairSet(models.Model):
 class Pair(models.Model):
     old_image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='pairs_with_this_as_old')
     new_image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='pairs_with_this_as_new')
-    pairset = models.ForeignKey(PairSet, on_delete=models.CASCADE, blank=True)
+    pairset = models.ForeignKey(PairSet, on_delete=models.CASCADE, blank=True, null=True)
+    coreg_notes = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return f"{self.old_image} compared to {self.new_image}"
@@ -45,11 +46,15 @@ class Annotation(models.Model):
     shape = models.PolygonField()
     notes = models.TextField()
     created_at = models.DateField(auto_now=True)
-    # classification = models.Choices([])
+    classification = models.CharField(max_length=10,
+        choices=(('CRATER','new crater'),
+        ('SPLOTCH','splotch (change in brightness over an area)'),
+        ('HW','spacecraft hardware'),
+    ))
 
 class AnnotationReview(models.Model):
     further_review_required = models.BooleanField()
     valid_discovery = models.BooleanField()
-    comments = models.TextField(blank=True)
+    comments = models.TextField(blank=True, null=True)
     reviewer = User()
     created_at = models.DateField(auto_now=True)
