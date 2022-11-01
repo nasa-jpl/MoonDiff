@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block head %}
+    {% csrf_token %}
 <link rel="stylesheet" href="https://js.arcgis.com/next/esri/themes/light/main.css">
 <script src="https://js.arcgis.com/next/"></script>
 <style>
@@ -96,7 +97,20 @@
             });
             annotationLayer.graphics.on('after-add', (evt) => {
                 console.log(evt.item)
+                const wkt_srid = evt.item.geometry.spatialReference.wkid
+                const wkt_points = evt.item.geometry.rings[0].map(pt=>`${pt[0]} ${pt[1]}`).toString()
+                const wkt_geometry = `SRID=${wkt_srid};POLYGON ((${wkt_points}))`
+                const annotationData = new FormData();
+                annotationData.append('csrfmiddlewaretoken',document.querySelector('[name=csrfmiddlewaretoken]').value)
+                // TODO calcite modal form here to get notes etc. annotation
+                annotationData.append('notes','js test')
+                annotationData.append('shape',wkt_geometry)
                 annotationLayerCopy.graphics.add(evt.item.clone())
+                fetch('/annotations/', {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    body: annotationData
+                })
             })
             leftview.ui.add(sketch, "top-right")
         })
