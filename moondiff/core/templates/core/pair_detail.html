@@ -1,8 +1,19 @@
 {% extends "base.html" %}
 
+{% load rest_framework %}
+
+{% block subtitle %}
+    change spotter
+{% endblock subtitle %}
+
+{% block call_to_action %}
+    <div id="callToAction">Please spot differences and draw polygons around them.</div>
+{% endblock call_to_action %}
+
 {% block head %}
     {% csrf_token %}
 <link rel="stylesheet" href="https://js.arcgis.com/next/esri/themes/light/main.css">
+<link rel="stylesheet" href="/static/MicroModal.css">
 <script src="https://js.arcgis.com/next/"></script>
 <style>
 
@@ -27,6 +38,34 @@
     <div class="right-title">{{ pair.new_image }}</div>
     <div id="left_mapview_container" style="width: 50vw; height: 100vw; position: absolute; left: 0"></div>
     <div id="right_mapview_container" style="width: 50vw; height: 100vw; position: absolute; right: 0"></div>
+
+
+    <div class="modal micromodal-slide" id="annotation-notes-modal" aria-hidden="true">
+        <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+                <header class="modal__header">
+                    <h2 class="modal__title" id="modal-1-title">
+                        Submit the change you found
+                    </h2>
+                    <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+                </header>
+                <main class="modal__content" id="modal-1-content">
+                    Thanks for drawing a polygon that you think represents a difference between the two images! Please 
+                    add a little extra information here about what you saw.
+                    <p>
+                        <form id="annotation-notes-form">
+                            {% render_form annotation_serializer %}
+                        </form>
+                    </p>
+                </main>
+                <footer class="modal__footer">
+                    <button id="annotation-notes-submit" class="modal__btn modal__btn-primary">Submit</button>
+                    <button id="annotation-notes-close" class="modal__btn" data-micromodal-close aria-label="Close this dialog window">Close</button>
+                </footer>
+            </div>
+        </div>
+    </div>
+    
     <script type="text/javascript">
 
     const setupSideBySide = ()=>{
@@ -35,10 +74,12 @@
             "esri/layers/ImageryTileLayer",
             "esri/views/draw/Draw",
             "esri/layers/GraphicsLayer",
-            "esri/widgets/Sketch"
+            "esri/widgets/Sketch",
+            "https://unpkg.com/micromodal/dist/micromodal.min.js"
         ], function (
-                Map, MapView, ImageryTileLayer, Draw, GraphicsLayer, Sketch){
+                Map, MapView, ImageryTileLayer, Draw, GraphicsLayer, Sketch, MicroModal){
             const makeTileMap = (tile_url, container)=>{
+                MicroModal.init()
                 const webmap = new Map({});
                 const locog = new ImageryTileLayer({
                     url: tile_url,
@@ -60,7 +101,7 @@
             let active = leftview
 
 
-            // TODO move this function into a utils file
+            // TODO move these functions into libraries
             const sync = (source) => {
                 // Sets the center and zoom of all views to the center and zoom of source
                 if (!active || !active.viewpoint || active !== source) {
@@ -72,6 +113,18 @@
                         view.viewpoint = source.viewpoint
                     }
                 }
+            }
+            
+            const submitAnnotationModal = async() => {
+                return new Promise((resolve) => {
+                    MicroModal.show('annotation-notes-modal')
+                    document.querySelector('#annotation-notes-submit').addEventListener(
+                        "click", ()=>{
+                            MicroModal.close('annotation-notes-modal')
+                            resolve()
+                        })
+                    }
+                )
             }
             
             for (const view of views) {
@@ -95,17 +148,16 @@
                 view: leftview,
                 availableCreateTools: ["polygon"]
             });
-            annotationLayer.graphics.on('after-add', (evt) => {
+            annotationLayer.graphics.on('after-add', async (evt) => {
                 console.log(evt.item)
                 const wkt_srid = evt.item.geometry.spatialReference.wkid
                 const wkt_points = evt.item.geometry.rings[0].map(pt=>`${pt[0]} ${pt[1]}`).toString()
                 const wkt_geometry = `SRID=${wkt_srid};POLYGON ((${wkt_points}))`
-                const annotationData = new FormData();
-                annotationData.append('csrfmiddlewaretoken',document.querySelector('[name=csrfmiddlewaretoken]').value)
-                // TODO calcite modal form here to get notes etc. annotation
-                annotationData.append('notes','js test')
-                annotationData.append('shape',wkt_geometry)
                 annotationLayerCopy.graphics.add(evt.item.clone())
+                await submitAnnotationModal()
+                const annotationData = new FormData(document.querySelector("#annotation-notes-form"));
+                annotationData.append('csrfmiddlewaretoken',document.querySelector('[name=csrfmiddlewaretoken]').value)
+                annotationData.append('shape',wkt_geometry)
                 fetch('{% url 'annotation-list' %}', {
                     method: 'POST',
                     credentials: 'same-origin',

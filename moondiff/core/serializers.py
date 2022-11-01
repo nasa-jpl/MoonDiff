@@ -7,3 +7,10 @@ class AnnotationSerializer(serializers.HyperlinkedModelSerializer):
         model = Annotation
         # Should have fields = '__all__' but it complains that User isn't in API
         fields = ['shape','notes']
+
+class AnnotationForPairSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Annotation
+        # Should have fields = '__all__' but it complains that User isn't in API
+        fields = ['notes']

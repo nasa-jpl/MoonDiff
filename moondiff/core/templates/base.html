@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <title>MoonDiff</title>
     {% block head %}
-        <meta charset="UTF-8">
-        <title>MoonDiff</title>
     {% endblock head %}
 </head>
 <body>
+<header id="header">
+    <h1>MoonDiff {% block subtitle %}{% endblock subtitle %}</h1>
+    {% block call_to_action %}<div id="callToAction"></div>{% endblock call_to_action %}
+</header>
     {% block content %}
         No content.
     {% endblock content %}
