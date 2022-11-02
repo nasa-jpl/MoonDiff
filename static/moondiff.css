@@ -1,3 +1,32 @@
+body {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0; 
+    background: lightgray;
+}
+
+#header {
+    height: 10%;
+    position: absolute;
+    top: 0;
+}
+#right_mapview_container, #left_mapview_container {
+    height: 89%;
+    width: 50%;
+    top: 10%;
+    position: absolute;
+    background: black;
+}
+
+#right_mapview_container {
+    right: 0
+}
+
+#left_mapview_container {
+    left: 0
+}
 
 .right-title, .left-title{
     width: 50%;
@@ -6,6 +35,7 @@
     text-align: center;
     position: absolute;
 }
+
 .right-title {
     right: 0
 }

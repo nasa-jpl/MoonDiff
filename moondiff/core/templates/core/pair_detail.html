@@ -20,8 +20,8 @@
 {% block content %}
     <div class="left-title">{{ pair.old_image }}</div>
     <div class="right-title">{{ pair.new_image }}</div>
-    <div id="left_mapview_container" style="width: 50vw; height: 100vw; position: absolute; left: 0"></div>
-    <div id="right_mapview_container" style="width: 50vw; height: 100vw; position: absolute; right: 0"></div>
+    <div id="left_mapview_container" ></div>
+    <div id="right_mapview_container" ></div>
 
 
     <div class="modal micromodal-slide" id="annotation-notes-modal" aria-hidden="true">
@@ -138,15 +138,22 @@
                 const wkt_points = evt.item.geometry.rings[0].map(pt=>`${pt[0]} ${pt[1]}`).toString()
                 const wkt_geometry = `SRID=${wkt_srid};POLYGON ((${wkt_points}))`
                 annotationLayerCopy.graphics.add(evt.item.clone())
-                await submitAnnotationModal() //TODO handle errors
-                const annotationData = new FormData(document.querySelector("#annotation-notes-form"));
-                annotationData.append('csrfmiddlewaretoken',document.querySelector('[name=csrfmiddlewaretoken]').value)
-                annotationData.append('shape',wkt_geometry)
-                fetch('{% url 'annotation-list' %}', {
-                    method: 'POST',
-                    credentials: 'same-origin',
-                    body: annotationData
-                })
+                await submitAnnotationModal().then(()=>{
+                    const annotationData = new FormData(document.querySelector("#annotation-notes-form"));
+                    annotationData.append('csrfmiddlewaretoken',document.querySelector('[name=csrfmiddlewaretoken]').value)
+                    annotationData.append('shape',wkt_geometry)
+                    fetch('{% url 'annotation-list' %}', {
+                        method: 'POST',
+                        credentials: 'same-origin',
+                        body: annotationData
+                    }), ()=>{
+                        console.log("not submitted")
+                    }
+                }
+                    
+
+                ) //TODO handle errors
+
             })
             leftview.ui.add(sketch, "top-right")
         })
