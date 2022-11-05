@@ -168,7 +168,8 @@
                 view: leftview,
                 availableCreateTools: ["polygon"]
             });
-            
+            sketch.create("polygon")
+            sketch.visible = false
             annotationLayer.graphics.on('after-add', async (evt) => {
                 const wkt_srid = evt.item.geometry.spatialReference.wkid
                 const wkt_points = evt.item.geometry.rings[0].map(pt=>`${pt[0]} ${pt[1]}`).toString()
