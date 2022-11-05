@@ -21,11 +21,12 @@ body {
 }
 
 #right_mapview_container {
-    right: 0
+    right: 0;
+    display: none;  /* hide unless we're doing side-by-side */    
 }
 
 #left_mapview_container {
-    left: 0
+    left: 0;
 }
 
 .right-title, .left-title{

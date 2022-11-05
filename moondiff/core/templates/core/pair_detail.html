@@ -52,7 +52,7 @@
     
     <script type="text/javascript">
 
-    const setupSideBySide = ()=>{
+    const setup = (comparerMode)=>{
         require(["esri/Map",
             "esri/views/MapView",
             "esri/layers/ImageryTileLayer",
@@ -79,31 +79,7 @@
                     }
                 })
             }
-
-            const leftview = makeTileMap('{{ pair.old_image.file_data.url }}', 'left_mapview_container')
-            leftview.crosshair = createPoint(0,0)
-            leftview.graphics.add(leftview.crosshair)
-            const rightview = makeTileMap('{{ pair.new_image.file_data.url }}', 'right_mapview_container')
-            rightview.crosshair = createPoint(0,0)
-            rightview.graphics.add(rightview.crosshair)
-            const views = [leftview, rightview]
-            let active = leftview
             
-            
-            // TODO move these functions into libraries
-            const sync = (source) => {
-                // Sets the center and zoom of all views to the center and zoom of source
-                if (!active || !active.viewpoint || active !== source) {
-                    return
-                }
-
-                for (const view of views) {
-                    if (view !== source) {
-                        view.viewpoint = source.viewpoint
-                    }
-                }
-            }
-
             function createPoint(lat, lon) {
                 const point = {
                     type: "point",
@@ -123,18 +99,72 @@
                     symbol: markerSymbol
                 });
             }
+
+            document.querySelector('#left_mapview_container').style.width="100%"
+            const mainview = makeTileMap('{{ pair.old_image.file_data.url }}', 'left_mapview_container')
+            mainview.crosshair = createPoint(0,0)
+            mainview.graphics.add(mainview.crosshair)
+            const annotationLayer = new GraphicsLayer()
+            mainview.map.layers.add(annotationLayer)
             
-            const syncPointer = (evt) => {
-                // Sets the center and zoom of all views to the center and zoom of source
-                for (const view of views) {
-                    const cursor_coord = view.toMap({x:evt.x, y:evt.y})
-                    view.crosshair.geometry= {
-                        type: 'point',
-                        x: cursor_coord.longitude,
-                        y: cursor_coord.latitude
+            
+            if (comparerMode === 'sideBySide'){
+                document.querySelector('#left_mapview_container').style.width="50%"
+                document.querySelector('#right_mapview_container').style.width="50%"
+                document.querySelector('#right_mapview_container').style.display="flex"
+                const rightview = makeTileMap('{{ pair.new_image.file_data.url }}', 'right_mapview_container')
+                rightview.crosshair = createPoint(0,0)
+                rightview.graphics.add(rightview.crosshair)
+                const views = [mainview, rightview]
+                let active = mainview
+
+                // Drawing stuff
+                const annotationLayerCopy = new GraphicsLayer()
+
+                rightview.map.layers.add(annotationLayerCopy)
+
+                // TODO move these functions into libraries
+
+
+                const sync = (source) => {
+                    // Sets the center and zoom of all views to the center and zoom of source
+                    if (!active || !active.viewpoint || active !== source) {
+                        return
+                    }
+
+                    for (const view of views) {
+                        if (view !== source) {
+                            view.viewpoint = source.viewpoint
+                        }
                     }
                 }
+
+                const syncPointer = (evt) => {
+                    // Sets the center and zoom of all views to the center and zoom of source
+                    for (const view of views) {
+                        const cursor_coord = view.toMap({x:evt.x, y:evt.y})
+                        view.crosshair.geometry= {
+                            type: 'point',
+                            x: cursor_coord.longitude,
+                            y: cursor_coord.latitude
+                        }
+                    }
+                }
+
+                for (const view of views) {
+                    view.watch(["interacting", "animation"], () => {
+                        active = view
+                    })
+
+                    view.watch("viewpoint", () => sync(view))
+                    view.on("pointer-move", syncPointer)
+                }
             }
+            else {
+                // assume blink mode
+                
+            }
+            
             
             const submitAnnotationModal = async() => {
                 return new Promise((resolve) => {
@@ -147,25 +177,13 @@
                     }
                 )
             }
-            
-            
-            for (const view of views) {
-                view.watch(["interacting", "animation"], () => {
-                    active = view
-                })
 
-                view.watch("viewpoint", () => sync(view))
-                view.on("pointer-move", syncPointer)
-            }
 
-            // Drawing stuff
-            const annotationLayer = new GraphicsLayer()
-            const annotationLayerCopy = new GraphicsLayer()
-            leftview.map.layers.add(annotationLayer)
-            rightview.map.layers.add(annotationLayerCopy)
+
+
             const sketch = new Sketch({
                 layer: annotationLayer,
-                view: leftview,
+                view: mainview,
                 availableCreateTools: ["polygon"]
             });
             sketch.create("polygon")
@@ -174,7 +192,8 @@
                 const wkt_srid = evt.item.geometry.spatialReference.wkid
                 const wkt_points = evt.item.geometry.rings[0].map(pt=>`${pt[0]} ${pt[1]}`).toString()
                 const wkt_geometry = `SRID=${wkt_srid};POLYGON ((${wkt_points}))`
-                annotationLayerCopy.graphics.add(evt.item.clone())
+                // only expected to work if we're in sideBySide mode
+                try{annotationLayerCopy.graphics.add(evt.item.clone())} catch(e){}
                 await submitAnnotationModal().then(()=>{
                     const annotationData = new FormData(document.querySelector("#annotation-notes-form"));
                     annotationData.append('csrfmiddlewaretoken',document.querySelector('[name=csrfmiddlewaretoken]').value)
@@ -192,15 +211,10 @@
                 ) //TODO handle errors
 
             })
-            leftview.ui.add(sketch, "top-right")
+            mainview.ui.add(sketch, "top-right")
         })
     }
     const urlParams = new URLSearchParams(window.location.search)
-    if (urlParams.get('comparer')==='blink') {
-        console.log("Blink / fade mode not yet implemented")
-    } else {
-        // assuming we're in side-by-side mode
-        setupSideBySide()
-    }
+    setup(urlParams.get('comparer'))
     </script>
 {% endblock content %}
