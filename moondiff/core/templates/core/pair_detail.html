@@ -58,12 +58,14 @@
             "esri/layers/ImageryTileLayer",
             "esri/views/draw/Draw",
             "esri/layers/GraphicsLayer",
+            "esri/Graphic",
             "esri/widgets/Sketch",
             "https://unpkg.com/micromodal/dist/micromodal.min.js"
         ], function (
-                Map, MapView, ImageryTileLayer, Draw, GraphicsLayer, Sketch, MicroModal){
+                Map, MapView, ImageryTileLayer, Draw, GraphicsLayer, Graphic, Sketch, MicroModal){
+            MicroModal.init()
+
             const makeTileMap = (tile_url, container)=>{
-                MicroModal.init()
                 const webmap = new Map({});
                 const locog = new ImageryTileLayer({
                     url: tile_url,
@@ -79,12 +81,15 @@
             }
 
             const leftview = makeTileMap('{{ pair.old_image.file_data.url }}', 'left_mapview_container')
+            leftview.crosshair = createPoint(0,0)
+            leftview.graphics.add(leftview.crosshair)
             const rightview = makeTileMap('{{ pair.new_image.file_data.url }}', 'right_mapview_container')
+            rightview.crosshair = createPoint(0,0)
+            rightview.graphics.add(rightview.crosshair)
             const views = [leftview, rightview]
-            console.log(views)
             let active = leftview
-
-
+            
+            
             // TODO move these functions into libraries
             const sync = (source) => {
                 // Sets the center and zoom of all views to the center and zoom of source
@@ -95,6 +100,38 @@
                 for (const view of views) {
                     if (view !== source) {
                         view.viewpoint = source.viewpoint
+                    }
+                }
+            }
+
+            function createPoint(lat, lon) {
+                const point = {
+                    type: "point",
+                    longitude: lon,
+                    latitude: lat
+                };
+
+                // Create a symbol for drawing the point
+                const markerSymbol = {
+                    type: "simple-marker",
+                    style: "cross"
+                };
+
+                // Create a graphic and add the geometry and symbol to it
+                return new Graphic({
+                    geometry: point,
+                    symbol: markerSymbol
+                });
+            }
+            
+            const syncPointer = (evt) => {
+                // Sets the center and zoom of all views to the center and zoom of source
+                for (const view of views) {
+                    const cursor_coord = view.toMap({x:evt.x, y:evt.y})
+                    view.crosshair.geometry= {
+                        type: 'point',
+                        x: cursor_coord.longitude,
+                        y: cursor_coord.latitude
                     }
                 }
             }
@@ -111,20 +148,19 @@
                 )
             }
             
+            
             for (const view of views) {
                 view.watch(["interacting", "animation"], () => {
                     active = view
-                    sync(active)
                 })
 
                 view.watch("viewpoint", () => sync(view))
+                view.on("pointer-move", syncPointer)
             }
 
             // Drawing stuff
             const annotationLayer = new GraphicsLayer()
             const annotationLayerCopy = new GraphicsLayer()
-            console.log('annotation layer')
-            console.log(annotationLayer)
             leftview.map.layers.add(annotationLayer)
             rightview.map.layers.add(annotationLayerCopy)
             const sketch = new Sketch({
@@ -132,8 +168,8 @@
                 view: leftview,
                 availableCreateTools: ["polygon"]
             });
+            
             annotationLayer.graphics.on('after-add', async (evt) => {
-                console.log(evt.item)
                 const wkt_srid = evt.item.geometry.spatialReference.wkid
                 const wkt_points = evt.item.geometry.rings[0].map(pt=>`${pt[0]} ${pt[1]}`).toString()
                 const wkt_geometry = `SRID=${wkt_srid};POLYGON ((${wkt_points}))`
@@ -146,10 +182,10 @@
                         method: 'POST',
                         credentials: 'same-origin',
                         body: annotationData
-                    }), ()=>{
+                    })
+                },  ()=>{
                         console.log("not submitted")
                     }
-                }
                     
 
                 ) //TODO handle errors
