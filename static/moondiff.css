@@ -43,3 +43,7 @@ body {
 .left-title {
     left: 0
 }
+
+input {
+    position: relative;
+}

@@ -20,6 +20,7 @@
 {% block content %}
     <div class="left-title">{{ pair.old_image }}</div>
     <div class="right-title">{{ pair.new_image }}</div>
+    <div id="fade-blink-controls"><input type="range" id="fader" min="0" max="1" step="0.05"/></div>
     <div id="left_mapview_container" ></div>
     <div id="right_mapview_container" ></div>
 
@@ -67,10 +68,10 @@
 
             const makeTileMap = (tile_url, container)=>{
                 const webmap = new Map({});
-                const locog = new ImageryTileLayer({
+                const tileLayer = new ImageryTileLayer({
                     url: tile_url,
                 })
-                webmap.layers.add(locog);
+                webmap.layers.add(tileLayer);
                 return new MapView({
                     container: container,
                     map: webmap,
@@ -102,6 +103,8 @@
 
             document.querySelector('#left_mapview_container').style.width="100%"
             const mainview = makeTileMap('{{ pair.old_image.file_data.url }}', 'left_mapview_container')
+            const oldImageLayer = mainview.map.layers.items[0]
+            console.log(oldImageLayer)
             mainview.crosshair = createPoint(0,0)
             mainview.graphics.add(mainview.crosshair)
             const annotationLayer = new GraphicsLayer()
@@ -162,6 +165,15 @@
             }
             else {
                 // assume blink mode
+                const newImageLayer = new ImageryTileLayer({
+                    url: '{{ pair.new_image.file_data.url }}',
+                })
+                mainview.map.add(newImageLayer)
+                const fader = document.querySelector('#fader')
+                fader.addEventListener('input', e=>{
+                    oldImageLayer.opacity = e.target.value;
+                    newImageLayer.opacity = 1-e.target.value;
+                })
                 
             }
             
