@@ -20,7 +20,14 @@
 {% block content %}
     <div class="left-title">{{ pair.old_image }}</div>
     <div class="right-title">{{ pair.new_image }}</div>
-    <div id="fade-blink-controls"><input type="range" id="fader" min="0" max="1" step="0.05"/></div>
+    <div id="fade-blink-controls">
+        <label for="fader">Crossfade:</label>
+        <input type="range" id="fader" name="fader" min="0" max="1" step="0.05" />
+        <label for="blink-toggle">Blink:</label>
+        <input type="checkbox" id="blink-toggle" name="blink-toggle" value="false" />
+        <label for="blink-speed-slider">Blink speed:</label>
+        <input type="range" id="blink-speed-slider" name="blink-speed-slider" min="0" max="5" step="0.5" />
+    </div>
     <div id="left_mapview_container" ></div>
     <div id="right_mapview_container" ></div>
 
@@ -174,7 +181,29 @@
                     oldImageLayer.opacity = e.target.value;
                     newImageLayer.opacity = 1-e.target.value;
                 })
-                
+                let blinkSpeed = 1
+                let blinkHandle = null
+                const blinkSpeedSlider = document.querySelector('#blink-speed-slider')
+                // issue: blink doesn't start when checkbox checked until you change blink speed
+                blinkSpeedSlider.addEventListener('input', e=>{
+                    blinkSpeed = e.target.value
+                    clearInterval(blinkHandle)
+                    blinkHandle = setInterval(() => {
+                        if (blinkToggle.checked) {
+                            if (fader.value == 1) {
+                                fader.value = 0
+                            } else if (fader.value == 0) {
+                                fader.value = 1
+                            } else {
+                                fader.value = 0
+                            }
+                            fader.dispatchEvent(new Event('input'))
+                        }
+                    }, blinkSpeed * 1000)
+                })
+                const blinkToggle = document.querySelector('#blink-toggle')
+
+
             }
             
             
