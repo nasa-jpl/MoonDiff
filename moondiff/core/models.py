@@ -45,12 +45,19 @@ class Annotation(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, editable=False)
     shape = models.PolygonField()
     notes = models.TextField()
+    pair = models.ForeignKey(Pair, on_delete=models.CASCADE)
     created_at = models.DateField(auto_now=True)
     classification = models.CharField(max_length=10,
         choices=(('CRATER','new crater'),
         ('SPLOTCH','splotch (change in brightness over an area)'),
         ('HW','spacecraft hardware'),
     ))
+    
+    @property
+    def esri_style_geom(self):
+        # for converting from (((-4.6, -0.8), (-4.6, -0.8)))) style
+        # to [[-4.6, -0.8], [-4.6, -0.8]]
+        return str(self.shape.coords[0]).replace('(','[').replace(')',']')
 
 class AnnotationReview(models.Model):
     further_review_required = models.BooleanField()

@@ -117,12 +117,30 @@
             document.querySelector('#left_mapview_container').style.width="100%"
             const mainview = makeTileMap('{{ pair.old_image.file_data.url }}', 'left_mapview_container')
             const oldImageLayer = mainview.map.layers.items[0]
-            console.log(oldImageLayer)
             mainview.crosshair = createPoint(0,0)
             mainview.graphics.add(mainview.crosshair)
             const annotationLayer = new GraphicsLayer()
             mainview.map.layers.add(annotationLayer)
             
+            // load this user's previous annotations on this pair
+            const annotationPolylines = [
+            {% for annotation in annotation_set_this_user %}{{ annotation.esri_style_geom }},{% endfor %}
+            ]
+        
+            const addPolylinesToLayer = (layer, polylines) => {
+                for (const polyline of polylines){
+                    layer.add(
+                        new Graphic({
+                                geometry: {
+                                    type: 'polyline',
+                                    paths: polyline
+                                }
+                            }
+                        )
+                    )
+                }
+            }
+            addPolylinesToLayer(annotationLayer, annotationPolylines)
             
             if (comparerMode === 'sideBySide'){
                 document.querySelector('#left_mapview_container').style.width="50%"
@@ -134,10 +152,10 @@
                 const views = [mainview, rightview]
                 let active = mainview
 
-                // Drawing stuff
-                const annotationLayerCopy = new GraphicsLayer()
 
+                const annotationLayerCopy = new GraphicsLayer()
                 rightview.map.layers.add(annotationLayerCopy)
+                addPolylinesToLayer(annotationLayerCopy, annotationPolylines)
 
                 // TODO move these functions into libraries
 
