@@ -213,6 +213,7 @@
                     url: '{{ pair.new_image.file_data.url }}',
                 })
                 mainview.map.add(newImageLayer)
+                mainview.map.layers.add(annotationLayer) // re-add the annotation layer because otherwise it's underneath
                 const fader = document.querySelector('#fader')
                 fader.addEventListener('input', e=>{
                     oldImageLayer.opacity = e.target.value;
