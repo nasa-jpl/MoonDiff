@@ -1,6 +1,7 @@
 from django.contrib.gis.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+import random
 
 class SpacecraftCamera(models.Model):
     name = models.CharField(max_length=100)
@@ -33,6 +34,13 @@ class Pair(models.Model):
 
     def __str__(self):
         return f"{self.old_image} compared to {self.new_image}"
+
+    def get_random(self):
+        # Return a random pair other than this one
+        pair_pks = [v['pk'] for v in Pair.objects.values('pk')]
+        pair_pks.remove(self.pk)
+        random_pk = random.choice(pair_pks)
+        return Pair.objects.get(pk=random_pk).get_absolute_url()
 
     def get_absolute_url(self):
         return reverse('pair-detail', kwargs={'pk': self.pk})

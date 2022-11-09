@@ -34,6 +34,7 @@
         <label class="blinkfade controls" for="blink-speed-slider">Blink speed:</label>
         <input class="blinkfade controls" type="range" id="blink-speed-slider" name="blink-speed-slider" min="0" max="5" step="0.5" />
     </fieldset>
+    <button id="next-button">Next pair</button>
     <fieldset id="review-form">
         <legend>Review form</legend>
         <label class="controls" for="comparer-mode">Comparer:</label>
@@ -89,6 +90,9 @@
                 Map, MapView, ImageryTileLayer, Draw, GraphicsLayer, Graphic, Sketch, MicroModal){
             MicroModal.init()
 
+            const nextButton = document.querySelector('#next-button')
+            nextButton.addEventListener('click',()=>{ window.location.href = '{{ pair.get_random }}' })
+            
             const makeTileMap = (tile_url, container)=>{
                 const webmap = new Map({});
                 const tileLayer = new ImageryTileLayer({

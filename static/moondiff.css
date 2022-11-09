@@ -52,14 +52,27 @@ input, select {
 }
 
 #comparer-controls{
-    right: 0;
+    right: 20%;
     position: absolute;
     margin: 0.5em;
-    width: 50%;
+    width: 30%;
     display: grid;
     grid-template-columns: auto auto;
+}
+
+#next-button {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    width: 18%;
+    height: 8%;
 }
 
 .blinkfade.controls {
     display: none;    
 }
+
+#review-form {
+    display: none;    
+}
+
