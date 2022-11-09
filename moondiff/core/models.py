@@ -63,5 +63,6 @@ class AnnotationReview(models.Model):
     further_review_required = models.BooleanField()
     valid_discovery = models.BooleanField()
     comments = models.TextField(blank=True, null=True)
-    reviewer = User()
+    reviewer = models.ForeignKey(User, on_delete=models.CASCADE, editable=False)
+    annotation = models.ForeignKey(Annotation, on_delete=models.CASCADE)
     created_at = models.DateField(auto_now=True)
