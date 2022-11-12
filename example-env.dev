@@ -1,0 +1,4 @@
+# Fill this out for your server
+DEBUG=1
+SECRET_KEY=random_chars
+DJANGO_ALLOWED_HOSTS=example.com
