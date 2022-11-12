@@ -2,3 +2,5 @@ node_modules
 db.sqlite3
 webpack-stats.json
 dist
+*.key
+*.cert

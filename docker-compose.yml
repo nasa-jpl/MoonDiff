@@ -1,9 +1,14 @@
 version: '2'
 services:
-  appserver:
+  moondiffapp:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
-    ports:
-      - 80:8000
+    command: gunicorn --bind 0.0.0.0:8000 moondiff.wsgi --workers=4
     env_file:
       - ./env.dev
+
+  nginx:
+    build: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: always

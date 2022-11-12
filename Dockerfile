@@ -12,9 +12,9 @@ ENV PATH="/opt/miniconda3/bin:$PATH"
 RUN conda create -n moondiff; \
     source activate moondiff; \
     conda config --env --add channels conda-forge; \
-    conda install django djangorestframework lerc
+    conda install django djangorestframework lerc gunicorn
 RUN source activate moondiff; \
-    pip install djangorangemiddleware
+    pip install djangorangemiddleware gunicorn
 
 WORKDIR /app
 COPY . /app
