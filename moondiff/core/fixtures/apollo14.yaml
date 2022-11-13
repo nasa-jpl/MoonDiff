@@ -1,0 +1,46 @@
+- model: core.spacecraftcamera
+  pk: 1
+  fields:
+    name: LO3 24in
+- model: core.spacecraftcamera
+  pk: 2
+  fields:
+    name: LROC NAC R
+- model: core.image
+  pk: 1
+  fields:
+    spacecraft_camera: 1
+    product_id: 3313_HIGH_RES_1_COSMETIC
+    file_data: images/LO_3133_high_res_1_30110_v1.cog.tif
+- model: core.image
+  pk: 2
+  fields:
+    spacecraft_camera: 2
+    product_id: M1096608496RE
+    file_data: images/M1096608496RE_crop.tif
+- model: core.image
+  pk: 1
+  fields:
+    spacecraft_camera: 1
+    product_id: 3133_HIGH_RES_3_COSMETIC
+    file_data: images/3133_HIGH_RES_3_COSMETIC_cog.tif
+- model: core.pairset
+  pk: 1
+  fields:
+    name: Apollo 14 landing site area
+    notes: ''
+- model: core.pair
+  pk: 1
+  fields:
+    old_image: 1
+    new_image: 2
+    pairset: 1
+    coreg_notes: "Tom Logan's coregistration delivered 2022-10-31. His notes via email:\r\n\r\n-------------------\r\n\r\nAttached
+      are some slides and GeoTiff files that show the current co-registration status
+      for the LO_3133_res3 to NAC M1096608496RE test case. Starting with the provided
+      map-projected LO image, we scale the LO image to match the NAC resolution, and
+      manually offset the LO by 489 lines and 1748 samples. We then apply the co-registration
+      program (actually twice). Further refinements are TBD, but the initial co-registration
+      does a good job of aligning the major craters. However, the internal geometry
+      of the LO image is rather poor, and many of the smaller intervening craters
+      get warped and pushed out of position."
