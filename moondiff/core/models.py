@@ -39,8 +39,11 @@ class Pair(models.Model):
         # Return a random pair other than this one
         pair_pks = [v['pk'] for v in Pair.objects.values('pk')]
         pair_pks.remove(self.pk)
-        random_pk = random.choice(pair_pks)
-        return Pair.objects.get(pk=random_pk).get_absolute_url()
+        if pair_pks:
+            random_pk = random.choice(pair_pks)
+            return Pair.objects.get(pk=random_pk).get_absolute_url()
+        else:
+            return None
 
     def get_absolute_url(self):
         return reverse('pair-detail', kwargs={'pk': self.pk})
