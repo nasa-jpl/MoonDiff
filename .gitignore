@@ -4,3 +4,4 @@ webpack-stats.json
 dist
 *.key
 *.cert
+env.*
