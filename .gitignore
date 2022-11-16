@@ -5,3 +5,4 @@ dist
 *.key
 *.crt
 env.*
+localsettings.py

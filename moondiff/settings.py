@@ -151,5 +151,6 @@ if os.name == 'nt':
 
 try:
     from .localsettings import *
+    MIDDLEWARE += LOCAL_MIDDLEWARE
 except ImportError:
     pass
