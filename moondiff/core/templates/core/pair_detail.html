@@ -45,6 +45,7 @@
         <label class="blinkfade controls" for="fader">Crossfade:</label>
         <input class="blinkfade controls" type="range" id="fader" name="fader" min="0" max="1" step="0.05" />
     </fieldset>
+    <span class="loading">LOADING</span>
     <div id="left_mapview_container" ></div>
     <div id="right_mapview_container" ></div>
 
@@ -135,6 +136,7 @@
             mainview.crosshair = createPoint(0,0)
             mainview.graphics.add(mainview.crosshair)
             const annotationLayer = new GraphicsLayer()
+            const annotationLayerCopy = new GraphicsLayer()
             mainview.map.layers.add(annotationLayer)
             
             // load this user's previous annotations on this pair
@@ -170,8 +172,7 @@
                 const views = [mainview, rightview]
                 let active = mainview
 
-
-                const annotationLayerCopy = new GraphicsLayer()
+                
                 rightview.map.layers.add(annotationLayerCopy)
                 addPolylinesToLayer(annotationLayerCopy, annotationPolylines)
 
@@ -210,6 +211,15 @@
 
                     view.watch("viewpoint", () => sync(view))
                     view.on("pointer-move", syncPointer)
+                    view.watch('updating', (evt) => {
+                        console.log('updating')
+                        console.log(evt)
+                        if (evt === true){
+                            document.querySelector('.loading').style.display='inline'
+                        } else {
+                            document.querySelector('.loading').style.display='none'
+                        }
+                    })
                 }
             }
             else {
