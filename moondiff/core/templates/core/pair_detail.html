@@ -65,7 +65,7 @@
                     <p>
                         <form id="annotation-notes-form">
                             {% render_form annotation_serializer %}
-                            <input type="hidden" name="pair" value="{{ object.get_absolute_url }}">
+                            <input type="hidden" name="pair_id" value="{{ object.pk }}">
                         </form>
                     </p>
                 </main>

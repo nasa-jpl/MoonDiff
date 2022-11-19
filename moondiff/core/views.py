@@ -21,7 +21,7 @@ class AnnotationViewSet(viewsets.ModelViewSet):
     serializer_class = AnnotationSerializer
 
     def perform_create(self, serializer):
-        serializer.save(created_by=self.request.user)
+        serializer.save(created_by=self.request.user, pair_id=self.request.data['pair_id'])
 
     def get_queryset(self):
         return Annotation.objects.filter(created_by=self.request.user)

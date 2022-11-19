@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from moondiff.core.models import Annotation
+from rest_framework.fields import CurrentUserDefault
+from moondiff.core.models import Annotation, AnnotationReview
 
 class AnnotationSerializer(serializers.HyperlinkedModelSerializer):
 
@@ -9,8 +10,15 @@ class AnnotationSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['shape', 'notes', 'classification']
 
 class AnnotationForPairSerializer(serializers.HyperlinkedModelSerializer):
-
+    # created_by = serializers.HiddenField(
+    #     default=serializers.CurrentUserDefault()
+    # )
     class Meta:
         model = Annotation
         # Should have fields = '__all__' but it complains that User isn't in API
-        fields = ['notes', 'classification']
+        fields = ['notes', 'classification', 'created_by']
+
+class ReviewSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = AnnotationReview
+        fields = '__all__'
