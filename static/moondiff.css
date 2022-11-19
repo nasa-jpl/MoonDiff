@@ -62,10 +62,15 @@ input, select {
 
 #next-button {
     position: absolute;
-    right: 1em;
+    right: 10%;
     top: 1em;
-    width: 18%;
+    width: 10%;
     height: 8%;
+}
+
+#user-stuff {
+    position: absolute;
+    right: 1em;
 }
 
 .blinkfade.controls {
