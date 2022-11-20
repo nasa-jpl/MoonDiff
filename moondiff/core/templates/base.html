@@ -20,7 +20,8 @@
     {% if user.is_authenticated %}
          {{ user }} | <a href={% url 'rest_framework:logout' %}?next={{request.get_full_path}}>logout</a>
     {% else %}
-        <a href={% url 'rest_framework:login'%}?next={{request.get_full_path}}>log in</a> | 
+        <a href={% url 'rest_framework:login'%}?next={{request.get_full_path}}>log in</a> |
+        <a href={% url 'rest_register'%}?next={{request.get_full_path}}>register</a>
     {% endif %}
 </div>
 </body>

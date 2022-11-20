@@ -13,7 +13,7 @@ ENV PATH="/opt/miniconda3/bin:$PATH"
 RUN conda create -n moondiff; \
     source activate moondiff; \
     conda install libspatialite gdal django poppler sqlite lerc gunicorn pyyaml; \
-    pip install djangorestframework whitenoise # These two are not in conda and conda-forge was causing dep issues
+    pip install djangorestframework whitenoise dj-rest-auth[with_social] # These are not in conda and conda-forge was causing dep issues
 
 WORKDIR /app
 COPY . /app

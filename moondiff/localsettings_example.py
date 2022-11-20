@@ -4,3 +4,6 @@ SECRET_KEY = "YOUR_SECRET_KEY"
 DEBUG=True
 ALLOWED_HOSTS=('127.0.0.1',)
 LOCAL_MIDDLEWARE = ['DjangoRangeMiddleware.middleware.RangesMiddleware']
+
+if DEBUG:
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
