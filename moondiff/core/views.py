@@ -2,6 +2,7 @@ from django.views.generic import DetailView, TemplateView
 from moondiff.core.models import Pair, Annotation
 from moondiff.core.serializers import AnnotationSerializer, AnnotationForPairSerializer
 from rest_framework import viewsets
+from dj_rest_auth.registration.app_settings import RegisterSerializer
 
 class PairDetailView(DetailView):
     model = Pair
@@ -11,15 +12,21 @@ class PairDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         
         # Add in a serializer for the annotation form
-        context['annotation_serializer'] = AnnotationForPairSerializer()
-        
+        context['annotation_serializer'] = AnnotationForPairSerializer(context={'request': self.request})
+
         # Add in this user's annotations to the context
-        context['annotation_set_this_user'] = self.object.annotation_set.filter(created_by=self.request.user)
+        if self.request.user.is_authenticated:
+            context['annotation_set_this_user'] = self.object.annotation_set.filter(created_by=self.request.user)
+        else:
+            context['annotation_set_this_user'] = None
+            
         return context
 
 class AnnotationViewSet(viewsets.ModelViewSet):
+    # Views for creating and listing annotations
     serializer_class = AnnotationSerializer
 
+    # TODO maybe this should be using serializers.CurrentUserDefault() in the serializer instead
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user, pair_id=self.request.data['pair_id'])
 
