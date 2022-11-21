@@ -2,3 +2,7 @@
 DEBUG=1
 SECRET_KEY=random_chars
 DJANGO_ALLOWED_HOSTS=moondiffapp #this should match the service name in docker-compose.yml
+CSRF_TRUSTED_ORIGINS=https://example.com #change to your domain
+DJANGO_SUPERUSER_USERNAME=yourusername
+DJANGO_SUPERUSER_PASSWORD=yourpassword
+DJANGO_SUPERUSER_EMAIL=youremail@example.com
