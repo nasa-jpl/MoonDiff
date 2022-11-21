@@ -25,7 +25,7 @@ find new craters, rockfall areas, spacecraft, etc.
 # Setup using docker-compose (good for production)
  1. Checkout this git repository
  1. Copy `example-env.dev` to `env.dev` and edit it with your server info
- 1. Copy your ssl certs to the nginx directory
+ 1. Copy your ssl key and cert to nginx/
  1. Update your server name in nginx/default.conf 
  1. Build with `docker-compose build`
  1. Serve with `docker-compose up -d`
