@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div id="main-content"><a href="{% url 'pair-detail' 1 %}">image pair comparer</a></div>
+    <div id="main-content">
+    <ul>
+        <li><a href="{% url 'pair-detail' 1 %}">image pair comparer</a></li>
+        <li><a href="/admin">admin interface</a></li>
+        <li><a href="/api">api reference</a></li>
+        <li>community forum (placeholder)</li>
+    </ul>
+    </div>
 {% endblock content %}
