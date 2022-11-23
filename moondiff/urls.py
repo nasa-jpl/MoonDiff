@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path, re_path
 from moondiff.core.views import PairDetailView, AnnotationViewSet, SignupView
+from django.contrib.auth.decorators import login_required
 from django.conf.urls.static import static
 from django.conf import settings
 from rest_framework import routers
@@ -26,7 +27,7 @@ router.register(r'annotations', AnnotationViewSet, basename='annotation')
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path('pair/(?P<pk>[a-z0-9]+)', PairDetailView.as_view(), name='pair-detail'),
-    re_path('review/(?P<pk>[a-z0-9]+)', PairDetailView.as_view(), name='annotation-review-detail'),
+    re_path('review/(?P<pk>[a-z0-9]+)', login_required(PairDetailView.as_view()), name='annotation-review-detail'),
     path('api/', include(router.urls)), # API urls
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('dj-rest-auth/', include('dj_rest_auth.urls')),

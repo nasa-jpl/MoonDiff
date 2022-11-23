@@ -1,4 +1,3 @@
-{% extends "base.html" %}
 {% load rest_framework %}
 
 {% block content %}
@@ -15,7 +14,7 @@
         var error_response = function(data){
             $('.api-response').html("API Response: " + data.status + ' ' + data.statusText + '<br/>Content: ' + data.responseText);
         }
-        var susccess_response = function(data){
+        var success_response = function(data){
             $('.api-response').html("API Response: OK<br/>Content: " + JSON.stringify(data));
         }
 
@@ -24,7 +23,7 @@
                 var form = $('form.ajax-post');
                 $.post(form.attr('action'), form.serialize())
                     .fail(function(data){error_response(data);})
-                    .done(function(data){susccess_response(data);});
+                    .done(function(data){success_response(data);});
                 return false;
             });
         });

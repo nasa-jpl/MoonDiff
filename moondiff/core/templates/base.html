@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/static/moondiff.css">
 </head>
 <body>
+{% if user.is_authenticated %}
 <header id="header">
     <h1>MoonDiff {% block subtitle %}{% endblock subtitle %}</h1>
     {% block call_to_action %}<div id="callToAction"></div>{% endblock call_to_action %}
@@ -15,6 +16,10 @@
     {% block content %}
         No content.
     {% endblock content %}
+{% else %}
+    This alpha version of the app requires login for all features.
+    Please register or sign in using the links to the right.
+{% endif %}
 <div id="user-stuff">
     <img src="/static/icons/profile.svg" width="20px"/>
     {% if user.is_authenticated %}
