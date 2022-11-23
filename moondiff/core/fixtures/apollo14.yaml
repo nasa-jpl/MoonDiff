@@ -21,7 +21,7 @@
   fields:
     spacecraft_camera: 3
     product_id: M188371363LE
-    file_data: images/NAC_M188371363LE_30110_v1.cog.tif
+    file_data: images/NAC_M188371363LE_cog.tif
 - model: core.image
   pk: 10
   fields:
