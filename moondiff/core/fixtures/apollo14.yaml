@@ -6,12 +6,10 @@
   pk: 2
   fields:
     name: LROC NAC R
-- model: core.image
-  pk: 1
+- model: core.spacecraftcamera
+  pk: 3
   fields:
-    spacecraft_camera: 1
-    product_id: 3313_HIGH_RES_1_COSMETIC
-    file_data: images/LO_3133_high_res_1_30110_v1.cog.tif
+    name: LROC NAC L
 - model: core.image
   pk: 2
   fields:
@@ -19,11 +17,89 @@
     product_id: M1096608496RE
     file_data: images/M1096608496RE_crop.tif
 - model: core.image
-  pk: 1
+  pk: 9
+  fields:
+    spacecraft_camera: 3
+    product_id: M188371363LE
+    file_data: images/NAC_M188371363LE_30110_v1.cog.tif
+- model: core.image
+  pk: 10
   fields:
     spacecraft_camera: 1
-    product_id: 3133_HIGH_RES_3_COSMETIC
+    product_id: 3133_HIGH_RES_3_COSMETIC_c1
     file_data: images/3133_HIGH_RES_3_COSMETIC_cog.tif
+- model: core.image
+  pk: 11
+  fields:
+    spacecraft_camera: 1
+    product_id: 3133_HIGH_RES_3_COSMETIC_c2
+    file_data: images/LO_3133_HIGH_RES_3_COSMETIC_cog_c2.tif
+- model: core.image
+  pk: 12
+  fields:
+    spacecraft_camera: 1
+    product_id: 3133_HIGH_RES_2_COSMETIC_c1
+    file_data: images/LO_3133_HIGH_RES_2_COSMETIC_cog_c1.tif
+- model: core.image
+  pk: 13
+  fields:
+    spacecraft_camera: 1
+    product_id: 3133_HIGH_RES_1_COSMETIC_c1
+    file_data: images/LO_3133_HIGH_RES_1_COSMETIC_cog_c1_pNovK2y.tif
+- model: core.image
+  pk: 14
+  fields:
+    spacecraft_camera: 1
+    product_id: 3132_HIGH_RES_1_COSMETIC_c1
+    file_data: images/LO_3132_HIGH_RES_1_COSMETIC_cog_c1.tif
+- model: core.image
+  pk: 15
+  fields:
+    spacecraft_camera: 1
+    product_id: 3132_HIGH_RES_2_COSMETIC_c1
+    file_data: images/LO_3132_HIGH_RES_2_COSMETIC_cog_c1.tif
+- model: core.image
+  pk: 16
+  fields:
+    spacecraft_camera: 1
+    product_id: 3132_HIGH_RES_3_COSMETIC_c1
+    file_data: images/LO_3132_HIGH_RES_3_COSMETIC_cog_c1.tif
+- model: core.image
+  pk: 17
+  fields:
+    spacecraft_camera: 1
+    product_id: 3134_HIGH_RES_1_COSMETIC_c1
+    file_data: images/LO_3134_HIGH_RES_1_COSMETIC_cog_c1.tif
+- model: core.image
+  pk: 18
+  fields:
+    spacecraft_camera: 1
+    product_id: 3134_HIGH_RES_2_COSMETIC_c1
+    file_data: images/LO_3134_HIGH_RES_2_COSMETIC_cog_c1.tif
+- model: core.image
+  pk: 19
+  fields:
+    spacecraft_camera: 1
+    product_id: 3134_HIGH_RES_3_COSMETIC_c1
+    file_data: images/LO_3134_HIGH_RES_3_COSMETIC_cog_c1.tif
+- model: core.image
+  pk: 20
+  fields:
+    spacecraft_camera: 3
+    product_id: M1203810997LE
+    file_data: images/M1203810997LE_cog.tif
+- model: core.image
+  pk: 21
+  fields:
+    spacecraft_camera: 3
+    product_id: M1394165947LE
+    file_data: images/M1394165947LE_cog.tif
+- model: core.image
+  pk: 22
+  fields:
+    spacecraft_camera: 2
+    product_id: M1363642380RE
+    file_data: images/M1363642380RE_cog.tif
 - model: core.pairset
   pk: 1
   fields:
@@ -32,7 +108,7 @@
 - model: core.pair
   pk: 1
   fields:
-    old_image: 1
+    old_image: 10
     new_image: 2
     pairset: 1
     coreg_notes: "Tom Logan's coregistration delivered 2022-10-31. His notes via email:\r\n\r\n-------------------\r\n\r\nAttached
@@ -44,3 +120,71 @@
       does a good job of aligning the major craters. However, the internal geometry
       of the LO image is rather poor, and many of the smaller intervening craters
       get warped and pushed out of position."
+- model: core.pair
+  pk: 6
+  fields:
+    old_image: 11
+    new_image: 9
+    pairset: 1
+    coreg_notes: Tom Logan delivered this coregistration on 2022-11-17
+- model: core.pair
+  pk: 7
+  fields:
+    old_image: 12
+    new_image: 9
+    pairset: 1
+    coreg_notes: Tom Logan delivered this coregistration on 2022-11-17
+- model: core.pair
+  pk: 8
+  fields:
+    old_image: 13
+    new_image: 9
+    pairset: 1
+    coreg_notes: Tom Logan delivered this coregistration on 2022-11-09
+- model: core.pair
+  pk: 9
+  fields:
+    old_image: 14
+    new_image: 20
+    pairset: 1
+    coreg_notes: POMM coregistration by Tom Logan 2022-11-22
+- model: core.pair
+  pk: 10
+  fields:
+    old_image: 15
+    new_image: 21
+    pairset: 1
+    coreg_notes: POMM coregistration by Tom Logan 2022-11-22
+- model: core.pair
+  pk: 11
+  fields:
+    old_image: 16
+    new_image: 21
+    pairset: 1
+    coreg_notes: POMM coregistration by Tom Logan 2022-11-22
+- model: core.pair
+  pk: 12
+  fields:
+    old_image: 19
+    new_image: 22
+    pairset: 1
+    coreg_notes: POMM coregistration by Tom Logan 2022-11-22
+- model: core.annotation
+  pk: 17
+  fields:
+    created_by: 1
+    shape: SRID=4326;POLYGON ((-4.761616479933712 -0.9922493551524936, -4.761828005867251
+      -0.9920908244641715, -4.761386318442239 -0.991898322903856, -4.759461014281928
+      -0.9921587661886688, -4.758804145803705 -0.9916831740878974, -4.75790944563509
+      -0.9911849346709407, -4.754194741137544 -0.9908452259345815, -4.751839074870811
+      -0.9903922808985817, -4.749981722622043 -0.9900978665919866, -4.750514012595774
+      -0.9906527243018469, -4.75370775243818 -0.9914680252579562, -4.755463176819639
+      -0.991637879598546, -4.758683222418889 -0.992294649633476, -4.758286836268237
+      -0.9923172968737344, -4.757573341197064 -0.9926570054590044, -4.754866590054039
+      -0.992736270790546, -4.758275510949645 -0.9927815652648599, -4.75914756048108
+      -0.9926456818400576, -4.759645874499043 -0.9927815652648599, -4.759985634056744
+      -0.9925211220290836, -4.761616479933712 -0.9922493551524936))
+    notes: Spacecraft and tracks from moon buggy
+    pair: 7
+    created_at: 2022-11-18
+    classification: HW
