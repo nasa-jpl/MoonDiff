@@ -40,10 +40,12 @@ body {
 }
 
 .right-title {
-    right: 0
+    right: 0;
+    background: grey;
 }
 .left-title {
-    left: 0
+    left: 0;
+    background: grey;    
 }
 
 input, select {
