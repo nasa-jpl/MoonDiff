@@ -27,7 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     re_path('pair/(?P<pk>[a-z0-9]+)', PairDetailView.as_view(), name='pair-detail'),
     re_path('review/(?P<pk>[a-z0-9]+)', PairDetailView.as_view(), name='annotation-review-detail'),
-    path('', include(router.urls)), # API urls
+    path('api/', include(router.urls)), # API urls
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('dj-rest-auth/', include('dj_rest_auth.urls')),
     path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
