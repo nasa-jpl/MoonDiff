@@ -6,3 +6,4 @@ CSRF_TRUSTED_ORIGINS=https://example.com #change to your domain
 DJANGO_SUPERUSER_USERNAME=yourusername
 DJANGO_SUPERUSER_PASSWORD=yourpassword
 DJANGO_SUPERUSER_EMAIL=youremail@example.com
+ACCOUNT_EMAIL_VERIFICATION='mandatory'

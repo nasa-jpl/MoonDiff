@@ -20,6 +20,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 EMAIL_HOST = os.environ.get("EMAIL_HOST")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+ACCOUNT_EMAIL_VERIFICATION = os.environ.get("ACCOUNT_EMAIL_VERIFICATION")
 
 
 DEBUG = int(os.environ.get("DEBUG", default=0))
