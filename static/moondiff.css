@@ -86,3 +86,9 @@ input, select {
 #signin-form {
     top: 10%;
 }
+
+#main-content {
+    top: 10%;
+    left: 10%;
+    position: absolute
+}
