@@ -21,6 +21,8 @@ from django.contrib.auth.decorators import login_required
 from django.conf.urls.static import static
 from django.conf import settings
 from rest_framework import routers
+from allauth.account.views import ConfirmEmailView, EmailView
+from django.views.generic.base import RedirectView
 
 router = routers.DefaultRouter()
 router.register(r'annotations', AnnotationViewSet, basename='annotation')
@@ -31,6 +33,12 @@ urlpatterns = [
     re_path('review/(?P<pk>[a-z0-9]+)', login_required(PairDetailView.as_view()), name='annotation-review-detail'),
     path('api/', include(router.urls)), # API urls
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    re_path(r'registration/account-confirm-email/(?P<key>[-:\w]+)/', ConfirmEmailView.as_view(),
+          name='account_confirm_email'),
+    re_path(r'registration/account-email/', EmailView.as_view(),
+          name='account_email'),
+    path('account/logout/', RedirectView.as_view(pattern_name='rest_framework:logout'), name='account_logout'),
+    path('account/login/', RedirectView.as_view(pattern_name='rest_framework:login'), name='account_login'),
     path('dj-rest-auth/', include('dj_rest_auth.urls')),
     path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
     re_path(r'^signup/$', SignupView.as_view(template_name="signup.html"),
