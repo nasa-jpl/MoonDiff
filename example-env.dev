@@ -7,3 +7,4 @@ DJANGO_SUPERUSER_USERNAME=yourusername
 DJANGO_SUPERUSER_PASSWORD=yourpassword
 DJANGO_SUPERUSER_EMAIL=youremail@example.com
 ACCOUNT_EMAIL_VERIFICATION='mandatory'
+DEFAULT_FROM_EMAIL='noreply@example.com'

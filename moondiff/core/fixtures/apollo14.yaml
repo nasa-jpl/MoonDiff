@@ -27,7 +27,7 @@
   fields:
     spacecraft_camera: 1
     product_id: 3133_HIGH_RES_3_COSMETIC_c1
-    file_data: images/3133_HIGH_RES_3_COSMETIC_cog.tif
+    file_data: images/LO_3133_HIGH_RES_3_COSMETIC_cog_c1.tif
 - model: core.image
   pk: 11
   fields:
