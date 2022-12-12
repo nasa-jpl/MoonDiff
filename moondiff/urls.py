@@ -15,13 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path, re_path
-from moondiff.core.views import PairDetailView, AnnotationViewSet, SignupView
+from moondiff.core.views import PairDetailView, AnnotationViewSet
 from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
 from django.conf.urls.static import static
 from django.conf import settings
 from rest_framework import routers
-from django.views.generic.base import RedirectView
 
 router = routers.DefaultRouter()
 router.register(r'annotations', AnnotationViewSet, basename='annotation')

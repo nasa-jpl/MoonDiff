@@ -48,9 +48,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'moondiff.core',
     'rest_framework',
-    'rest_framework.authtoken',
-    'dj_rest_auth',
-    'dj_rest_auth.registration'
+    'rest_framework.authtoken'
 ]
 
 SITE_ID = 1

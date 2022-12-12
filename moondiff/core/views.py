@@ -2,7 +2,6 @@ from django.views.generic import DetailView, TemplateView
 from moondiff.core.models import Pair, Annotation
 from moondiff.core.serializers import AnnotationSerializer, AnnotationForPairSerializer
 from rest_framework import viewsets
-from dj_rest_auth.registration.app_settings import RegisterSerializer
 
 class PairDetailView(DetailView):
     model = Pair
@@ -32,12 +31,3 @@ class AnnotationViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return Annotation.objects.filter(created_by=self.request.user)
-
-class SignupView(TemplateView):
-    
-    template_name = "signup.html"
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['register_serializer'] = RegisterSerializer
-        return context
-    
