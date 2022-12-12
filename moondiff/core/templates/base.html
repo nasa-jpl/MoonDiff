@@ -23,10 +23,10 @@
 <div id="user-stuff">
     <img src="/static/icons/profile.svg" width="20px"/>
     {% if user.is_authenticated %}
-         {{ user }} | <a href={% url 'rest_framework:logout' %}?next={{request.get_full_path}}>logout</a>
+         {{ user }} | <a href={% url 'account_logout' %}?next={{request.get_full_path}}>logout</a>
     {% else %}
-        <a href={% url 'rest_framework:login'%}?next={{request.get_full_path}}>log in</a> |
-        <a href={% url 'signup'%}?next={{request.get_full_path}}>register</a>
+        <a href={% url 'account_login'%}?next={{request.get_full_path}}>log in</a> |
+        <a href={% url 'account_signup'%}?next={{request.get_full_path}}>register</a>
     {% endif %}
 </div>
 </body>
