@@ -13,7 +13,7 @@ find new craters, rockfall areas, spacecraft, etc.
 
 # Setup without docker. (This is in some ways easier for development)
 1. Checkout this git repository
-1. Install dependencies. Essentially, you need deodjango set up with sqlite, djangorestframework, and DjangoRangeMiddleware for local development. Install as best for your system. On Ubuntu, you can use conda and pip as in the Dockerfile. On Windows, you can install gdal etc. using OSGEO4W -- there are lines in settings.py that will check if you're using windows and look for OSGEO4W.
+1. Install dependencies. Essentially, you need geodjango set up with sqlite, djangorestframework, and DjangoRangeMiddleware for local development. Install as best for your system. On Ubuntu, you can use conda and pip as in the Dockerfile. On Windows, you can install gdal etc. using OSGEO4W -- there are lines in settings.py that will check if you're using windows and look for OSGEO4W.
 1. Copy `localsettings_example.py` to `localsettings.py` and edit it according to comments inside
 1. Change directories into MoonDiff/moondiff and run: 
    1. python ../manage.py makemigrations
@@ -29,3 +29,12 @@ find new craters, rockfall areas, spacecraft, etc.
  1. Update your server name in nginx/default.conf 
  1. Build with `docker-compose build`
  1. Serve with `docker-compose up -d`
+
+# Certificates if using localhost
+Use the following to create certs and put them in `nginx/certs`:
+```
+openssl req -x509 -out ssl_certificate.crt -keyout ssl_certificate.key \
+  -newkey rsa:2048 -nodes -sha256 \
+  -subj '/CN=localhost' -extensions EXT -config <( \
+   printf "[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
+```

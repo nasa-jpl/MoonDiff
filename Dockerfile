@@ -16,5 +16,9 @@ RUN conda create -n moondiff; \
     pip install djangorestframework whitenoise dj-rest-auth[with_social] # These are not in conda and conda-forge was causing dep issues
 
 WORKDIR /app
-COPY . /app
+
+#UGH why can't docker COPY be like unix cp
+COPY moondiff /app/moondiff
+COPY static /app/static
+COPY manage.py entrypoint.sh /app/
 ENTRYPOINT /app/entrypoint.sh
