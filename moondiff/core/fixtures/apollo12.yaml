@@ -1,6 +1,11 @@
 - fields:
+    name: Apollo 12 landing site area
+    notes: ''
+  model: core.pairset
+  pk: 2
+- fields:
     file_data: images/LO_3153_HIGH_RES_1_COSMETIC_cog_c1.tif
-    product_id: LO_3153_HIGH_RES_1_COSMETIC_c1
+    product_id: 3153_HIGH_RES_1_COSMETIC_c1
     spacecraft_camera: 1
   model: core.image
   pk: 23
@@ -20,7 +25,7 @@
   pk: 13
 - fields:
     file_data: images/LO_3153_HIGH_RES_2_COSMETIC_cog_c1.tif
-    product_id: LO_3153_HIGH_RES_2_COSMETIC_c1
+    product_id: 3153_HIGH_RES_2_COSMETIC_c1
     spacecraft_camera: 1
   model: core.image
   pk: 25
@@ -37,10 +42,10 @@
     old_image: 25
     pairset: 2
   model: core.pair
-  pk: 13
+  pk: 14
 - fields:
     file_data: images/LO_3153_HIGH_RES_3_COSMETIC_cog_c1.tif
-    product_id: LO_3153_HIGH_RES_3_COSMETIC_c1
+    product_id: 3153_HIGH_RES_3_COSMETIC_c1
     spacecraft_camera: 1
   model: core.image
   pk: 27
@@ -57,10 +62,10 @@
     old_image: 27
     pairset: 2
   model: core.pair
-  pk: 13
+  pk: 15
 - fields:
     file_data: images/LO_3154_HIGH_RES_1_COSMETIC_cog_c1.tif
-    product_id: LO_3154_HIGH_RES_1_COSMETIC_c1
+    product_id: 3154_HIGH_RES_1_COSMETIC_c1
     spacecraft_camera: 1
   model: core.image
   pk: 29
@@ -77,10 +82,10 @@
     old_image: 29
     pairset: 2
   model: core.pair
-  pk: 13
+  pk: 16
 - fields:
     file_data: images/LO_3154_HIGH_RES_2_COSMETIC_cog_c1.tif
-    product_id: LO_3154_HIGH_RES_2_COSMETIC_c1
+    product_id: 3154_HIGH_RES_2_COSMETIC_c1
     spacecraft_camera: 1
   model: core.image
   pk: 31
@@ -97,10 +102,10 @@
     old_image: 31
     pairset: 2
   model: core.pair
-  pk: 13
+  pk: 17
 - fields:
     file_data: images/LO_3154_HIGH_RES_3_COSMETIC_cog_c1.tif
-    product_id: LO_3154_HIGH_RES_3_COSMETIC_c1
+    product_id: 3154_HIGH_RES_3_COSMETIC_c1
     spacecraft_camera: 1
   model: core.image
   pk: 33
@@ -117,4 +122,4 @@
     old_image: 33
     pairset: 2
   model: core.pair
-  pk: 13
+  pk: 18

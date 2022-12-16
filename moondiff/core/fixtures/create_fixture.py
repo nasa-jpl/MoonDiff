@@ -19,14 +19,27 @@ def moondiff_fixture_from_dict(img_dict=pairs, img_first_pid=23, pair_first_pid=
     pairpk = pair_first_pid
 
     fixtures = []
+
+    fixtures.append(
+        {
+            'model': 'core.pairset',
+            'pk': pairset_pk,
+            'fields': {
+                'name': 'Apollo 12 landing site area',
+                'notes': '',
+            }
+        }
+    )
+    
     for oldimg, newimg in img_dict.items():
+
         oldimg_pk = imgpk
         fixtures.append({
             'model': 'core.image',
             'pk': imgpk,
             'fields': {
                 'spacecraft_camera': 1,
-                'product_id': oldimg.replace('_cog','').replace('.tif',''),
+                'product_id': oldimg.replace('_cog','').replace('.tif','').replace('LO_',''),
                 'file_data': f'images/{oldimg}'
             }
         })
@@ -58,8 +71,9 @@ def moondiff_fixture_from_dict(img_dict=pairs, img_first_pid=23, pair_first_pid=
                 'coreg_notes': 'Initial tiepoints: Heather Lethcoe, Tobey Miner. Coregistration: Tom Logan 2022-12-12.'
             }
         })
+        pairpk = pairpk + 1
     return fixtures
 
 
-with open('fixtures.yaml', 'w') as fixtures_file:
+with open('apollo12.yaml', 'w') as fixtures_file:
     yaml.dump(moondiff_fixture_from_dict(), fixtures_file)
