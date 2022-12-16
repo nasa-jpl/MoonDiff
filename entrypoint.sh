@@ -9,5 +9,6 @@ mkdir media/images
 mv moondiff/core/fixtures/*.tif media/images
 chmod -R ugo+rx media
 python manage.py loaddata apollo14.yaml
+python manage.py loaddata apollo12.yaml
 
 gunicorn moondiff.wsgi:application --bind 0.0.0.0:8000
