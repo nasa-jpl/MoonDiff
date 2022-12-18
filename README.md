@@ -11,24 +11,21 @@ find new craters, rockfall areas, spacecraft, etc.
  - [Gunicorn](https://gunicorn.org/)
  - [VanillaJS](http://vanilla-js.com/) ;-)
 
-# Setup without docker. (This is in some ways easier for development)
-1. Checkout this git repository
-1. Install dependencies. Essentially, you need geodjango set up with sqlite, djangorestframework, and DjangoRangeMiddleware for local development. Install as best for your system. On Ubuntu, you can use conda and pip as in the Dockerfile. On Windows, you can install gdal etc. using OSGEO4W -- there are lines in settings.py that will check if you're using windows and look for OSGEO4W.
-1. Copy `localsettings_example.py` to `localsettings.py` and edit it according to comments inside
-1. Change directories into MoonDiff/moondiff and run: 
-   1. python ../manage.py makemigrations
-   1. python ../manage.py migrate
-   1. python ../manage.py createsuperuser
-   1. python ../manage.py runserver
-
-
 # Setup using docker-compose (good for production)
+ 1. Get a working docker-compose installation.
+ 1. Get SSL keypairs. For development on your local machine, you can follow [this](https://gitlab.com/contextualcode/selfsigned-ssl-certificates)
+to get a trusted self-signed certficate for development.
  1. Checkout this git repository
  1. Copy `example-env.dev` to `env.dev` and edit it with your server info
  1. Copy your ssl key and cert to nginx/
- 1. Update your server name in nginx/default.conf 
- 1. Build with `docker-compose build`
- 1. Serve with `docker-compose up -d`
+ 1. Update your server name in nginx/default.conf
+ 1. Serve with `docker-compose up --build`
+
+# Clearing the database
+
+MoonDiff will create a new sqlite database `db/db.sqlite3` if there isn't one there, and load in a bunch of fixture data
+. If there is one, it'll use the existing one. To clear the database, you can just delete that file, and when you run 
+docker-compose with the --build option, a new database will be created.
 
 # Certificates if using localhost
 Use the following to create certs and put them in `nginx/certs`:

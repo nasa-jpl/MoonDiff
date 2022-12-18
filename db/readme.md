@@ -1,0 +1,1 @@
+This directory is where your sqlite database file goes.

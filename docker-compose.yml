@@ -7,6 +7,7 @@ services:
       - env.dev
     volumes:
       - ./media:/app/media
+      - ./db:/app/db
 
   nginx:
     build: nginx

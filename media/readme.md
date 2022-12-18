@@ -1,0 +1,1 @@
+The `images` directory in here is where your lunar imagery goes.
