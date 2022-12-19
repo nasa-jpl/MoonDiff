@@ -4,7 +4,8 @@ body {
     width: 100%;
     margin: 0;
     padding: 0; 
-    background: lightgray;
+    background: black;
+    color: lightgray;
 }
 
 #header {
@@ -91,4 +92,28 @@ input, select {
     top: 10%;
     left: 10%;
     position: absolute
+}
+
+#foreground {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    justify-content: center;
+    align-content: center;
+}
+
+#accounts-container>div{
+    border: thin lightgray solid;
+    border-radius: 1em;
+    padding: 1em;
+}
+
+#accounts-container>div>form{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+#logo {
+    max-width: 100%;
 }
