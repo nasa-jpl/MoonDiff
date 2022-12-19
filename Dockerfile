@@ -17,8 +17,8 @@ RUN conda create -n moondiff; \
 
 WORKDIR /app
 
-#UGH why can't docker COPY be like unix cp
-COPY moondiff /app/moondiff
-COPY static /app/static
+#These are now volumes in docker-compose.yml so don't need to copy
+#COPY moondiff /app/moondiff
+#COPY static /app/static
 COPY manage.py entrypoint.sh /app/
 ENTRYPOINT /app/entrypoint.sh

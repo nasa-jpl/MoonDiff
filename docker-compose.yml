@@ -8,6 +8,9 @@ services:
     volumes:
       - ./media:/app/media
       - ./db:/app/db
+      - ./moondiff:/app/moondiff
+      - ./moondiff/template_overrides:/app/moondiff/template_overrides
+      - ./static:/app/static
 
   nginx:
     build: nginx
