@@ -13,4 +13,4 @@ then
   python manage.py loaddata apollo12.yaml
 fi
 
-gunicorn moondiff.wsgi:application --bind 0.0.0.0:8000
+gunicorn moondiff.wsgi:application --bind 0.0.0.0:8000 --max-requests=1

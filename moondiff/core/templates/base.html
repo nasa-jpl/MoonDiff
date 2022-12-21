@@ -6,28 +6,52 @@
     {% block head %}
     {% endblock head %}
     <link rel="stylesheet" href="/static/moondiff.css">
+    {% block extra_head %}
+    {% endblock %}
 </head>
 <body>
-{% if user.is_authenticated %}
+<link rel="stylesheet" href="https://js.arcgis.com/next/esri/themes/light/main.css">
+<link rel="stylesheet" href="/static/startwinkle.css">
+<link rel="stylesheet" href="/static/moondiff.css">
+
+<div class="background-container">
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+</div>
+
+<div id="foreground">
 <header id="header">
-    <h1><img id="logo" src="/static/logo.png" > {% block subtitle %}{% endblock subtitle %}</h1>
+    <h1><img id="logo" src="/static/logo_light.png" > {% block subtitle %}{% endblock subtitle %}</h1>
     {% block call_to_action %}<div id="callToAction"></div>{% endblock call_to_action %}
+    <div id="user-stuff">
+        <ul>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
+                <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
+            {% else %}
+                <li><a href="{% url 'account_login' %}">Sign In</a></li>
+                <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+            {% endif %}
+        </ul>
+    </div>
 </header>
-    {% block content %}
-        No content.
-    {% endblock content %}
-{% else %}
-    This alpha version of the app requires login for all features.
-    Please register or sign in using the links to the right.
+
+{% if messages %}
+    <div>
+        <strong>Messages:</strong>
+        <ul>
+            {% for message in messages %}
+                <li>{{message}}</li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endif %}
-<div id="user-stuff">
-    <img src="/static/icons/profile.svg" width="20px"/>
-    {% if user.is_authenticated %}
-         {{ user }} | <a href={% url 'account_logout' %}?next={{request.get_full_path}}>logout</a>
-    {% else %}
-        <a href={% url 'account_login'%}?next={{request.get_full_path}}>log in</a> |
-        <a href={% url 'account_signup'%}?next={{request.get_full_path}}>register</a>
-    {% endif %}
+
+{% block content %}
+    No content.
+{% endblock content %}
+{% block extra_body %}
+{% endblock %}
 </div>
 </body>
 </html>

@@ -1,0 +1,1 @@
+This is where templates that override imported django apps go.

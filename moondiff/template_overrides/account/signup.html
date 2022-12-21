@@ -1,10 +1,11 @@
-{% extends "account/base.html" %}
+{% extends "base.html" %}
 
 {% load i18n %}
 
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
+    <div id="accounts-container">
 <h1>{% trans "Sign Up" %}</h1>
 <div>
 <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
@@ -18,4 +19,5 @@
   <button type="submit">{% trans "Sign Up" %} &raquo;</button>
 </form>
 </div>
+    </div>
 {% endblock %}

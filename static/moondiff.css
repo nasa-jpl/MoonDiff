@@ -114,6 +114,15 @@ input, select {
     grid-template-columns: auto auto;
 }
 
+/* Make the submit button appear in the input column */
+#accounts-container>div>form>button{
+    grid-column: 2;
+}
+
 #logo {
     max-width: 100%;
+}
+
+a {
+    color: aquamarine
 }
