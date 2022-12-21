@@ -2,7 +2,10 @@ from django.views.generic import DetailView, TemplateView
 from moondiff.core.models import Pair, Annotation
 from moondiff.core.serializers import AnnotationSerializer, AnnotationForPairSerializer
 from rest_framework import viewsets
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
+@method_decorator(login_required, name='dispatch')
 class PairDetailView(DetailView):
     model = Pair
 
