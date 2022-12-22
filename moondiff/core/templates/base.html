@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>MoonDiff</title>
+    <title>MoonDiff {% block extratitle %}{% endblock extratitle %}</title>
     {% block head %}
     {% endblock head %}
-    <link rel="stylesheet" href="/static/moondiff.css">
     {% block extra_head %}
     {% endblock %}
 </head>
@@ -19,25 +18,35 @@
     <div class="twinkling"></div>
 </div>
 
-<div id="foreground">
-<header id="header">
-    <h1><img id="logo" src="/static/logo_light.png" > {% block subtitle %}{% endblock subtitle %}</h1>
-    {% block call_to_action %}<div id="callToAction"></div>{% endblock call_to_action %}
-    <div id="user-stuff">
-        <ul>
+<div class="foreground">
+    <img id="logo" src="/static/logo_light.png" >
+    <fieldset id="about-this-page">
+        <legend>Page tools ({% block subtitle %}{% endblock subtitle %})</legend>
+    </fieldset>
+    {% block call_to_action %}<span id="callToAction"></span>{% endblock call_to_action %}
+    <fieldset id="user-stuff">
+    <legend>User tools
             {% if user.is_authenticated %}
-                <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
-                <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
+                ({{ user }}).</legend>
+                <a href="{% url 'account_email' %}">Change E-mail</a> | 
+                <a href="{% url 'account_logout' %}">Sign Out</a>
             {% else %}
-                <li><a href="{% url 'account_login' %}">Sign In</a></li>
-                <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+                </legend>
+                You are not logged in.
+                <a href="{% url 'account_login' %}">Sign In</a> |
+                <a href="{% url 'account_signup' %}">Sign Up</a>
             {% endif %}
-        </ul>
-    </div>
-</header>
+    </fieldset>
+
+{% block content %}
+    No content.
+{% endblock content %}
+{% block extra_body %}
+{% endblock %}
+</div>
 
 {% if messages %}
-    <div>
+    <div id="messages">
         <strong>Messages:</strong>
         <ul>
             {% for message in messages %}
@@ -47,11 +56,5 @@
     </div>
 {% endif %}
 
-{% block content %}
-    No content.
-{% endblock content %}
-{% block extra_body %}
-{% endblock %}
-</div>
 </body>
 </html>
