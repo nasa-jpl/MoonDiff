@@ -32,10 +32,20 @@ class Pair(models.Model):
     pairset = models.ForeignKey(PairSet, on_delete=models.CASCADE, blank=True, null=True)
     coreg_notes = models.TextField(blank=True, null=True)
 
+    @classmethod
+    def get_random(cls):
+        # Return a random pair
+        pair_pks = [v['pk'] for v in cls.objects.values('pk')]
+        if pair_pks:
+            random_pk = random.choice(pair_pks)
+            return Pair.objects.get(pk=random_pk).get_absolute_url()
+        else:
+            return None
+    
     def __str__(self):
         return f"{self.old_image} compared to {self.new_image}"
 
-    def get_random(self):
+    def get_other(self):
         # Return a random pair other than this one
         pair_pks = [v['pk'] for v in Pair.objects.values('pk')]
         pair_pks.remove(self.pk)

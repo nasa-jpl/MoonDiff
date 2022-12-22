@@ -52,11 +52,16 @@ input, select {
     grid-template-columns: auto auto;
 }
 
-.blinkfade.controls {
-    display: none;    
+#page-tools form{
+    display: grid;
+    grid-template-columns: auto auto;
 }
 
-#review-form {
+fieldset, form {
+    z-index: 10;
+}
+
+.blinkfade.controls {
     display: none;    
 }
 

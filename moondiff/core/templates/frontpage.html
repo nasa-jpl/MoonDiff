@@ -6,7 +6,7 @@
 {% block content %}
     <link rel="stylesheet" href="/static/frontpage.css">
     <div id="frontpage-links">
-        <a href="">
+
             <fieldset>
                 <legend>Background information</legend>
                 <ul>
@@ -15,8 +15,9 @@
                     <li>Funding</li>
                     <li>Previous work</li>
                 </ul>
+                (Coming soon.)
             </fieldset>
-        </a>
+
         
         <a href="{% url 'pair-detail' 1 %}">
             <fieldset>
@@ -30,7 +31,7 @@
             </fieldset>
         </a>
         
-        <a href="{% url 'pair-detail' 1 %}">
+        <a href="{% url 'review-detections' %}">
             <fieldset>
                 <legend>Review detections</legend>
                 <div>
@@ -47,23 +48,19 @@
                 </div>
             </fieldset>
         </a>
-
-        <a href="https://moondiff.jpl.nasa.gov/forum">
+        
             <fieldset>
                 <legend>Community discussion forum</legend>
                 <div>
-                    Meet other moondiffers, scientists, and discuss the project.
+                    Meet other moondiffers, scientists, and discuss the project. (Coming soon.)
                 </div>
             </fieldset>
-        </a>
-
-        <a href="https://moondiff.jpl.nasa.gov/forum">
+        
             <fieldset>
                 <legend>Code of conduct</legend>
                 <div>
-                    Our project principles and rules.
+                    Our project principles and policies. (Coming soon.)
                 </div>
             </fieldset>
-        </a>
     </div>
 {% endblock content %}

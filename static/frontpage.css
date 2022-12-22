@@ -17,8 +17,11 @@
     border: thin white solid;
 }
 
-#frontpage-links>a>fieldset>legend {
+#frontpage-links legend {
     font-size: x-large;
+}
+
+#frontpage-links a legend {
     text-decoration-line: underline;
     color: aquamarine;
 }

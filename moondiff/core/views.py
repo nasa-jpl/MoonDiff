@@ -1,7 +1,10 @@
-from django.views.generic import DetailView, TemplateView
-from moondiff.core.models import Pair, Annotation
-from moondiff.core.serializers import AnnotationSerializer, AnnotationForPairSerializer
-from rest_framework import viewsets
+from django.views.generic import DetailView
+from moondiff.core.models import Pair, Annotation, AnnotationReview
+from moondiff.core.serializers import AnnotationSerializer, AnnotationForPairSerializer, ReviewSerializer
+from rest_framework import viewsets, permissions
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.renderers import TemplateHTMLRenderer
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
@@ -34,3 +37,25 @@ class AnnotationViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return Annotation.objects.filter(created_by=self.request.user)
+
+class AddReviewView(APIView):
+    # Views for creating and listing annotation reviews
+    model = AnnotationReview
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'core/annotation_review.html'
+    
+    #TODO should really have custom user model designating reviewers
+    permission_classes = [permissions.IsAdminUser]
+    
+    # Get an annotation to review 
+    def get(self, request, *args, **kwargs):
+        self.object = Pair.get_random()
+
+        #Find an unreviewed annotation and return it
+        return Response({'review_serializer': ReviewSerializer})
+
+    def post(self, request):
+        review_serialized = ReviewSerializer(data=request.data)
+        if review_serialized.is_valid():
+            review_serialized.save()
+        return Response({'message': review_serialized.errors})
