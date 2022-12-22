@@ -47,21 +47,9 @@ input, select {
     max-width: 100%;
 }
 
-#comparer-controls{
-    right: 20%;
-    position: absolute;
-    margin: 0.5em;
-    width: 30%;
+#page-tools{
     display: grid;
     grid-template-columns: auto auto;
-}
-
-#next-button {
-    position: absolute;
-    right: 10%;
-    top: 1em;
-    width: 10%;
-    height: 8%;
 }
 
 .blinkfade.controls {
@@ -82,7 +70,7 @@ input, select {
     height: 90%;
 }
 
-#about-this-page {
+#page-tools {
     grid-area: topmid;
 }
 
@@ -101,7 +89,7 @@ fieldset {
     width: 100%;
     height: 100%;
     position: absolute;
-    grid-template-columns: auto 1fr 1fr;
+    grid-template-columns: auto 1fr auto;
     grid-template-rows: auto 1fr;
     grid-template-areas: 
         "topleft topmid topright"

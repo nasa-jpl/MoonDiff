@@ -17,24 +17,26 @@
 <script src="https://js.arcgis.com/next/"></script>
 {% endblock head %}
 
+
+{% block page_tools %}
+    <label class="controls" for="comparer-mode">Comparer:</label>
+    <select id="comparer-mode" class="controls">
+        <option value="sideBySide">Side-by-side</option>
+        <option value="blinkFade">Blink / fade</option>
+    </select>
+    <label class="blinkfade controls" for="fader">Crossfade:</label>
+    <input class="blinkfade controls" type="range" id="fader" name="fader" min="0" max="1" step="0.05" />
+    <label class="blinkfade controls" for="blink-toggle">Blink:</label>
+    <input class="blinkfade controls" type="checkbox" id="blink-toggle" name="blink-toggle" value="false" checked/>
+    <label class="blinkfade controls" for="blink-speed-slider">Blink speed:</label>
+    <input class="blinkfade controls" type="range" id="blink-speed-slider" name="blink-speed-slider" min="0" max="5" step="0.5" />
+    <button id="skip-button">Skip pair</button>
+    <button id="done-button">Pair done</button>
+{% endblock page_tools %}
+
 {% block content %}
     <div class="left-title">{{ pair.old_image }}</div>
     <div class="right-title">{{ pair.new_image }}</div>
-    <fieldset id="comparer-controls">
-    <legend>Comparer Controls</legend>
-        <label class="controls" for="comparer-mode">Comparer:</label>
-        <select id="comparer-mode" class="controls">
-            <option value="sideBySide">Side-by-side</option>
-            <option value="blinkFade">Blink / fade</option>
-        </select>
-        <label class="blinkfade controls" for="fader">Crossfade:</label>
-        <input class="blinkfade controls" type="range" id="fader" name="fader" min="0" max="1" step="0.05" />
-        <label class="blinkfade controls" for="blink-toggle">Blink:</label>
-        <input class="blinkfade controls" type="checkbox" id="blink-toggle" name="blink-toggle" value="false" checked/>
-        <label class="blinkfade controls" for="blink-speed-slider">Blink speed:</label>
-        <input class="blinkfade controls" type="range" id="blink-speed-slider" name="blink-speed-slider" min="0" max="5" step="0.5" />
-    </fieldset>
-    <button id="next-button">Next pair</button>
     <fieldset id="review-form">
         <legend>Review form</legend>
         <label class="controls" for="comparer-mode">Comparer:</label>
@@ -92,7 +94,7 @@
                 Map, MapView, ImageryTileLayer, Draw, GraphicsLayer, Graphic, Sketch, MicroModal){
             MicroModal.init()
 
-            const nextButton = document.querySelector('#next-button')
+            const nextButton = document.querySelector('#skip-button')
             nextButton.addEventListener('click',()=>{ window.location.href = '{{ pair.get_random }}' })
             
             const makeTileMap = (tile_url, container)=>{

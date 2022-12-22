@@ -20,8 +20,9 @@
 
 <div class="foreground">
     <img id="logo" src="/static/logo_light.png" >
-    <fieldset id="about-this-page">
+    <fieldset id="page-tools">
         <legend>Page tools ({% block subtitle %}{% endblock subtitle %})</legend>
+        {% block page_tools %}{% endblock %}
     </fieldset>
     {% block call_to_action %}<span id="callToAction"></span>{% endblock call_to_action %}
     <fieldset id="user-stuff">
