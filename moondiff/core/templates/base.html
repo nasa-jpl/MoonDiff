@@ -29,13 +29,13 @@
     <legend>User tools
             {% if user.is_authenticated %}
                 ({{ user }}).</legend>
-                <a href="{% url 'account_email' %}">Change E-mail</a> | 
-                <a href="{% url 'account_logout' %}">Sign Out</a>
+                <p><a href="{% url 'account_email' %}">Change E-mail</a></p>
+                <p><a href="{% url 'account_logout' %}">Sign Out</a></p>
             {% else %}
                 </legend>
                 You are not logged in.
-                <a href="{% url 'account_login' %}">Sign In</a> |
-                <a href="{% url 'account_signup' %}">Sign Up</a>
+                <p><a href="{% url 'account_login' %}">Sign In</a></p>
+                <p><a href="{% url 'account_signup' %}">Sign Up</a></p>
             {% endif %}
     </fieldset>
 

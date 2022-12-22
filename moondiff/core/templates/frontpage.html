@@ -4,12 +4,66 @@
 {% endblock %}
 
 {% block content %}
-    <div id="main-content">
-    <ul>
-        <li><a href="{% url 'pair-detail' 1 %}">image pair comparer</a></li>
-        <li><a href="/admin">admin interface</a></li>
-        <li><a href="/api">api reference</a></li>
-        <li>community forum (placeholder)</li>
-    </ul>
+    <link rel="stylesheet" href="/static/frontpage.css">
+    <div id="frontpage-links">
+        <a href="">
+            <fieldset>
+                <legend>Background information</legend>
+                <ul>
+                    <li>Objectives</li>
+                    <li>Techniques</li>
+                    <li>Funding</li>
+                    <li>Previous work</li>
+                </ul>
+            </fieldset>
+        </a>
+        
+        <a href="{% url 'pair-detail' 1 %}">
+            <fieldset>
+                <legend>Compare lunar images</legend>
+                <ul>
+                    <li>Objectives</li>
+                    <li>Techniques</li>
+                    <li>Funding</li>
+                    <li>Previous work</li>
+                </ul>
+            </fieldset>
+        </a>
+        
+        <a href="{% url 'pair-detail' 1 %}">
+            <fieldset>
+                <legend>Review detections</legend>
+                <div>
+                    Portal for lunar experts to review community detections
+                </div>
+            </fieldset>
+        </a>
+
+        <a href="https://trek.nasa.gov/moon">
+            <fieldset>
+                <legend>NASA Moon Trek</legend>
+                <div>
+                    Our sister project Moon Trek
+                </div>
+            </fieldset>
+        </a>
+
+        <a href="https://moondiff.jpl.nasa.gov/forum">
+            <fieldset>
+                <legend>Community discussion forum</legend>
+                <div>
+                    Meet other moondiffers, scientists, and discuss the project.
+                </div>
+            </fieldset>
+        </a>
+
+        <a href="https://moondiff.jpl.nasa.gov/forum">
+            <fieldset>
+                <legend>Code of conduct</legend>
+                <div>
+                    Our project principles and rules.
+                </div>
+            </fieldset>
+        </a>
     </div>
 {% endblock content %}

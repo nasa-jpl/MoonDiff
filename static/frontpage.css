@@ -1,0 +1,24 @@
+#frontpage-links>a {
+    color: white;
+    text-decoration: none;
+}
+
+#frontpage-links{
+    display: grid;
+    grid-area: bottom;
+    grid-template-columns: auto auto auto;
+    justify-content: space-around;
+    align-content: space-around;
+}
+
+#frontpage-links>a>fieldset {
+    border-radius: 1em;
+    padding: 1em;
+    border: thin white solid;
+}
+
+#frontpage-links>a>fieldset>legend {
+    font-size: x-large;
+    text-decoration-line: underline;
+    color: aquamarine;
+}
