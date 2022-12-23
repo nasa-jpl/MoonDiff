@@ -18,7 +18,15 @@ class AnnotationForPairSerializer(serializers.HyperlinkedModelSerializer):
         # Should have fields = '__all__' but it complains that User isn't in API
         fields = ['notes', 'classification', 'created_by']
 
-class ReviewSerializer(serializers.ModelSerializer):
+class ReviewFormSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = AnnotationReview
+        # need to exclude annotation field because that's already set
+        exclude = ['annotation']
+
+class SubmitReviewSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = AnnotationReview
         fields = '__all__'

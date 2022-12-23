@@ -35,6 +35,7 @@
         {% render_form review_serializer %}
         <button id="skip-button">Skip</button>
         <button id="submit">Submit</button>
+        <input type="hidden" name="annotation_id" value="{{ annotation.pk }}">
         {% csrf_token %}
     </form>
 {% endblock page_tools %}

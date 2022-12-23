@@ -3,6 +3,17 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 import random
 
+
+def get_random(cls):
+    # Return a random pair
+    pair_pks = [v['pk'] for v in cls.objects.values('pk')]
+    if pair_pks:
+        random_pk = random.choice(pair_pks)
+        return cls.objects.get(pk=random_pk)
+    else:
+        return None
+
+
 class SpacecraftCamera(models.Model):
     name = models.CharField(max_length=100)
 
@@ -26,21 +37,14 @@ class PairSet(models.Model):
         return self.name
 
 
+
+
 class Pair(models.Model):
     old_image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='pairs_with_this_as_old')
     new_image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='pairs_with_this_as_new')
     pairset = models.ForeignKey(PairSet, on_delete=models.CASCADE, blank=True, null=True)
     coreg_notes = models.TextField(blank=True, null=True)
 
-    @classmethod
-    def get_random(cls):
-        # Return a random pair
-        pair_pks = [v['pk'] for v in cls.objects.values('pk')]
-        if pair_pks:
-            random_pk = random.choice(pair_pks)
-            return Pair.objects.get(pk=random_pk).get_absolute_url()
-        else:
-            return None
     
     def __str__(self):
         return f"{self.old_image} compared to {self.new_image}"

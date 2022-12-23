@@ -1,6 +1,6 @@
 from django.views.generic import DetailView
-from moondiff.core.models import Pair, Annotation, AnnotationReview
-from moondiff.core.serializers import AnnotationSerializer, AnnotationForPairSerializer, ReviewSerializer
+from moondiff.core.models import Pair, Annotation, AnnotationReview, get_random
+from moondiff.core.serializers import AnnotationSerializer, AnnotationForPairSerializer, ReviewFormSerializer, SubmitReviewSerializer
 from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -27,7 +27,7 @@ class PairDetailView(DetailView):
             
         return context
 
-class AnnotationViewSet(viewsets.ModelViewSet):
+class AnnotationViewSetThisUser(viewsets.ModelViewSet):
     # Views for creating and listing annotations
     serializer_class = AnnotationSerializer
 
@@ -38,6 +38,8 @@ class AnnotationViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return Annotation.objects.filter(created_by=self.request.user)
 
+# Can't use a ViewSet because they don't support django templates as far as
+# I can tell.
 class AddReviewView(APIView):
     # Views for creating and listing annotation reviews
     model = AnnotationReview
@@ -49,13 +51,28 @@ class AddReviewView(APIView):
     
     # Get an annotation to review 
     def get(self, request, *args, **kwargs):
-        self.object = Pair.get_random()
-
-        #Find an unreviewed annotation and return it
-        return Response({'review_serializer': ReviewSerializer})
+        
+        # Find an unreviewed annotation and return it
+        annotation = get_random(Annotation)
+        
+        # Remove the related annotation field from ReviewSerializer. We don't
+        # want it as a combobox in the form because we already selected it --
+        # it's in hidden input in the template.
+        
+        
+        context = {
+            'review_serializer': ReviewFormSerializer,
+            'annotation': annotation,
+            'pair': annotation.pair
+        }
+        
+        return Response(context)
 
     def post(self, request):
-        review_serialized = ReviewSerializer(data=request.data)
+        review_serialized = SubmitReviewSerializer(data=request.data)
         if review_serialized.is_valid():
-            review_serialized.save()
-        return Response({'message': review_serialized.errors})
+            review_serialized.save(
+                reviewer=self.request.user
+            )
+            # TODO bug: after a post, the page shown uses the wrong serializer
+        return Response({'message': review_serialized.errors, 'review_serializer': SubmitReviewSerializer})
