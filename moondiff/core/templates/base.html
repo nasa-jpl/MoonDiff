@@ -19,12 +19,12 @@
 </div>
 
 <div class="foreground">
-    <img id="logo" src="/static/logo_light.png" >
+    <a href="/"><img id="logo" src="/static/logo_light.png" ></a>
 {#   TODO <span id="flavor text">lunar time travel</span>#}
-    <fieldset id="page-tools">
-        <legend>Page tools ({% block subtitle %}{% endblock subtitle %})</legend>
-        {% block page_tools %}{% endblock %}
-    </fieldset>
+
+
+    {% block page_tools %}{% endblock %}
+
     {% block call_to_action %}<span id="callToAction"></span>{% endblock call_to_action %}
     <fieldset id="user-stuff">
     <legend>User tools

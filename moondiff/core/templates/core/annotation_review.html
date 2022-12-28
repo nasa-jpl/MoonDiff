@@ -18,6 +18,9 @@
 
 
 {% block page_tools %}
+    <fieldset id="page-tools">
+    <legend>Page tools: compare images</legend>
+    
     <form>
     <label class="controls" for="comparer-mode">Comparer:</label>
     <select id="comparer-mode" class="controls">
@@ -38,6 +41,7 @@
         <input type="hidden" name="annotation_id" value="{{ annotation.pk }}">
         {% csrf_token %}
     </form>
+    </fieldset>
 {% endblock page_tools %}
 
 {% block input_form %}
