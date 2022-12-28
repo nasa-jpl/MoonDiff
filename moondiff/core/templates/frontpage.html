@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/static/frontpage.css">
     <div id="frontpage-links">
 
-            <fieldset>
+            <fieldset class="tile">
                 <legend>Background information</legend>
                 <ul>
                     <li>Objectives</li>
@@ -20,7 +20,7 @@
 
         
         <a href="{% url 'pair-detail' 1 %}">
-            <fieldset>
+            <fieldset class="tile">
                 <legend>Compare lunar images</legend>
                 <ul>
                     <li>Objectives</li>
@@ -32,7 +32,7 @@
         </a>
         
         <a href="{% url 'review-detections' %}">
-            <fieldset>
+            <fieldset class="tile">
                 <legend>Review detections</legend>
                 <div>
                     Portal for lunar experts to review community detections
@@ -41,7 +41,7 @@
         </a>
 
         <a href="https://trek.nasa.gov/moon">
-            <fieldset>
+            <fieldset class="tile">
                 <legend>NASA Moon Trek</legend>
                 <div>
                     Our sister project Moon Trek
@@ -49,14 +49,14 @@
             </fieldset>
         </a>
         
-            <fieldset>
+            <fieldset class="tile">
                 <legend>Community discussion forum</legend>
                 <div>
                     Meet other moondiffers, scientists, and discuss the project. (Coming soon.)
                 </div>
             </fieldset>
         
-            <fieldset>
+            <fieldset class="tile">
                 <legend>Code of conduct</legend>
                 <div>
                     Our project principles and policies. (Coming soon.)
