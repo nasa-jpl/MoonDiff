@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path, re_path
-from moondiff.core.views import PairDetailView, AnnotationViewSetThisUser, AddReviewView
+from moondiff.core.views import PairDetailView, AnnotationViewSetThisUser, \
+    AddReviewView, SelectReviewView, SelectPairView
 from django.views.generic import TemplateView, RedirectView
 from django.contrib.auth.decorators import login_required
 from django.conf.urls.static import static
@@ -29,8 +30,10 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('admin/login/', RedirectView.as_view(pattern_name='account_login', permanent=True)),
     path('admin/', admin.site.urls),
-    re_path('pair/(?P<pk>[a-z0-9]+)', PairDetailView.as_view(), name='pair-detail'),
-    re_path('review/', AddReviewView.as_view(), name='review-detections'),
+    re_path('compare_pair/select', SelectPairView.as_view(), name='select-pair-to-compare'),
+    re_path('compare_pair/(?P<pk>[a-z0-9]+)', PairDetailView.as_view(), name='pair-detail'),
+    re_path('review_detection/select', SelectReviewView.as_view(), name='select-detection-to-review'),
+    re_path('review_detection/(?P<pk>[a-z0-9]+)', AddReviewView.as_view(), name='review-detection'),
     path('api/', include(router.urls)), # API urls
     path('', TemplateView.as_view(template_name='frontpage.html'), name='frontpage')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

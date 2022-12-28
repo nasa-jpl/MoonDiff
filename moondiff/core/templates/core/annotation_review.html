@@ -19,7 +19,7 @@
 
 {% block page_tools %}
     <fieldset id="page-tools">
-    <legend>Page tools: compare images</legend>
+    <legend>Review detection {{ annotation.pk }}</legend>
     
     <form>
     <label class="controls" for="comparer-mode">Comparer:</label>
@@ -121,7 +121,7 @@
             
             // load this user's previous annotations on this pair
             const annotationPolylines = [
-            {% for annotation in annotation_set_this_user %}{{ annotation.esri_style_geom }},{% endfor %}
+                {{ annotation.esri_style_geom }}
             ]
         
             const addPolylinesToLayer = (layer, polylines) => {
