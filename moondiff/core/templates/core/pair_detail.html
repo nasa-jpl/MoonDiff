@@ -39,11 +39,29 @@
 {% endblock page_tools %}
 
 {% block content %}
-    <div class="left-title">{{ pair.old_image }}</div>
-    <div class="right-title">{{ pair.new_image }}</div>
     <span class="loading">LOADING</span>
-    <div id="left_mapview_container" ></div>
-    <div id="right_mapview_container" ></div>
+    <div id="map-area">
+        <div id="left_mapview_container" ></div>
+        <div id="right_mapview_container" ></div>
+    </div>
+    
+    <div id="all-image-controls">
+        <div id="left-image-controls" class="image-controls">
+            <span class="image-id">{{ pair.old_image }}</span>
+            <label class="brightness controls" for="brightness-slider">Brightness:</label>
+            <input class="brightness controls" type="range" id="brightness-slider" name="brightness-slider" min="0" max="1" step="0.05" />
+            <label class="contrast controls" for="contrast-slider">Contrast:</label>
+            <input class="contrast controls" type="range" id="contrast-slider" name="contrast-slider" min="0" max="1" step="0.05" />
+        </div>
+
+        <div id="left-image-controls" class="image-controls">
+            <span class="image-id">{{ pair.new_image }}</span>
+            <label class="brightness controls" for="brightness-slider">Brightness:</label>
+            <input class="brightness controls" type="range" id="brightness-slider" name="brightness-slider" min="0" max="1" step="0.05" />
+            <label class="contrast controls" for="contrast-slider">Contrast:</label>
+            <input class="contrast controls" type="range" id="contrast-slider" name="contrast-slider" min="0" max="1" step="0.05" />
+        </div>
+    </div>
 
 
     <div class="modal micromodal-slide" id="annotation-notes-modal" aria-hidden="true">
@@ -87,7 +105,7 @@
         ], function (
                 Map, MapView, ImageryTileLayer, Draw, GraphicsLayer, Graphic, Sketch, MicroModal){
             MicroModal.init()
-
+            
             const nextButton = document.querySelector('#skip-button')
             nextButton.addEventListener('click',()=>{ window.location.href = '{{ pair.get_other }}' })
             
@@ -125,8 +143,7 @@
                     symbol: markerSymbol
                 });
             }
-
-            document.querySelector('#left_mapview_container').style.width="100%"
+            
             const mainview = makeTileMap('{{ pair.old_image.file_data.url }}', 'left_mapview_container')
             const oldImageLayer = mainview.map.layers.items[0]
             mainview.crosshair = createPoint(0,0)
@@ -159,9 +176,6 @@
             addPolylinesToLayer(annotationLayer, annotationPolylines)
             
             if (comparerMode === 'sideBySide'){
-                document.querySelector('#left_mapview_container').style.width="50%"
-                document.querySelector('#right_mapview_container').style.width="50%"
-                document.querySelector('#right_mapview_container').style.display="flex"
                 const rightview = makeTileMap('{{ pair.new_image.file_data.url }}', 'right_mapview_container')
                 rightview.crosshair = createPoint(0,0)
                 rightview.graphics.add(rightview.crosshair)
@@ -218,6 +232,7 @@
             }
             else {
                 // assume blink mode
+                document.querySelector("#map-area").style.gridTemplateColumns = "1fr 0";
                 const newImageLayer = new ImageryTileLayer({
                     url: '{{ pair.new_image.file_data.url }}',
                 })

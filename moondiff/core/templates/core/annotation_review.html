@@ -49,14 +49,15 @@
 {% endblock input_form %}
 
 {% block content %}
-    <div class="left-title">{{ pair.old_image }}</div>
-    <div class="right-title">{{ pair.new_image }}</div>
     <span class="loading">LOADING</span>
-    <div id="left_mapview_container" ></div>
-    <div id="right_mapview_container" ></div>
+    <div id="map-area">
+        <div id="left_mapview_container" ></div>
+        <div id="right_mapview_container" ></div>
+        <div class="left-title">{{ pair.old_image }}</div>
+        <div class="right-title">{{ pair.new_image }}</div>
+    </div>
 
-    
-    
+
     <script type="text/javascript">
 
     const setup = (comparerMode)=>{

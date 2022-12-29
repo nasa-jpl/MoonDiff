@@ -8,38 +8,35 @@ body {
     color: lightgray;
 }
 
-#right_mapview_container, #left_mapview_container {
-    height: 89%;
-    width: 50%;
-    top: 10%;
-    position: absolute;
+
+#map-area {
+    grid-area: bottom;
+    display: grid;
+    grid-template-areas: "left right";
+}
+
+#all-image-controls {
+    grid-area: bottom;
+    align-items: end;
+    justify-items: center;
+    grid-template-columns: auto auto;
+    display: grid;
+}
+
+.image-controls {
+    border: thin white solid;
+    border-bottom: none;
+    border-top-right-radius: 1em;
+    border-top-left-radius: 1em;
+    z-index: 20;
     background: black;
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 1em;
 }
 
-#right_mapview_container {
-    right: 0;
-    display: none;  /* hide unless we're doing side-by-side */    
-}
-
-#left_mapview_container {
-    left: 0;
-}
-
-.right-title, .left-title{
-    width: 50%;
-    z-index: 10;
-    bottom: 30px;
-    text-align: center;
-    position: absolute;
-}
-
-.right-title {
-    right: 0;
-    background: grey;
-}
-.left-title {
-    left: 0;
-    background: grey;    
+.image-id {
+    grid-column: 1/3
 }
 
 input, select {
