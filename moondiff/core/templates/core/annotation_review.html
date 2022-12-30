@@ -44,10 +44,6 @@
     </fieldset>
 {% endblock page_tools %}
 
-{% block input_form %}
-
-{% endblock input_form %}
-
 {% block content %}
     <span class="loading">LOADING</span>
     <div id="map-area">
@@ -110,8 +106,7 @@
                     symbol: markerSymbol
                 });
             }
-
-            document.querySelector('#left_mapview_container').style.width="100%"
+            
             const mainview = makeTileMap('{{ pair.old_image.file_data.url }}', 'left_mapview_container')
             const oldImageLayer = mainview.map.layers.items[0]
             mainview.crosshair = createPoint(0,0)
@@ -144,9 +139,6 @@
             addPolylinesToLayer(annotationLayer, annotationPolylines)
             
             if (comparerMode === 'sideBySide'){
-                document.querySelector('#left_mapview_container').style.width="50%"
-                document.querySelector('#right_mapview_container').style.width="50%"
-                document.querySelector('#right_mapview_container').style.display="flex"
                 const rightview = makeTileMap('{{ pair.new_image.file_data.url }}', 'right_mapview_container')
                 rightview.crosshair = createPoint(0,0)
                 rightview.graphics.add(rightview.crosshair)
@@ -203,6 +195,7 @@
             }
             else {
                 // assume blink mode
+                document.querySelector("#map-area").style.gridTemplateColumns = "1fr 0";
                 const newImageLayer = new ImageryTileLayer({
                     url: '{{ pair.new_image.file_data.url }}',
                 })
