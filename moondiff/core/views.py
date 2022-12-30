@@ -22,9 +22,12 @@ class PairDetailView(DetailView):
 
         # Add in this user's annotations to the context
         if self.request.user.is_authenticated:
-            context['annotation_set_this_user'] = self.object.annotation_set.filter(created_by=self.request.user)
+            context['annotations'] = [
+                annot.shape.coords for annot in
+                self.object.annotation_set.filter(created_by=self.request.user)
+            ]
         else:
-            context['annotation_set_this_user'] = None
+            context['annotations'] = None
             
         return context
 
@@ -58,7 +61,7 @@ class AddReviewView(APIView):
 
         context = {
             'review_serializer': ReviewFormSerializer,
-            'annotation': annotation,
+            'annotations': [annotation.shape.coords],
             'pair': annotation.pair
         }
 

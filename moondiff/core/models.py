@@ -77,12 +77,6 @@ class Annotation(models.Model):
         ('SPLOTCH','splotch (change in brightness over an area)'),
         ('HW','spacecraft hardware'),
     ))
-    
-    @property
-    def esri_style_geom(self):
-        # for converting from (((-4.6, -0.8), (-4.6, -0.8)))) style
-        # to [[-4.6, -0.8], [-4.6, -0.8]]
-        return str(self.shape.coords[0]).replace('(','[').replace(')',']')
 
 class AnnotationReview(models.Model):
     further_review_required = models.BooleanField()
