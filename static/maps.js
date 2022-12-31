@@ -141,7 +141,7 @@ const setup = (comparerMode)=>{
             // assume blink mode
             document.querySelector("#map-area").style.gridTemplateColumns = "1fr 0";
             const newImageLayer = new ImageryTileLayer({
-                url: data.currentScript,
+                url: data.newImageUrl,
             })
             mainview.map.add(newImageLayer)
             mainview.map.layers.add(annotationLayer) // re-add the annotation layer because otherwise it's underneath
