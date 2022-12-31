@@ -147,8 +147,10 @@ const setup = (comparerMode)=>{
             mainview.map.layers.add(annotationLayer) // re-add the annotation layer because otherwise it's underneath
             const fader = document.querySelector('#fader')
             fader.addEventListener('input', e=>{
-                oldImageLayer.opacity = e.target.value;
-                newImageLayer.opacity = 1-e.target.value;
+                oldImageLayer.opacity = 1-e.target.value;
+                newImageLayer.opacity = e.target.value;
+                document.querySelector(".active-image-indicator.left").style.opacity = 1-e.target.value;
+                document.querySelector(".active-image-indicator.right").style.opacity = e.target.value;
             })
             let blinkSpeed = 1
             let blinkHandle = null

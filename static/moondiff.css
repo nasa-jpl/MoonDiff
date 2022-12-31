@@ -15,26 +15,6 @@ body {
     grid-template-areas: "left right";
 }
 
-#all-image-controls {
-    grid-area: bottom;
-    align-items: end;
-    justify-items: center;
-    grid-template-columns: auto auto;
-    display: grid;
-}
-
-.image-controls {
-    border: thin white solid;
-    border-bottom: none;
-    border-top-right-radius: 1em;
-    border-top-left-radius: 1em;
-    z-index: 20;
-    background: black;
-    display: grid;
-    grid-template-columns: auto auto;
-    padding: 1em;
-}
-
 .image-id {
     grid-column: 1/3
 }
@@ -146,4 +126,34 @@ fieldset {
 
 a {
     color: aquamarine
+}
+
+#all-image-controls {
+    grid-area: bottom;
+    align-items: end;
+    justify-items: center;
+    grid-template-columns: auto auto;
+    display: grid;
+}
+
+.image-controls {
+    border: thin white solid;
+    border-bottom: none;
+    border-top-right-radius: 1em;
+    border-top-left-radius: 1em;
+    z-index: 20;
+    background: black;
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 1em;
+}
+
+#all-image-controls>div{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.active-image-indicator{
+    font-size: xx-large;
+    opacity: 0;
 }
