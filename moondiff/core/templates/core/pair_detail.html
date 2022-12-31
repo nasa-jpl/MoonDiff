@@ -44,27 +44,10 @@
         <div id="left_mapview_container" ></div>
         <div id="right_mapview_container" ></div>
     </div>
-    
-    <div id="all-image-controls">
-        <div id="left-image-controls" class="image-controls">
-            <span class="image-id">{{ pair.old_image }}</span>
-            <label class="brightness controls left" for="brightness-slider">Brightness:</label>
-            <input class="brightness controls left" type="range" id="brightness-slider" name="brightness-slider" min="0" max="1" step="0.05" />
-            <label class="contrast controls left" for="contrast-slider">Contrast:</label>
-            <input class="contrast controls left" type="range" id="contrast-slider" name="contrast-slider" min="0" max="1" step="0.05" />
-            <label class="invert controls" for="invert-toggle">Invert:</label>
-            <input class="invert controls" type="checkbox" id="invert-toggle" name="blink-toggle" value="false" checked/>
-        </div>
 
-        <div id="left-image-controls" class="image-controls">
-            <span class="image-id">{{ pair.new_image }}</span>
-            <label class="brightness controls" for="brightness-slider">Brightness:</label>
-            <input class="brightness controls" type="range" id="brightness-slider" name="brightness-slider" min="0" max="1" step="0.05" />
-            <label class="contrast controls" for="contrast-slider">Contrast:</label>
-            <input class="contrast controls" type="range" id="contrast-slider" name="contrast-slider" min="0" max="1" step="0.05" />
-            <label class="invert controls" for="invert-toggle">Invert:</label>
-            <input class="invert controls" type="checkbox" id="invert-toggle" name="blink-toggle" value="false" checked/>
-        </div>
+    <div id="all-image-controls">
+        {% include "core/image_display_controls.html" with image=pair.old_image side=left only %}
+        {% include "core/image_display_controls.html" with image=pair.new_image side=right only %}
     </div>
 
 

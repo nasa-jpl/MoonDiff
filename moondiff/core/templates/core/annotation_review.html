@@ -49,10 +49,12 @@
     <div id="map-area">
         <div id="left_mapview_container" ></div>
         <div id="right_mapview_container" ></div>
-        <div class="left-title">{{ pair.old_image }}</div>
-        <div class="right-title">{{ pair.new_image }}</div>
     </div>
 
+    <div id="all-image-controls">
+        {% include "core/image_display_controls.html" with image=pair.old_image side=left only %}
+        {% include "core/image_display_controls.html" with image=pair.new_image side=right only %}
+    </div>
 
     {{ annotations|json_script:"polylines" }}
 
