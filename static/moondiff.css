@@ -34,8 +34,12 @@ input, select {
     grid-template-columns: auto auto;
 }
 
-fieldset, form {
+fieldset, form , .active-image-indicator{
     z-index: 10;
+}
+
+.active-image-indicator {
+    text-shadow: black 0 0 10px;
 }
 
 .blinkfade.controls {
