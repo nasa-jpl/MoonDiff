@@ -2,7 +2,7 @@ var updateRenderer = (layer, evt)=>{
     let newRend = layer.renderer.clone()
     if (evt.target.id == "gamma-slider"){
         newRend.useGamma = true
-        newRend.gamma = document.getElementById("gamma-slider").value
+        newRend.gamma = evt.target.value
     }
     if (evt.target.id == "invert-toggle"){
         if (!layer.renderer.colorRamp){
@@ -12,7 +12,7 @@ var updateRenderer = (layer, evt)=>{
                     fromColor: [0, 0, 0, 1],
                     toColor: [255, 255, 255, 1]
             }
-            newRend.colorRamp = layer.renderer.colorRamp
+            newRend.colorRamp = layer.renderer.colorRamp.clone()
         }
         newRend.colorRamp.fromColor = layer.renderer.colorRamp.toColor
         newRend.colorRamp.toColor = layer.renderer.colorRamp.fromColor
