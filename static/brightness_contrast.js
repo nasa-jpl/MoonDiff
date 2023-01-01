@@ -1,24 +1,35 @@
 var updateRenderer = (layer, evt)=>{
     let newRend = layer.renderer.clone()
-    if (evt.target.id == "gamma-slider"){
+    if (evt.target.name == "gamma-slider"){
         newRend.useGamma = true
         newRend.gamma = evt.target.value
     }
-    if (evt.target.id == "invert-toggle"){
-        if (!layer.renderer.colorRamp){
-        //    No color ramp yet. We'll have to set one up before we can invert colors.
-            layer.renderer.colorRamp = {
-                    type: "algorithmic",
-                    fromColor: [0, 0, 0, 1],
-                    toColor: [255, 255, 255, 1]
+    else if (evt.target.name == "invert-toggle"){
+        if (evt.target.checked){
+            newRend.colorRamp = {
+                type: "algorithmic",
+                toColor: [0, 0, 0, 1],
+                fromColor: [255, 255, 255, 1]
             }
-            newRend.colorRamp = layer.renderer.colorRamp.clone()
+        } else {
+            newRend.colorRamp = {
+                type: "algorithmic",
+                fromColor: [0, 0, 0, 1],
+                toColor: [255, 255, 255, 1]
+            }
         }
-        newRend.colorRamp.fromColor = layer.renderer.colorRamp.toColor
-        newRend.colorRamp.toColor = layer.renderer.colorRamp.fromColor
     }
-    if (evt.target.id == "autostretch-toggle"){
+    else if (evt.target.name == "autostretch-toggle"){
+        newRend.stretchType='min-max'
         newRend.dynamicRangeAdjustment = !newRend.dynamicRangeAdjustment
+    }
+    else if (evt.target.name == "reset"){
+        evt.target.parentElement.querySelectorAll('input[type=checkbox]').forEach(
+            (el)=>{
+                el.checked = false;
+                el.dispatchEvent(new Event('change'));
+            }
+        )
     }
     layer.renderer = newRend
     layer.refresh()
@@ -27,6 +38,11 @@ var updateRenderer = (layer, evt)=>{
 var registerImageControlsOnLayer = (layer, side) => {
     document.querySelectorAll(`.image-controls input.${side}`).forEach((el)=>{
         el.addEventListener('change',(evt)=>{
+            updateRenderer(layer, evt)
+        })
+    })
+    document.querySelectorAll(`button.${side}`).forEach((el)=> {
+        el.addEventListener('click', (evt) => {
             updateRenderer(layer, evt)
         })
     })

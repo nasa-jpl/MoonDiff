@@ -157,3 +157,7 @@ a {
     font-size: xx-large;
     opacity: 0;
 }
+
+button.reset{
+    grid-column: 2;
+} 
