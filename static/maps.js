@@ -55,6 +55,7 @@ const setup = (comparerMode)=>{
 
         const mainview = makeTileMap(data.oldImageUrl, 'left_mapview_container')
         const oldImageLayer = mainview.map.layers.items[0]
+        registerImageControlsOnLayer(oldImageLayer, 'left')
         mainview.crosshair = createPoint(0,0)
         mainview.graphics.add(mainview.crosshair)
         const annotationLayer = new GraphicsLayer()
@@ -84,6 +85,7 @@ const setup = (comparerMode)=>{
 
         if (comparerMode === 'sideBySide'){
             const rightview = makeTileMap(data.newImageUrl, 'right_mapview_container')
+            registerImageControlsOnLayer(rightview.map.layers.items[0], 'right')
             rightview.crosshair = createPoint(0,0)
             rightview.graphics.add(rightview.crosshair)
             const views = [mainview, rightview]
@@ -143,6 +145,8 @@ const setup = (comparerMode)=>{
             const newImageLayer = new ImageryTileLayer({
                 url: data.newImageUrl,
             })
+            registerImageControlsOnLayer(newImageLayer, 'right')
+            registerImageControlsOnLayer(oldImageLayer, 'left')
             mainview.map.add(newImageLayer)
             mainview.map.layers.add(annotationLayer) // re-add the annotation layer because otherwise it's underneath
             const fader = document.querySelector('#fader')

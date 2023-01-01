@@ -46,8 +46,8 @@
     </div>
 
     <div id="all-image-controls">
-        {% include "core/image_display_controls.html" with image=pair.old_image side="left" only %}
-        {% include "core/image_display_controls.html" with image=pair.new_image side="right" only %}
+        {% include "core/brightness_contrast.html" with image=pair.old_image side="left" only %}
+        {% include "core/brightness_contrast.html" with image=pair.new_image side="right" only %}
     </div>
 
 
@@ -77,7 +77,7 @@
             </div>
         </div>
     </div>
-
+    <script src="/static/brightness_contrast.js"></script>
     {{ annotations|json_script:"polylines" }}
     
     <script src="/static/maps.js"
