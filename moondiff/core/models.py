@@ -36,13 +36,28 @@ class PairSet(models.Model):
     def __str__(self):
         return self.name
 
+class PairManager(models.Manager):
+    def unvisited_by_user(self, user):
+        return self.get_queryset().difference(self.visited_by_user(user=user))
+    
+    def visited_by_user(self, user):
+        return self.get_queryset().filter(visit__user=user).distinct()
+
+    def compared_by_user(self, user):
+        # Returns the pairs that this user clicked "Done" on
+        return self.get_queryset().filter(visit__user=user, visit__finished=True).distinct()
+
+    def not_compared_by_user(self, user):
+        # Returns the pairs that this user clicked "Done" on
+        return self.get_queryset().difference(self.compared_by_user(user=user))
 
 class Pair(models.Model):
     old_image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='pairs_with_this_as_old')
     new_image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='pairs_with_this_as_new')
     pairset = models.ForeignKey(PairSet, on_delete=models.CASCADE, blank=True, null=True)
     coreg_notes = models.TextField(blank=True, null=True)
-
+    
+    objects = PairManager()
     
     def __str__(self):
         return f"{self.old_image} compared to {self.new_image}"
