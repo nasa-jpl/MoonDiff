@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path, re_path
 from moondiff.core.views import PairDetailView, AnnotationViewSetThisUser, \
-    AddReviewView, SelectReviewView, SelectPairView
+    VisitsViewSet, AddReviewView, SelectReviewView, SelectPairView
 from django.views.generic import TemplateView, RedirectView
 from django.contrib.auth.decorators import login_required
 from django.conf.urls.static import static
@@ -25,6 +25,7 @@ from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register(r'annotations', AnnotationViewSetThisUser, basename='annotation')
+router.register(r'visits', VisitsViewSet, basename='visit')
 
 urlpatterns = [
     path('accounts/', include('allauth.urls')),

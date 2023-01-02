@@ -8,6 +8,8 @@ admin.site.register(SpacecraftCamera)
 admin.site.register(Image)
 admin.site.register(PairSet)
 admin.site.register(Pair)
+admin.site.register(Visit)
+admin.site.register(Comment)
 admin.site.register(Annotation)
 admin.site.register(AnnotationReview)
 

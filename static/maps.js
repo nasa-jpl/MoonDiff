@@ -15,9 +15,6 @@ const setup = (comparerMode)=>{
         Map, MapView, ImageryTileLayer, Draw, GraphicsLayer, Graphic, Sketch, MicroModal){
         MicroModal.init()
 
-        const nextButton = document.querySelector('#skip-button')
-        nextButton.addEventListener('click',()=>{ window.location.href = data.nextUrl })
-
         const makeTileMap = (tile_url, container)=>{
             const webmap = new Map({});
             const tileLayer = new ImageryTileLayer({
@@ -217,7 +214,8 @@ const setup = (comparerMode)=>{
                     fetch(data.annotationPostUrl, {
                         method: 'POST',
                         credentials: 'same-origin',
-                        body: annotationData
+                        body: annotationData,
+                        headers: {'x-csrftoken':csrfToken}
                     })
                 },  ()=>{
                     console.log("not submitted")

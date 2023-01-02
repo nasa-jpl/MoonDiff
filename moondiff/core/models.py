@@ -37,8 +37,6 @@ class PairSet(models.Model):
         return self.name
 
 
-
-
 class Pair(models.Model):
     old_image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='pairs_with_this_as_old')
     new_image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='pairs_with_this_as_new')
@@ -66,17 +64,35 @@ class Pair(models.Model):
         unique_together = ['old_image', 'new_image']
 
 
+class Visit(models.Model):
+    """
+    One instance of this is created each time a user goes to PairDetailView.
+    End time is set when they click "skip pair" or "pair done."
+    """
+    pair = models.ForeignKey(Pair, on_delete=models.CASCADE)
+    start = models.DateTimeField(auto_now_add=True)
+    end = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, editable=False)
+    finished = models.BooleanField(default=False)
+
+
+class Comment(models.Model):
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, editable=False)
+    created_on = models.DateTimeField(auto_now_add=True)
+    comment_text = models.TextField()
+
 class Annotation(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, editable=False)
     shape = models.PolygonField()
     notes = models.TextField()
     pair = models.ForeignKey(Pair, on_delete=models.CASCADE)
-    created_at = models.DateField(auto_now=True)
+    created_at = models.DateField(auto_now_add=True)
     classification = models.CharField(max_length=10,
         choices=(('CRATER','new crater'),
         ('SPLOTCH','splotch (change in brightness over an area)'),
         ('HW','spacecraft hardware'),
     ))
+
 
 class AnnotationReview(models.Model):
     further_review_required = models.BooleanField()
@@ -84,4 +100,4 @@ class AnnotationReview(models.Model):
     comments = models.TextField(blank=True, null=True)
     reviewer = models.ForeignKey(User, on_delete=models.CASCADE, editable=False)
     annotation = models.ForeignKey(Annotation, on_delete=models.CASCADE)
-    created_at = models.DateField(auto_now=True)
+    created_at = models.DateField(auto_now_add=True)
