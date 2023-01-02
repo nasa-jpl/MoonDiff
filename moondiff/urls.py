@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path, re_path
 from moondiff.core.views import PairDetailView, AnnotationViewSetThisUser, \
-    VisitsViewSet, AddReviewView, SelectReviewView, SelectPairView
+    VisitsViewSet, AddReviewView, SelectReviewView, SelectPairView, ProfileView
 from django.views.generic import TemplateView, RedirectView
 from django.contrib.auth.decorators import login_required
 from django.conf.urls.static import static
@@ -29,6 +29,7 @@ router.register(r'visits', VisitsViewSet, basename='visit')
 
 urlpatterns = [
     path('accounts/', include('allauth.urls')),
+    path('accounts/profile/<pk>', ProfileView.as_view(), name='profile'),
     path('admin/login/', RedirectView.as_view(pattern_name='account_login', permanent=True)),
     path('admin/', admin.site.urls),
     re_path('compare_pair/select', SelectPairView.as_view(), name='select-pair-to-compare'),

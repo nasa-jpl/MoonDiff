@@ -1,4 +1,4 @@
-from django.views.generic import DetailView, RedirectView
+from django.views.generic import DetailView, RedirectView, TemplateView
 from moondiff.core.models import Pair, Annotation, AnnotationReview, Visit, get_random
 from moondiff.core.serializers import AnnotationSerializer, AnnotationForPairSerializer, ReviewFormSerializer, SubmitReviewSerializer, VisitSerializer
 from rest_framework import viewsets, permissions
@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.renderers import TemplateHTMLRenderer
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.utils.decorators import method_decorator
 from django.urls import reverse
 
@@ -14,7 +15,6 @@ class PairDetailView(DetailView):
     model = Pair
 
     def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
         
         # Add in a serializer for the annotation form
@@ -35,6 +35,24 @@ class PairDetailView(DetailView):
             context['annotations'] = None
             
         return context
+
+
+class ProfileView(DetailView):
+    model = User
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Detections
+        context['detections'] = Annotation.objects.filter(created_by=self.request.user)
+
+        # Visit statistics
+        context['compared'] = Pair.objects.compared_by_user(user=self.request.user)
+        context['pairs'] = Pair.objects.all()
+        context['detections'] = Annotation.objects.all()
+
+        return context
+
 
 class VisitsViewSet(viewsets.ModelViewSet):
     serializer_class = VisitSerializer

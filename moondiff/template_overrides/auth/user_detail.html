@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div id="user-stats" class="centered">
+    <fieldset>
+        <legend><h1>User statistics for {{ object }}</h1></legend>
+    <h2>Detection stats</h2>
+    {{ object }} has compared {{ compared.count }} out of the {{ pairs.count }} available lunar image pairs,
+    spending an average of (TODO avg_time_spent) on each.
+    
+    {{ object }} reported {{ detections.count }} differences between those images. Expert reviewers have looked at
+    {{ detections.reviewed_count }} of those, and {{ detections.unreviewed_count }} are awaiting review.
+
+    <h2>Reviewer stats</h2>
+    {{ object }} is not registered as an expert reviewer.
+    </fieldset>
+    </div>
+{% endblock content %}
