@@ -96,6 +96,7 @@ class Comment(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     comment_text = models.TextField()
 
+
 class Annotation(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, editable=False)
     shape = models.PolygonField()

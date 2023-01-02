@@ -121,9 +121,9 @@ class SelectPairView(RedirectView):
             pair = get_random(Pair.objects.not_compared_by_user(user=self.request.user))
             if pair is None:
                 return reverse('all_done')
+            return pair.get_absolute_url()
         else:
             return reverse('account_login')
-        return pair.get_absolute_url()
 
 class AllDoneView(TemplateView):
     template="all_done.html"
@@ -134,5 +134,13 @@ class SelectReviewView(RedirectView):
     redirect to the page for reviewing that detection.
     """
     def get_redirect_url(self, *args, **kwargs):
-        annotation = get_random(Annotation)
-        return reverse('review-detection', kwargs={'pk':annotation.pk})
+        if self.request.user.is_authenticated:
+            # Maybe this should be a custom model manager
+            reviewed_by_this_user = Annotation.objects.filter(annotationreview__reviewer = self.request.user)
+            unreviewed_by_this_user = Annotation.objects.all().difference(reviewed_by_this_user)
+            annotation = get_random(unreviewed_by_this_user)
+            if annotation is None:
+                return reverse('all_done')
+            return reverse('review-detection', kwargs={'pk':annotation.pk})
+        else:
+            return reverse('account_login')
