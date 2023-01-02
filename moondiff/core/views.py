@@ -117,8 +117,16 @@ class SelectPairView(RedirectView):
     redirect to the page for reviewing that detection.
     """
     def get_redirect_url(self, *args, **kwargs):
-        pair = get_random(Pair)
+        if self.request.user.is_authenticated:
+            pair = get_random(Pair.objects.not_compared_by_user(user=self.request.user))
+            if pair is None:
+                return reverse('all_done')
+        else:
+            return reverse('account_login')
         return pair.get_absolute_url()
+
+class AllDoneView(TemplateView):
+    template="all_done.html"
 
 class SelectReviewView(RedirectView):
     """

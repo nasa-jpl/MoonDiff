@@ -4,12 +4,12 @@ from django.urls import reverse
 import random
 
 
-def get_random(cls):
+def get_random(queryset):
     # Return a random pair
-    pair_pks = [v['pk'] for v in cls.objects.values('pk')]
-    if pair_pks:
-        random_pk = random.choice(pair_pks)
-        return cls.objects.get(pk=random_pk)
+    pks = queryset.values_list('pk', flat=True)
+    if pks:
+        random_pk = random.choice(pks)
+        return queryset.model.objects.get(pk=random_pk)
     else:
         return None
 
