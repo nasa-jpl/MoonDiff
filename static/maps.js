@@ -95,6 +95,7 @@ const setup = (comparerMode)=>{
 
             rightview.map.layers.add(annotationLayerCopy)
             let polylineGraphics = addPolylinesToLayer(annotationLayerCopy, polylines)
+            addPolylinesToLayer(annotationLayer, polylines)
             // TODO move these functions into libraries
 
 
@@ -155,9 +156,10 @@ const setup = (comparerMode)=>{
             registerImageControlsOnLayer(oldImageLayer, 'left')
             mainview.map.add(newImageLayer)
             mainview.map.layers.add(annotationLayer) // re-add the annotation layer because otherwise it's underneath
+            let polylineGraphics = addPolylinesToLayer(annotationLayer, polylines)
             mainview.when(()=>{
                     mainview.goTo({target:polylineGraphics}, {animate:false});
-                        // TODO next line doesn't seem to work, maybe firing too son
+                        // TODO next line doesn't seem to work, maybe firing too soon
                     mainview.zoom = mainview.zoom - 2;
                     }
                 )
