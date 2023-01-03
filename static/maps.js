@@ -10,9 +10,10 @@ const setup = (comparerMode)=>{
         "esri/layers/GraphicsLayer",
         "esri/Graphic",
         "esri/widgets/Sketch",
+        "esri/layers/support/TileInfo",
         "https://unpkg.com/micromodal/dist/micromodal.min.js"
     ], function (
-        Map, MapView, ImageryTileLayer, Draw, GraphicsLayer, Graphic, Sketch, MicroModal){
+        Map, MapView, ImageryTileLayer, Draw, GraphicsLayer, Graphic, Sketch, TileInfo, MicroModal){
         MicroModal.init()
 
         const makeTileMap = (tile_url, container)=>{
@@ -25,7 +26,9 @@ const setup = (comparerMode)=>{
                 container: container,
                 map: webmap,
                 constraints: {
-                    snapToZoom: false
+                    snapToZoom: false,
+                    maxScale: 0,
+                    lods: TileInfo.create().lods
                 }
             })
         }
