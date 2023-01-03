@@ -65,9 +65,8 @@ const setup = (comparerMode)=>{
 
 
         const addPolylinesToLayer = (layer, polylines) => {
-            for (const polyline of polylines){
-                layer.add(
-                    new Graphic({
+            const polyLinesArray = polylines.map((polyline)=>{
+                const polylineGraphic = new Graphic({
                             geometry: {
                                 type: 'polygon',
                                 rings: polyline
@@ -76,12 +75,14 @@ const setup = (comparerMode)=>{
                                 type: "simple-line"
                             }
                         }
-                    )
-                )
-            }
+                    );
+                layer.add(polylineGraphic);
+                return polylineGraphic
+                }
+            )
+            return polyLinesArray 
         }
         const polylines = JSON.parse(document.getElementById("polylines").textContent)
-        addPolylinesToLayer(annotationLayer, polylines)
 
         if (comparerMode === 'sideBySide'){
             const rightview = makeTileMap(data.newImageUrl, 'right_mapview_container')
@@ -93,8 +94,7 @@ const setup = (comparerMode)=>{
 
 
             rightview.map.layers.add(annotationLayerCopy)
-            addPolylinesToLayer(annotationLayerCopy, polylines)
-
+            let polylineGraphics = addPolylinesToLayer(annotationLayerCopy, polylines)
             // TODO move these functions into libraries
 
 
@@ -112,7 +112,7 @@ const setup = (comparerMode)=>{
             }
 
             const syncPointer = (evt) => {
-                // Sets the center and zoom of all views to the center and zoom of source
+                // Copies the crosshair for drawing polygons to all views
                 for (const view of views) {
                     const cursor_coord = view.toMap({x:evt.x, y:evt.y})
                     view.crosshair.geometry= {
@@ -124,6 +124,12 @@ const setup = (comparerMode)=>{
             }
 
             for (const view of views) {
+                view.when(()=>{
+                        view.goTo({target:polylineGraphics}, {animate:false});
+                        // TODO next line doesn't seem to work, maybe firing too son
+                        view.zoom = view.zoom - 2;
+                    }
+                )
                 view.watch(["interacting", "animation"], () => {
                     active = view
                 })
@@ -149,6 +155,12 @@ const setup = (comparerMode)=>{
             registerImageControlsOnLayer(oldImageLayer, 'left')
             mainview.map.add(newImageLayer)
             mainview.map.layers.add(annotationLayer) // re-add the annotation layer because otherwise it's underneath
+            mainview.when(()=>{
+                    mainview.goTo({target:polylineGraphics}, {animate:false});
+                        // TODO next line doesn't seem to work, maybe firing too son
+                    mainview.zoom = mainview.zoom - 2;
+                    }
+                )
             const fader = document.querySelector('#fader')
             fader.addEventListener('input', e=>{
                 oldImageLayer.opacity = 1-e.target.value;

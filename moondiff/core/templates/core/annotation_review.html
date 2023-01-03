@@ -19,7 +19,7 @@
 
 {% block page_tools %}
     <fieldset id="page-tools">
-    <legend>Review detection {{ annotation.pk }}</legend>
+    <legend>Review detection {{ annotations.0.pk }}</legend>
     
     <form>
     <label class="controls" for="comparer-mode">Comparer:</label>
@@ -38,7 +38,7 @@
         {% render_form review_serializer %}
         <button id="skip-button">Skip</button>
         <button id="submit">Submit</button>
-        <input type="hidden" name="annotation_id" value="{{ annotation.pk }}">
+        <input type="hidden" name="annotation_id" value="{{ annotations.0.pk }}">
         {% csrf_token %}
     </form>
     </fieldset>
