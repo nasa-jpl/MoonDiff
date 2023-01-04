@@ -148,7 +148,10 @@ const setup = (comparerMode)=>{
         }
         else {
             // assume blink mode
-            document.querySelector("#map-area").style.gridTemplateColumns = "1fr 0";
+            mapArea = document.querySelector("#map-area");
+            mapArea.style.gridTemplateColumns = "1fr 0";
+            // workaround for "stars shining through" issue https://github.jpl.nasa.gov/MoonDiff/MoonDiff/issues/37
+            mapArea.style.background = "black";
             const newImageLayer = new ImageryTileLayer({
                 url: data.newImageUrl,
             })
