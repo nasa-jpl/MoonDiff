@@ -11,7 +11,7 @@
   pk: 23
 - fields:
     file_data: images/M1108432631RE_3154_1_cog_crop.tif
-    product_id: M1108432631RE_3154_1_cog_crop.tif
+    product_id: M1108432631RE_3154_1_crop
     spacecraft_camera: 2
   model: core.image
   pk: 24
@@ -31,7 +31,7 @@
   pk: 25
 - fields:
     file_data: images/M1142596053RE_3153_3_cog_crop.tif
-    product_id: M1142596053RE_3153_3_cog_crop.tif
+    product_id: M1142596053RE_3153_3_crop
     spacecraft_camera: 2
   model: core.image
   pk: 26
@@ -51,7 +51,7 @@
   pk: 27
 - fields:
     file_data: images/M1154371500LE_3154_3_cog_crop.tif
-    product_id: M1154371500LE_3154_3_cog_crop.tif
+    product_id: M1154371500LE_3154_3_crop
     spacecraft_camera: 3
   model: core.image
   pk: 28
@@ -71,7 +71,7 @@
   pk: 29
 - fields:
     file_data: images/M1154371500RE_3153_2_cog_crop.tif
-    product_id: M1154371500RE_3153_2_cog_crop.tif
+    product_id: M1154371500RE_3153_2_crop
     spacecraft_camera: 2
   model: core.image
   pk: 30
@@ -91,7 +91,7 @@
   pk: 31
 - fields:
     file_data: images/M1184980308LE_3154_2_cog_crop.tif
-    product_id: M1184980308LE_3154_2_cog_crop.tif
+    product_id: M1184980308LE_3154_2_crop
     spacecraft_camera: 3
   model: core.image
   pk: 32
@@ -111,14 +111,14 @@
   pk: 33
 - fields:
     file_data: images/M1184980308RE_3153_1_cog_crop.tif
-    product_id: M1184980308RE_3153_1_cog_crop.tif
+    product_id: M1184980308RE_3153_1_crop
     spacecraft_camera: 2
   model: core.image
   pk: 34
 - fields:
     coreg_notes: 'Initial tiepoints: Heather Lethcoe, Tobey Miner. Coregistration:
       Tom Logan 2022-12-12.'
-    new_image: 34
+    new_image: 28
     old_image: 33
     pairset: 2
   model: core.pair
