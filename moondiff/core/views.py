@@ -85,7 +85,8 @@ class AddReviewView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'core/annotation_review.html'
 
-    #TODO should really have custom user model designating reviewers
+    # IsAdminUser actually checks User.is_staff, not User.is_admin. Weird but 
+    # that happens to be what we want.
     permission_classes = [permissions.IsAdminUser]
 
     # Get an annotation to review 

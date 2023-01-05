@@ -180,6 +180,8 @@ img#profile-icon{
 
 div#user-stuff{
     padding: 1em;
+    position: relative;
+    z-index: 10;
 }
 
 legend>h1{

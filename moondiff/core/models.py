@@ -39,7 +39,7 @@ class PairSet(models.Model):
 class PairManager(models.Manager):
     def unvisited_by_user(self, user):
         return self.get_queryset().difference(self.visited_by_user(user=user))
-    
+
     def visited_by_user(self, user):
         return self.get_queryset().filter(visit__user=user).distinct()
 
@@ -56,9 +56,9 @@ class Pair(models.Model):
     new_image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='pairs_with_this_as_new')
     pairset = models.ForeignKey(PairSet, on_delete=models.CASCADE, blank=True, null=True)
     coreg_notes = models.TextField(blank=True, null=True)
-    
+
     objects = PairManager()
-    
+
     def __str__(self):
         return f"{self.old_image} compared to {self.new_image}"
 
@@ -90,11 +90,17 @@ class Visit(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, editable=False)
     finished = models.BooleanField(default=False)
 
+    def __str__(self):
+        return f"{self.user} viewed {self.pair} at {self.start}"
+
 
 class Comment(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, editable=False)
     created_on = models.DateTimeField(auto_now_add=True)
     comment_text = models.TextField()
+    
+    def __str__(self):
+        return f"{self.created_by} commented at {self.created_on}"
 
 
 class Annotation(models.Model):
@@ -109,6 +115,9 @@ class Annotation(models.Model):
         ('HW','spacecraft hardware'),
     ))
 
+    def __str__(self):
+        return f"{self.user} reported a difference in {self.pair}"
+
 
 class AnnotationReview(models.Model):
     further_review_required = models.BooleanField()
@@ -117,3 +126,6 @@ class AnnotationReview(models.Model):
     reviewer = models.ForeignKey(User, on_delete=models.CASCADE, editable=False)
     annotation = models.ForeignKey(Annotation, on_delete=models.CASCADE)
     created_at = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.reviewer} reviewed {self.annotation}"
