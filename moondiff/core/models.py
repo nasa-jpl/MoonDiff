@@ -116,7 +116,7 @@ class Annotation(models.Model):
     ))
 
     def __str__(self):
-        return f"{self.user} reported a difference in {self.pair}"
+        return f"{self.created_by} reported a difference in {self.pair}"
 
 
 class AnnotationReview(models.Model):
