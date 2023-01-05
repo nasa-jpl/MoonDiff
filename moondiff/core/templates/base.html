@@ -26,19 +26,16 @@
     {% block page_tools %}{% endblock %}
 
     {% block call_to_action %}<span id="callToAction"></span>{% endblock call_to_action %}
-    <fieldset id="user-stuff">
-    <legend>User tools
+    <div id="user-stuff">
+    <img id="profile-icon" src="/static/icons/profile.svg">
             {% if user.is_authenticated %}
-                ({{ user }}).</legend>
-                <p><a href="{% url 'account_email' %}">Change E-mail</a></p>
-                <p><a href="{% url 'account_logout' %}">Sign Out</a></p>
+                <a href="{% url 'profile' user.pk %}">{{ user }}</a> | 
+                <a href="{% url 'account_logout' %}">sign out</a>
             {% else %}
-                </legend>
-                You are not logged in.
-                <p><a href="{% url 'account_login' %}">Sign In</a></p>
-                <p><a href="{% url 'account_signup' %}">Sign Up</a></p>
+                <a href="{% url 'account_login' %}">sign in</a> | 
+                <a href="{% url 'account_signup' %}">sign up</a>
             {% endif %}
-    </fieldset>
+    </div>
 
 {% block content %}
     No content.

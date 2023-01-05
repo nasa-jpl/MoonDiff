@@ -2,17 +2,36 @@
 
 {% block content %}
     <div id="user-stats" class="centered">
+    <div>
     <fieldset>
-        <legend><h1>User statistics for {{ object }}</h1></legend>
-    <h2>Detection stats</h2>
-    {{ object }} has compared {{ compared.count }} out of the {{ pairs.count }} available lunar image pairs,
+        <legend><h1>Statistics for user {{ object }}</h1></legend>
+    <h2>Image pair comparing stats</h2>
+    <p>
+    {{ object }} has compared <b>{{ compared.count }}</b> out of the <b>{{ pairs.count }}</b> available lunar image pairs,
     spending an average of (TODO avg_time_spent) on each.
+    </p>
+    <p>
+    {{ object }} reported <b>{{ detections.count }}</b> differences between those images. Expert reviewers have looked at
+    (TODO detections.reviewed_count) of those, and (TODO detections.unreviewed_count) are awaiting review.
+    </p>
+    <p><a href={% url 'select-pair-to-compare' %}>Click here to do more comparing!</a></p>
     
-    {{ object }} reported {{ detections.count }} differences between those images. Expert reviewers have looked at
-    {{ detections.reviewed_count }} of those, and {{ detections.unreviewed_count }} are awaiting review.
-
     <h2>Reviewer stats</h2>
-    {{ object }} is not registered as an expert reviewer.
+    {% if user.is_staff %}
+        <p>{{ object }} has reviewed TODO / TODO available detections.</p>
+        <p><a href={% url 'select-detection-to-review' %}>Click here to do more reviewing!</a></p>
+    {% else %}
+        <p>{{ object }} is not registered as an expert reviewer.</p>
+    {% endif %}
     </fieldset>
+    </div>
+    <div>
+    {% if object == user %}
+        <fieldset>
+        <legend><h1>Settings for user {{ object }}</h1></legend>
+        <p><a href="{% url 'account_email' %}">Change E-mail</a></p>
+        </fieldset>
+    {% endif %}
+    </div>
     </div>
 {% endblock content %}

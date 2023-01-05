@@ -171,3 +171,18 @@ button.reset{
     grid-area: bottom;
     justify-self: center;
 }
+
+img#profile-icon{
+    height: 2em;
+    vertical-align: middle;
+    height: 1.5em;
+}
+
+div#user-stuff{
+    padding: 1em;
+}
+
+legend>h1{
+    margin: 0;
+}
+
