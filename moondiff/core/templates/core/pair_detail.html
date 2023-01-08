@@ -77,6 +77,10 @@
             </div>
         </div>
     </div>
+
+    {# Comments box #}
+    {% include "core/comments.html" %}
+    <script src="/static/comments.js"></script>
     
     {# Visit tracking #}
     <input type="hidden" id="visit_id" name="visit_id" value="{{ visit.pk }}">

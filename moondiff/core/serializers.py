@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework.fields import CurrentUserDefault
-from moondiff.core.models import Annotation, AnnotationReview, Visit
+from moondiff.core.models import Annotation, AnnotationReview, Visit, Comment
 
 class AnnotationSerializer(serializers.HyperlinkedModelSerializer):
 
@@ -35,4 +35,9 @@ class VisitSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Visit
+        fields = '__all__'
+
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
         fields = '__all__'

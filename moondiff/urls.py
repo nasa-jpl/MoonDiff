@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import include, path, re_path
 from moondiff.core.views import PairDetailView, AnnotationViewSetThisUser, \
     VisitsViewSet, AddReviewView, SelectReviewView, SelectPairView, ProfileView, \
-    AllDoneView
+    AllDoneView, CommentsViewSet
 from django.views.generic import TemplateView, RedirectView
 from django.contrib.auth.decorators import login_required
 from django.conf.urls.static import static
@@ -27,6 +27,7 @@ from rest_framework import routers
 router = routers.DefaultRouter()
 router.register(r'annotations', AnnotationViewSetThisUser, basename='annotation')
 router.register(r'visits', VisitsViewSet, basename='visit')
+router.register(r'comments', CommentsViewSet, basename='comment')
 
 urlpatterns = [
     path('accounts/', include('allauth.urls')),

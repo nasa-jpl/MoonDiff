@@ -1,6 +1,6 @@
 from django.views.generic import DetailView, RedirectView, TemplateView
-from moondiff.core.models import Pair, Annotation, AnnotationReview, Visit, get_random
-from moondiff.core.serializers import AnnotationSerializer, AnnotationForPairSerializer, ReviewFormSerializer, SubmitReviewSerializer, VisitSerializer
+from moondiff.core.models import Pair, Annotation, AnnotationReview, Visit, Comment, get_random
+from moondiff.core.serializers import AnnotationSerializer, AnnotationForPairSerializer, ReviewFormSerializer, SubmitReviewSerializer, VisitSerializer, CommentSerializer
 from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -65,6 +65,13 @@ class VisitsViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+class CommentsViewSet(viewsets.ModelViewSet):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
 
 class AnnotationViewSetThisUser(viewsets.ModelViewSet):
     # Views for creating and listing annotations

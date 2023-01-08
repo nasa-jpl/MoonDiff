@@ -188,3 +188,27 @@ legend>h1{
     margin: 0;
 }
 
+#comments {
+    position: absolute;
+    top: 40%;
+    right: -2px;
+    transform-origin: right;
+    border: thin white solid;
+    border-radius: 1em 0 0 1em;
+    padding: 1em;
+}
+
+#comments.collapsed {
+    right: 1em;
+    transform: rotate(-90deg);
+    transform-origin: right;
+    border-radius: 1em 1em 0 0;
+}
+
+#comments.collapsed>form {
+    display: none;
+}
+
+#comments button {
+    display: block;
+}
