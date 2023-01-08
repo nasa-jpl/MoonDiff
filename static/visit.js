@@ -2,6 +2,7 @@ const nextButton = document.querySelector('#skip-button')
 const visitPk = document.querySelector('#visit_id').value
 const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value
 const pairId = document.querySelector('[name=pair_id]').value
+const comparerModeChooser = document.querySelector('#comparer-mode').value
 // const csrfToken = getCookie('csrftoken');
 nextButton.addEventListener('click',()=>{ window.location.href = data.nextUrl })
 
@@ -19,7 +20,7 @@ doneButton.addEventListener('click',()=>{
             headers: {'x-csrftoken':csrfToken}
         }
     )
-    window.location.href = data.nextUrl
+    window.location.href = `${data.nextUrl}?comparerMode=${comparerModeChooser.value}`
 })
 
 nextButton.addEventListener('click',()=>{
@@ -31,5 +32,5 @@ nextButton.addEventListener('click',()=>{
             headers: {'x-csrftoken':csrfToken}
         }
     )
-    window.location.href = data.nextUrl
+    window.location.href = `${data.nextUrl}?comparerMode=${comparerModeChooser.value}`
 })
