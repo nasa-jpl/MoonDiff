@@ -88,6 +88,9 @@ fieldset {
     position: absolute;
     white-space: nowrap;
 }
+#logo img {
+    max-width: 100%;
+}
 #about-this-page {
     grid-area: topmid;
 }
@@ -123,10 +126,6 @@ fieldset {
 /* Make the submit button appear in the input column */
 #accounts-container>div>form>button{
     grid-column: 2;
-}
-
-#logo {
-    max-width: 100%;
 }
 
 a {
