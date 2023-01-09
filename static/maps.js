@@ -200,13 +200,18 @@ const setup = (comparerMode)=>{
 
 
         const submitAnnotationModal = async() => {
-            return new Promise((resolve) => {
+            return new Promise((resolve, reject) => {
                     MicroModal.show('annotation-notes-modal')
                     document.querySelector('#annotation-notes-submit').addEventListener(
                         "click", ()=>{
                             MicroModal.close('annotation-notes-modal')
                             resolve()
                         })
+                    document.querySelector('#annotation-notes-close').addEventListener(
+                        "click", ()=>{
+                            reject()
+                        }
+                    )
                 }
             )
         }
@@ -222,11 +227,16 @@ const setup = (comparerMode)=>{
         sketch.create("polygon")
         sketch.visible = false
         annotationLayer.graphics.on('after-add', async (evt) => {
+            const temp_poly = evt.item
             const wkt_srid = evt.item.geometry.spatialReference.wkid
             const wkt_points = evt.item.geometry.rings[0].map(pt=>`${pt[0]} ${pt[1]}`).toString()
             const wkt_geometry = `SRID=${wkt_srid};POLYGON ((${wkt_points}))`
             // only expected to work if we're in sideBySide mode
-            try{annotationLayerCopy.graphics.add(evt.item.clone())} catch(e){}
+            let temp_poly_clone
+            try{
+                temp_poly_clone = evt.item.clone()
+                annotationLayerCopy.graphics.add(temp_poly_clone)
+            } catch(e){}
             await submitAnnotationModal().then(()=>{
                     const annotationData = new FormData(document.querySelector("#annotation-notes-form"));
                     annotationData.append('csrfmiddlewaretoken',document.querySelector('[name=csrfmiddlewaretoken]').value)
@@ -236,9 +246,18 @@ const setup = (comparerMode)=>{
                         credentials: 'same-origin',
                         body: annotationData,
                         headers: {'x-csrftoken':csrfToken}
-                    })
+                    }).then(
+                        (response)=>{
+                            if (response.ok){
+                                alert('Your change detection was successfully stored in the database.')
+                            } else {
+                                alert('There was a problem submitting your change detection.')
+                            }
+                        }
+                    )
                 },  ()=>{
-                    console.log("not submitted")
+                    temp_poly.layer.remove(temp_poly)
+                    try{temp_poly_clone.layer.remove(temp_poly_clone)}catch(e){}
                 }
 
 
