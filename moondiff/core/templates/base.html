@@ -19,13 +19,20 @@
 </div>
 
 <div class="foreground">
-    <a href="/"><img id="logo" src="/static/logo_light.png" ></a>
+    <div id="logo">
+        <a href="/">
+            <img src="/static/logo_light.png" >
+        </a>
+        <span id="version-container">
+        <span id="version">v0.2 beta</span>
+        </span>
+    </div>
 {#   TODO <span id="flavor text">lunar time travel</span>#}
 
 
     {% block page_tools %}{% endblock %}
 
-    {% block call_to_action %}<span id="callToAction"></span>{% endblock call_to_action %}
+
     <div id="user-stuff">
     <img id="profile-icon" src="/static/icons/profile.svg">
             {% if user.is_authenticated %}

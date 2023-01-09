@@ -84,8 +84,9 @@ fieldset {
 
 #logo {
     grid-area: topleft;
-    margin-left: 1em;
-    margin-right: 1em;
+    margin: 1em;
+    position: absolute;
+    white-space: nowrap;
 }
 #about-this-page {
     grid-area: topmid;
@@ -211,4 +212,14 @@ legend>h1{
 
 #comments button {
     display: block;
+}
+#version-container{
+    position: absolute;
+}
+#version {
+    transform: rotate(90deg);
+    position: absolute;
+    transform-origin: left;
+    left: 1em;
+    white-space: nowrap;
 }
