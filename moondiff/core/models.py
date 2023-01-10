@@ -22,12 +22,14 @@ class SpacecraftCamera(models.Model):
 
 
 class Image(models.Model):
-    spacecraft_camera = models.ForeignKey(SpacecraftCamera, on_delete=models.CASCADE)
+    spacecraft_camera = models.ForeignKey(SpacecraftCamera,
+                                          on_delete=models.CASCADE)
     product_id = models.CharField(max_length=100)
     file_data = models.FileField(upload_to='images/')
 
     def __str__(self):
         return self.product_id
+
 
 class PairSet(models.Model):
     name = models.CharField(max_length=100)
@@ -35,6 +37,7 @@ class PairSet(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class PairManager(models.Manager):
     def unvisited_by_user(self, user):
@@ -45,16 +48,21 @@ class PairManager(models.Manager):
 
     def compared_by_user(self, user):
         # Returns the pairs that this user clicked "Done" on
-        return self.get_queryset().filter(visit__user=user, visit__finished=True).distinct()
+        return self.get_queryset().filter(visit__user=user,
+                                          visit__finished=True).distinct()
 
     def not_compared_by_user(self, user):
         # Returns the pairs that this user clicked "Done" on
         return self.get_queryset().difference(self.compared_by_user(user=user))
 
+
 class Pair(models.Model):
-    old_image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='pairs_with_this_as_old')
-    new_image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='pairs_with_this_as_new')
-    pairset = models.ForeignKey(PairSet, on_delete=models.CASCADE, blank=True, null=True)
+    old_image = models.ForeignKey(Image, on_delete=models.CASCADE,
+                                  related_name='pairs_with_this_as_old')
+    new_image = models.ForeignKey(Image, on_delete=models.CASCADE,
+                                  related_name='pairs_with_this_as_new')
+    pairset = models.ForeignKey(PairSet, on_delete=models.CASCADE, blank=True,
+                                null=True)
     coreg_notes = models.TextField(blank=True, null=True)
 
     objects = PairManager()
@@ -95,25 +103,29 @@ class Visit(models.Model):
 
 
 class Comment(models.Model):
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE, editable=False)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE,
+                                   editable=False)
     created_on = models.DateTimeField(auto_now_add=True)
     comment_text = models.TextField()
-    
+
     def __str__(self):
         return f"{self.created_by} commented at {self.created_on}"
 
 
 class Annotation(models.Model):
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE, editable=False)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE,
+                                   editable=False)
     shape = models.PolygonField()
     notes = models.TextField()
     pair = models.ForeignKey(Pair, on_delete=models.CASCADE)
     created_at = models.DateField(auto_now_add=True)
     classification = models.CharField(max_length=10,
-        choices=(('CRATER','new crater'),
-        ('SPLOTCH','splotch (change in brightness over an area)'),
-        ('HW','spacecraft hardware'),
-    ))
+                                      choices=(('CRATER', 'new crater'),
+                                               ('SPLOTCH',
+                                                'splotch (change in '
+                                                'brightness over an area)'),
+                                               ('HW', 'spacecraft hardware'),
+                                               ))
 
     def __str__(self):
         return f"{self.created_by} reported a difference in {self.pair}"

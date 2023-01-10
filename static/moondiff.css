@@ -3,7 +3,7 @@ body {
     height: 100%;
     width: 100%;
     margin: 0;
-    padding: 0; 
+    padding: 0;
     background: black;
     color: lightgray;
 }
@@ -24,17 +24,17 @@ input, select {
     max-width: 100%;
 }
 
-#page-tools{
+#page-tools {
     display: grid;
     grid-template-columns: auto auto;
 }
 
-#page-tools form{
+#page-tools form {
     display: grid;
     grid-template-columns: auto auto;
 }
 
-fieldset, form , .active-image-indicator{
+fieldset, form, .active-image-indicator {
     z-index: 10;
 }
 
@@ -43,7 +43,7 @@ fieldset, form , .active-image-indicator{
 }
 
 .blinkfade.controls {
-    display: none;    
+    display: none;
 }
 
 #signin-form {
@@ -86,12 +86,15 @@ fieldset {
     grid-area: topleft;
     margin: 1em;
 }
+
 #logo img {
     max-width: 100%;
 }
+
 #about-this-page {
     grid-area: topmid;
 }
+
 #user-stuff {
     grid-area: topright;
 }
@@ -105,24 +108,24 @@ fieldset {
     align-content: center;
 }
 
-#accounts-container>div{
+#accounts-container > div {
     border: thin lightgray solid;
     border-radius: 1em;
     padding: 1em;
 }
 
 /* Calcite likes to draw an outline around the map when you click it. We don't want that so do this: */
-*::after{
+*::after {
     outline: none !important;
 }
 
-#accounts-container>div>form{
+#accounts-container > div > form {
     display: grid;
     grid-template-columns: auto auto;
 }
 
 /* Make the submit button appear in the input column */
-#accounts-container>div>form>button{
+#accounts-container > div > form > button {
     grid-column: 2;
 }
 
@@ -150,39 +153,39 @@ a {
     padding: 1em;
 }
 
-#all-image-controls>div{
+#all-image-controls > div {
     display: grid;
     grid-template-columns: auto auto;
 }
 
-.active-image-indicator{
+.active-image-indicator {
     font-size: xx-large;
     opacity: 0;
 }
 
-button.reset{
+button.reset {
     grid-column: 2;
 }
 
-#user-stats{
+#user-stats {
     max-width: 50em;
     grid-area: bottom;
     justify-self: center;
 }
 
-img#profile-icon{
+img#profile-icon {
     height: 2em;
     vertical-align: middle;
     height: 1.5em;
 }
 
-div#user-stuff{
+div#user-stuff {
     padding: 1em;
     position: relative;
     z-index: 10;
 }
 
-legend>h1{
+legend > h1 {
     margin: 0;
 }
 
@@ -203,16 +206,18 @@ legend>h1{
     border-radius: 1em 1em 0 0;
 }
 
-#comments.collapsed>form {
+#comments.collapsed > form {
     display: none;
 }
 
 #comments button {
     display: block;
 }
-#version-container{
+
+#version-container {
     position: absolute;
 }
+
 #version {
     transform: rotate(90deg);
     position: absolute;

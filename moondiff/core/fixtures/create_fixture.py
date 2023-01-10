@@ -1,5 +1,7 @@
 """
-Quick and dirty script to make fixtures for the db, first for the Apollo 12 site. I should really do this using the django models, but I'm in a hurry. Probably upgrade it later.
+Quick and dirty script to make fixtures for the db, first for the Apollo 12 
+site. I should really do this using the django models, but I'm in a hurry. 
+Probably upgrade it later.
 """
 
 import yaml
@@ -14,7 +16,8 @@ pairs = {
 }
 
 
-def moondiff_fixture_from_dict(img_dict=pairs, img_first_pid=23, pair_first_pid=13, pairset_pk=2):
+def moondiff_fixture_from_dict(img_dict=pairs, img_first_pid=23,
+                               pair_first_pid=13, pairset_pk=2):
     imgpk = img_first_pid
     pairpk = pair_first_pid
 
@@ -30,7 +33,7 @@ def moondiff_fixture_from_dict(img_dict=pairs, img_first_pid=23, pair_first_pid=
             }
         }
     )
-    
+
     for oldimg, newimg in img_dict.items():
 
         oldimg_pk = imgpk
@@ -39,7 +42,9 @@ def moondiff_fixture_from_dict(img_dict=pairs, img_first_pid=23, pair_first_pid=
             'pk': imgpk,
             'fields': {
                 'spacecraft_camera': 1,
-                'product_id': oldimg.replace('_cog','').replace('.tif','').replace('LO_',''),
+                'product_id': oldimg.replace('_cog', '').replace('.tif',
+                                                                 '').replace(
+                    'LO_', ''),
                 'file_data': f'images/{oldimg}'
             }
         })
@@ -55,7 +60,7 @@ def moondiff_fixture_from_dict(img_dict=pairs, img_first_pid=23, pair_first_pid=
             'pk': imgpk,
             'fields': {
                 'spacecraft_camera': camera_pk,
-                'product_id': newimg.replace('_cog.tif',''),
+                'product_id': newimg.replace('_cog.tif', ''),
                 'file_data': f'images/{newimg}'
             }
         })
@@ -68,7 +73,9 @@ def moondiff_fixture_from_dict(img_dict=pairs, img_first_pid=23, pair_first_pid=
                 'old_image': oldimg_pk,
                 'new_image': newimg_pk,
                 'pairset': pairset_pk,
-                'coreg_notes': 'Initial tiepoints: Heather Lethcoe, Tobey Miner. Coregistration: Tom Logan 2022-12-12.'
+                'coreg_notes': 'Initial tiepoints: Heather Lethcoe, '
+                               'Tobey Miner. Coregistration: Tom Logan '
+                               '2022-12-12.'
             }
         })
         pairpk = pairpk + 1

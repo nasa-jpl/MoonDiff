@@ -1,9 +1,9 @@
-#frontpage-links>a {
+#frontpage-links > a {
     color: white;
     text-decoration: none;
 }
 
-#frontpage-links{
+#frontpage-links {
     display: grid;
     grid-area: bottom;
     grid-template-columns: auto auto auto;
