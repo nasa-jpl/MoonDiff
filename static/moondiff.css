@@ -85,8 +85,6 @@ fieldset {
 #logo {
     grid-area: topleft;
     margin: 1em;
-    position: absolute;
-    white-space: nowrap;
 }
 #logo img {
     max-width: 100%;
