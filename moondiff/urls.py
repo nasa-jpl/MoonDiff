@@ -23,6 +23,7 @@ from django.views.generic import TemplateView, RedirectView
 from django.conf.urls.static import static
 from django.conf import settings
 from rest_framework import routers
+from machina import urls as machina_urls
 
 router = routers.DefaultRouter()
 router.register(r'annotations', AnnotationViewSetThisUser,
@@ -46,7 +47,8 @@ inner_urlpatterns = [
             name='review-detection'),
     path('all_done/', AllDoneView.as_view(), name='all_done'),
     path('api/', include(router.urls)), # API urls
-    path('', TemplateView.as_view(template_name='frontpage.html'), name='frontpage')
+    path('', TemplateView.as_view(template_name='frontpage.html'), name='frontpage'),
+    path('forum/', include(machina_urls))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns = [
