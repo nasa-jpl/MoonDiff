@@ -69,6 +69,9 @@ INSTALLED_APPS = [
     'machina.apps.forum_permission',
 ]
 
+MACHINA_FORUM_NAME = 'MoonDiff Forums'
+# MACHINA_BASE_TEMPLATE_NAME = 'base.html'
+
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
