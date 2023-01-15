@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% load rest_framework %}
 
 {% block subtitle %}
@@ -13,7 +13,7 @@
 {% block head %}
     {% csrf_token %}
 <link rel="stylesheet" href="https://js.arcgis.com/next/esri/themes/light/main.css">
-<link rel="stylesheet" href="/static/MicroModal.css">
+<link rel="stylesheet" href="{% static 'MicroModal.css' %}">
 <script src="https://js.arcgis.com/next/"></script>
 {% endblock head %}
 
@@ -80,16 +80,16 @@
 
     {# Comments box #}
     {% include "core/comments.html" %}
-    <script src="/static/comments.js"></script>
+    <script src="{% static 'comments.js' %}"></script>
     
     {# Visit tracking #}
     <input type="hidden" id="visit_id" name="visit_id" value="{{ visit.pk }}">
-    <script src="/static/visit.js" defer></script>
+    <script src="{% static 'visit.js' %}" defer></script>
     
-    <script src="/static/brightness_contrast.js"></script>
+    <script src="{% static 'brightness_contrast.js' %}"></script>
     {{ annotations|json_script:"polylines" }}
     
-    <script src="/static/maps.js"
+    <script src="{% static 'maps.js' %}"
             defer
             data-next-url = "{% url 'select-pair-to-compare' %}"
             data-annotation-post-url = "{% url 'annotation-list' %}"
