@@ -20,7 +20,6 @@ from moondiff.core.views import PairDetailView, AnnotationViewSetThisUser, \
     ProfileView, \
     AllDoneView, CommentsViewSet
 from django.views.generic import TemplateView, RedirectView
-from django.contrib.auth.decorators import login_required
 from django.conf.urls.static import static
 from django.conf import settings
 from rest_framework import routers
@@ -31,7 +30,7 @@ router.register(r'annotations', AnnotationViewSetThisUser,
 router.register(r'visits', VisitsViewSet, basename='visit')
 router.register(r'comments', CommentsViewSet, basename='comment')
 
-urlpatterns = [
+inner_urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('accounts/profile/<pk>', ProfileView.as_view(), name='profile'),
     path('admin/login/', RedirectView.as_view(pattern_name='account_login',
@@ -49,3 +48,7 @@ urlpatterns = [
     path('api/', include(router.urls)), # API urls
     path('', TemplateView.as_view(template_name='frontpage.html'), name='frontpage')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns = [
+    path(settings.BASE_URL + '/', include(inner_urlpatterns))
+]

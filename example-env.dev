@@ -8,3 +8,4 @@ DJANGO_SUPERUSER_PASSWORD=yourpassword
 DJANGO_SUPERUSER_EMAIL=youremail@example.com
 ACCOUNT_EMAIL_VERIFICATION='mandatory'
 DEFAULT_FROM_EMAIL='noreply@example.com'
+BASE_URL = "prefix_no_slashes"
