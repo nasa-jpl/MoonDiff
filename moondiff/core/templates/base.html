@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,8 +11,8 @@
 </head>
 <body>
 <link rel="stylesheet" href="https://js.arcgis.com/next/esri/themes/light/main.css">
-<link rel="stylesheet" href="/static/startwinkle.css">
-<link rel="stylesheet" href="/static/moondiff.css">
+<link rel="stylesheet" href="{% static 'startwinkle.css'%}">
+<link rel="stylesheet" href="{% static 'moondiff.css'%}">
 
 <div class="background-container">
     <div class="stars"></div>
@@ -21,7 +22,7 @@
 <div class="foreground">
     <div id="logo">
         <a href="/">
-            <img src="/static/logo_light.png" >
+            <img src="{% static 'logo_light.png'%}" >
         </a>
         <span id="version-container">
         <span id="version">v0.2 alpha</span>
@@ -35,7 +36,7 @@
 
 
     <div id="user-stuff">
-    <img id="profile-icon" src="/static/icons/profile.svg">
+    <img id="profile-icon" src="{% static 'icons/profile.svg'%}">
             {% if user.is_authenticated %}
                 <a href="{% url 'profile' user.pk %}">{{ user }}</a> | 
                 <a href="{% url 'account_logout' %}">sign out</a>
