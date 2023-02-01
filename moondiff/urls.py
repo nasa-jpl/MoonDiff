@@ -32,11 +32,11 @@ router.register(r'comments', CommentsViewSet, basename='comment')
 
 inner_urlpatterns = [
     path('accounts/', include('allauth.urls')),
-    path('accounts/profile/<pk>', ProfileView.as_view(), name='profile'),
+    re_path('accounts/profile/(?P<pk>[a-z0-9]*)', ProfileView.as_view(), name='profile'),
     path('admin/login/', RedirectView.as_view(pattern_name='account_login',
                                               permanent=True)),
     path('admin/', admin.site.urls),
-    re_path('compare_pair/select', SelectPairView.as_view(), 
+    re_path('compare_pair/select', SelectPairView.as_view(),
             name='select-pair-to-compare'),
     re_path('compare_pair/(?P<pk>[a-z0-9]+)', PairDetailView.as_view(),
             name='pair-detail'),

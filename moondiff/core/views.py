@@ -46,16 +46,20 @@ class PairDetailView(DetailView):
 class ProfileView(DetailView):
     model = User
 
+    def get_object(self):
+        userpk = self.kwargs.get('pk') or self.request.user.pk
+        return User.objects.get(pk=userpk)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
         # Detections
         context['detections'] = Annotation.objects.filter(
-            created_by=self.request.user)
+            created_by=self.object)
 
         # Visit statistics
         context['compared'] = Pair.objects.compared_by_user(
-            user=self.request.user)
+            user=self.object)
         context['pairs'] = Pair.objects.all()
         context['detections'] = Annotation.objects.all()
 
