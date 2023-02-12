@@ -174,7 +174,6 @@ button.reset {
 }
 
 img#profile-icon {
-    height: 2em;
     vertical-align: middle;
     height: 1.5em;
 }
@@ -224,4 +223,12 @@ legend > h1 {
     transform-origin: left;
     left: 1em;
     white-space: nowrap;
+}
+
+#start-here{
+    text-align: center;
+}
+
+#start-here img{
+    height: 6em;
 }
