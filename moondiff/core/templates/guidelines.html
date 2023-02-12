@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block subtitle %}
+    <span>front page</span>
+{% endblock %}
+{% block content %}
+<div id="guidelines" class="centered">
+<fieldset>
+    <legend><h1>MoonDiff Guidelines</h1></legend>
+    <h2>Interacting with others</h2>
+    <p>
+        When communicating with other MoonDiffers using the forums and during live events, please be extremely
+        courteous. Act twice as nice as you would otherwise. Try to take what other say in the
+        best possible light and take time to reflect before responding. Do not use any offensive language.
+    </p>
+    <h2>Making discoveries</h2>
+    <p>You will be acknowledged or listed as a co-author, depending on level of contribution, to any scientific
+        publications arising from your work on MoonDiff.</p>
+    <p>Please not attempt to automate the work, or "game" the system.</p>
+    <h2>Bugs and code contributions</h2>
+    <p>If you find a bug, thank you! Please report it using our <a href="https://github.com/nasa-jpl/MoonDiff/issues">
+        issue tracker</a>, unless it's something that might affect the security or privacy of others, in which case
+        please email moondiff@aaroncurt.is .</p>
+    <p>MoonDiff is <a href="https://github.com/nasa-jpl/blob/master/LICENSE">open source</a>, and we welcome
+        contributions to <a href="https://github.com/nasa-jpl/MoonDiff">the code.</a></p>
+    <h2>Consequences of violating these guidelines</h2>
+    <p>
+        Your may be suspended or banned by admins who feel you have violated any of the above. A preliminary warning
+        will be given for minor offenses.
+    </p>
+</fieldset>
+</div>
+{% endblock content %}
