@@ -24,6 +24,8 @@ to get a trusted self-signed certficate for development.
  1. Copy your ssl key and cert to nginx/
  1. Update your server name in nginx/default.conf
  1. Serve with `docker-compose up --build`
+ 1. Optional: In admin under Sites, rename the example.com site to the name of your site
+ 1. Optional: In the under Machina, create a discussion forum
 
 ## Clearing the database
 
