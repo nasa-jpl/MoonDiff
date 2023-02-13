@@ -16,7 +16,9 @@ from machina import MACHINA_MAIN_TEMPLATE_DIR, MACHINA_MAIN_STATIC_DIR
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+BASE_URL = os.environ.get("BASE_URL") or ""
+LOGIN_REDIRECT_URL = '/' + BASE_URL + '/accounts/profile/'
+LOGOUT_REDIRECT_URL = '/' + BASE_URL
 SECRET_KEY = os.environ.get("SECRET_KEY")
 EMAIL_HOST = os.environ.get("EMAIL_HOST")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
@@ -26,7 +28,7 @@ EMAIL_VERIFICATION = os.environ.get("EMAIL_VERIFICATION")
 ACCOUNT_EMAIL_REQUIRED = os.environ.get("ACCOUNT_EMAIL_REQUIRED")
 ACCOUNT_EMAIL_VERIFICATION = os.environ.get("ACCOUNT_EMAIL_VERIFICATION")
 ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = None # This makes it use LOGIN_REDIRECT_URL
-BASE_URL = os.environ.get("BASE_URL") or ""
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 
 DEBUG = int(os.environ.get("DEBUG", default=0))
 
@@ -127,9 +129,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db' / 'db.sqlite3',
     }
 }
-
-LOGIN_REDIRECT_URL = '/' + BASE_URL + '/accounts/profile/'
-LOGOUT_REDIRECT_URL = '/' + BASE_URL
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
