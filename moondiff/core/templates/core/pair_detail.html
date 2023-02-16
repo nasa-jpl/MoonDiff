@@ -12,9 +12,12 @@
 
 {% block head %}
     {% csrf_token %}
-<link rel="stylesheet" href="https://js.arcgis.com/next/esri/themes/light/main.css">
-<link rel="stylesheet" href="{% static 'MicroModal.css' %}">
-<script src="https://js.arcgis.com/next/"></script>
+    <link rel="stylesheet" href="https://js.arcgis.com/next/esri/themes/light/main.css">
+    <link rel="stylesheet" href="{% static 'MicroModal.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/shepherd.js@10.0.1/dist/js/shepherd.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shepherd.js@10.0.1/dist/css/shepherd.css"/>
+    <script src="{% static 'tour.js' %}" defer></script>
+    <script src="https://js.arcgis.com/next/"></script>
 {% endblock head %}
 
 
