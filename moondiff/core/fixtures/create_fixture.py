@@ -6,17 +6,53 @@ Probably upgrade it later.
 
 import yaml
 
-pairs = {
-    'LO_3153_HIGH_RES_1_COSMETIC_cog_c1.tif': 'M1108432631RE_3154_1_cog_crop.tif',
-    'LO_3153_HIGH_RES_2_COSMETIC_cog_c1.tif': 'M1142596053RE_3153_3_cog_crop.tif',
-    'LO_3153_HIGH_RES_3_COSMETIC_cog_c1.tif': 'M1154371500LE_3154_3_cog_crop.tif',
-    'LO_3154_HIGH_RES_1_COSMETIC_cog_c1.tif': 'M1154371500RE_3153_2_cog_crop.tif',
-    'LO_3154_HIGH_RES_2_COSMETIC_cog_c1.tif': 'M1184980308LE_3154_2_cog_crop.tif',
-    'LO_3154_HIGH_RES_3_COSMETIC_cog_c1.tif': 'M1184980308RE_3153_1_cog_crop.tif'
-}
+lo_imgs = [
+'LO_5116_high_res_1_v1.tif',
+'LO_5116_high_res_2_400LE_v1.tif',
+'LO_5116_high_res_2_400RE_v1.tif',
+'LO_5116_high_res_2_407LE_v1.tif',
+'LO_5116_high_res_2_407RE_v1.tif',
+'LO_5116_high_res_3_069LE_v1.tif',
+'LO_5117_high_res_1_202LE_v1.tif',
+'LO_5117_high_res_2_668LE_v1.tif',
+'LO_5117_high_res_3_200LE_v1.tif',
+'LO_5117_high_res_3_200RE_v1.tif',
+'LO_5118_high_res_1_202LE_v1.tif',
+'LO_5118_high_res_2_653LE_v1.tif',
+'LO_5118_high_res_3_200LE_v1.tif',
+'LO_5118_high_res_3_200RE_v1.tif',
+'LO_5119_high_res_1_202LE_v1.tif',
+'LO_5119_high_res_2_668LE_v1.tif']
 
+nac_imgs = [
+'NAC_M1114191668LE_5117_2_v1.tif',
+'NAC_M1114191668LE_5119_2_v1.tif',
+'NAC_M1149530653LE_5118_2_v1.tif',
+'NAC_M1238975774RE_5116_1_v1.tif',
+'NAC_M1287200400LE_5116_2_v1.tif',
+'NAC_M1287200400RE_5116_2_v1.tif',
+'NAC_M1293058202LE_5117_1_v1.tif',
+'NAC_M1293058202LE_5118_1_v1.tif',
+'NAC_M1293058202LE_5119_1_v1.tif',
+'NAC_M1300119200LE_5117_3_v1.tif',
+'NAC_M1300119200LE_5118_3_v1.tif',
+'NAC_M1300119200RE_5117_3_v1.tif',
+'NAC_M1300119200RE_5118_3_v1.tif',
+'NAC_M181194407LE_5116_2_v1.tif',
+'NAC_M181194407RE_5116_2_v1.tif',
+'NAC_M188271069LE_5116_3_v1.tif',
+]
 
-def moondiff_fixture_from_dict(img_dict=pairs, img_first_pid=23,
+def dict_from_loganstyle_lists():
+    outdict = {}
+    for lo_img in lo_imgs:
+        nac_suffix = lo_img.split('_')[5]
+        for nac_img in nac_imgs:
+            if nac_suffix in nac_img:
+                outdict[lo_img] = nac_img
+    return outdict
+
+def moondiff_fixture_from_dict(img_dict, img_first_pid=23,
                                pair_first_pid=13, pairset_pk=2):
     imgpk = img_first_pid
     pairpk = pair_first_pid
@@ -28,7 +64,7 @@ def moondiff_fixture_from_dict(img_dict=pairs, img_first_pid=23,
             'model': 'core.pairset',
             'pk': pairset_pk,
             'fields': {
-                'name': 'Apollo 12 landing site area',
+                'name': 'Alphonsus area',
                 'notes': '',
             }
         }
@@ -75,12 +111,13 @@ def moondiff_fixture_from_dict(img_dict=pairs, img_first_pid=23,
                 'pairset': pairset_pk,
                 'coreg_notes': 'Initial tiepoints: Heather Lethcoe, '
                                'Tobey Miner. Coregistration: Tom Logan '
-                               '2022-12-12.'
+                               '2023.'
             }
         })
         pairpk = pairpk + 1
     return fixtures
 
 
-with open('apollo12.yaml', 'w') as fixtures_file:
-    yaml.dump(moondiff_fixture_from_dict(), fixtures_file)
+with open('alphonsus.yaml', 'w') as fixtures_file:
+    img_dict = dict_from_loganstyle_lists()
+    yaml.dump(moondiff_fixture_from_dict(img_dict=img_dict), fixtures_file)

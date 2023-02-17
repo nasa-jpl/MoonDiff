@@ -1,0 +1,325 @@
+- fields:
+    name: Alphonsus area
+    notes: ''
+  model: core.pairset
+  pk: 2
+- fields:
+    file_data: images/LO_5116_high_res_1_v1.tif
+    product_id: 5116_high_res_1_v1
+    spacecraft_camera: 1
+  model: core.image
+  pk: 23
+- fields:
+    file_data: images/NAC_M188271069LE_5116_3_v1.tif
+    product_id: NAC_M188271069LE_5116_3_v1.tif
+    spacecraft_camera: 3
+  model: core.image
+  pk: 24
+- fields:
+    coreg_notes: 'Initial tiepoints: Heather Lethcoe, Tobey Miner. Coregistration:
+      Tom Logan 2023.'
+    new_image: 24
+    old_image: 23
+    pairset: 2
+  model: core.pair
+  pk: 13
+- fields:
+    file_data: images/LO_5116_high_res_2_400LE_v1.tif
+    product_id: 5116_high_res_2_400LE_v1
+    spacecraft_camera: 1
+  model: core.image
+  pk: 25
+- fields:
+    file_data: images/NAC_M1287200400LE_5116_2_v1.tif
+    product_id: NAC_M1287200400LE_5116_2_v1.tif
+    spacecraft_camera: 3
+  model: core.image
+  pk: 26
+- fields:
+    coreg_notes: 'Initial tiepoints: Heather Lethcoe, Tobey Miner. Coregistration:
+      Tom Logan 2023.'
+    new_image: 26
+    old_image: 25
+    pairset: 2
+  model: core.pair
+  pk: 14
+- fields:
+    file_data: images/LO_5116_high_res_2_400RE_v1.tif
+    product_id: 5116_high_res_2_400RE_v1
+    spacecraft_camera: 1
+  model: core.image
+  pk: 27
+- fields:
+    file_data: images/NAC_M1287200400RE_5116_2_v1.tif
+    product_id: NAC_M1287200400RE_5116_2_v1.tif
+    spacecraft_camera: 2
+  model: core.image
+  pk: 28
+- fields:
+    coreg_notes: 'Initial tiepoints: Heather Lethcoe, Tobey Miner. Coregistration:
+      Tom Logan 2023.'
+    new_image: 28
+    old_image: 27
+    pairset: 2
+  model: core.pair
+  pk: 15
+- fields:
+    file_data: images/LO_5116_high_res_2_407LE_v1.tif
+    product_id: 5116_high_res_2_407LE_v1
+    spacecraft_camera: 1
+  model: core.image
+  pk: 29
+- fields:
+    file_data: images/NAC_M181194407LE_5116_2_v1.tif
+    product_id: NAC_M181194407LE_5116_2_v1.tif
+    spacecraft_camera: 3
+  model: core.image
+  pk: 30
+- fields:
+    coreg_notes: 'Initial tiepoints: Heather Lethcoe, Tobey Miner. Coregistration:
+      Tom Logan 2023.'
+    new_image: 30
+    old_image: 29
+    pairset: 2
+  model: core.pair
+  pk: 16
+- fields:
+    file_data: images/LO_5116_high_res_2_407RE_v1.tif
+    product_id: 5116_high_res_2_407RE_v1
+    spacecraft_camera: 1
+  model: core.image
+  pk: 31
+- fields:
+    file_data: images/NAC_M181194407RE_5116_2_v1.tif
+    product_id: NAC_M181194407RE_5116_2_v1.tif
+    spacecraft_camera: 2
+  model: core.image
+  pk: 32
+- fields:
+    coreg_notes: 'Initial tiepoints: Heather Lethcoe, Tobey Miner. Coregistration:
+      Tom Logan 2023.'
+    new_image: 32
+    old_image: 31
+    pairset: 2
+  model: core.pair
+  pk: 17
+- fields:
+    file_data: images/LO_5116_high_res_3_069LE_v1.tif
+    product_id: 5116_high_res_3_069LE_v1
+    spacecraft_camera: 1
+  model: core.image
+  pk: 33
+- fields:
+    file_data: images/NAC_M188271069LE_5116_3_v1.tif
+    product_id: NAC_M188271069LE_5116_3_v1.tif
+    spacecraft_camera: 3
+  model: core.image
+  pk: 34
+- fields:
+    coreg_notes: 'Initial tiepoints: Heather Lethcoe, Tobey Miner. Coregistration:
+      Tom Logan 2023.'
+    new_image: 34
+    old_image: 33
+    pairset: 2
+  model: core.pair
+  pk: 18
+- fields:
+    file_data: images/LO_5117_high_res_1_202LE_v1.tif
+    product_id: 5117_high_res_1_202LE_v1
+    spacecraft_camera: 1
+  model: core.image
+  pk: 35
+- fields:
+    file_data: images/NAC_M1293058202LE_5119_1_v1.tif
+    product_id: NAC_M1293058202LE_5119_1_v1.tif
+    spacecraft_camera: 3
+  model: core.image
+  pk: 36
+- fields:
+    coreg_notes: 'Initial tiepoints: Heather Lethcoe, Tobey Miner. Coregistration:
+      Tom Logan 2023.'
+    new_image: 36
+    old_image: 35
+    pairset: 2
+  model: core.pair
+  pk: 19
+- fields:
+    file_data: images/LO_5117_high_res_2_668LE_v1.tif
+    product_id: 5117_high_res_2_668LE_v1
+    spacecraft_camera: 1
+  model: core.image
+  pk: 37
+- fields:
+    file_data: images/NAC_M1114191668LE_5119_2_v1.tif
+    product_id: NAC_M1114191668LE_5119_2_v1.tif
+    spacecraft_camera: 3
+  model: core.image
+  pk: 38
+- fields:
+    coreg_notes: 'Initial tiepoints: Heather Lethcoe, Tobey Miner. Coregistration:
+      Tom Logan 2023.'
+    new_image: 38
+    old_image: 37
+    pairset: 2
+  model: core.pair
+  pk: 20
+- fields:
+    file_data: images/LO_5117_high_res_3_200LE_v1.tif
+    product_id: 5117_high_res_3_200LE_v1
+    spacecraft_camera: 1
+  model: core.image
+  pk: 39
+- fields:
+    file_data: images/NAC_M1300119200LE_5118_3_v1.tif
+    product_id: NAC_M1300119200LE_5118_3_v1.tif
+    spacecraft_camera: 3
+  model: core.image
+  pk: 40
+- fields:
+    coreg_notes: 'Initial tiepoints: Heather Lethcoe, Tobey Miner. Coregistration:
+      Tom Logan 2023.'
+    new_image: 40
+    old_image: 39
+    pairset: 2
+  model: core.pair
+  pk: 21
+- fields:
+    file_data: images/LO_5117_high_res_3_200RE_v1.tif
+    product_id: 5117_high_res_3_200RE_v1
+    spacecraft_camera: 1
+  model: core.image
+  pk: 41
+- fields:
+    file_data: images/NAC_M1300119200RE_5118_3_v1.tif
+    product_id: NAC_M1300119200RE_5118_3_v1.tif
+    spacecraft_camera: 2
+  model: core.image
+  pk: 42
+- fields:
+    coreg_notes: 'Initial tiepoints: Heather Lethcoe, Tobey Miner. Coregistration:
+      Tom Logan 2023.'
+    new_image: 42
+    old_image: 41
+    pairset: 2
+  model: core.pair
+  pk: 22
+- fields:
+    file_data: images/LO_5118_high_res_1_202LE_v1.tif
+    product_id: 5118_high_res_1_202LE_v1
+    spacecraft_camera: 1
+  model: core.image
+  pk: 43
+- fields:
+    file_data: images/NAC_M1293058202LE_5119_1_v1.tif
+    product_id: NAC_M1293058202LE_5119_1_v1.tif
+    spacecraft_camera: 3
+  model: core.image
+  pk: 44
+- fields:
+    coreg_notes: 'Initial tiepoints: Heather Lethcoe, Tobey Miner. Coregistration:
+      Tom Logan 2023.'
+    new_image: 44
+    old_image: 43
+    pairset: 2
+  model: core.pair
+  pk: 23
+- fields:
+    file_data: images/LO_5118_high_res_2_653LE_v1.tif
+    product_id: 5118_high_res_2_653LE_v1
+    spacecraft_camera: 1
+  model: core.image
+  pk: 45
+- fields:
+    file_data: images/NAC_M1149530653LE_5118_2_v1.tif
+    product_id: NAC_M1149530653LE_5118_2_v1.tif
+    spacecraft_camera: 3
+  model: core.image
+  pk: 46
+- fields:
+    coreg_notes: 'Initial tiepoints: Heather Lethcoe, Tobey Miner. Coregistration:
+      Tom Logan 2023.'
+    new_image: 46
+    old_image: 45
+    pairset: 2
+  model: core.pair
+  pk: 24
+- fields:
+    file_data: images/LO_5118_high_res_3_200LE_v1.tif
+    product_id: 5118_high_res_3_200LE_v1
+    spacecraft_camera: 1
+  model: core.image
+  pk: 47
+- fields:
+    file_data: images/NAC_M1300119200LE_5118_3_v1.tif
+    product_id: NAC_M1300119200LE_5118_3_v1.tif
+    spacecraft_camera: 3
+  model: core.image
+  pk: 48
+- fields:
+    coreg_notes: 'Initial tiepoints: Heather Lethcoe, Tobey Miner. Coregistration:
+      Tom Logan 2023.'
+    new_image: 48
+    old_image: 47
+    pairset: 2
+  model: core.pair
+  pk: 25
+- fields:
+    file_data: images/LO_5118_high_res_3_200RE_v1.tif
+    product_id: 5118_high_res_3_200RE_v1
+    spacecraft_camera: 1
+  model: core.image
+  pk: 49
+- fields:
+    file_data: images/NAC_M1300119200RE_5118_3_v1.tif
+    product_id: NAC_M1300119200RE_5118_3_v1.tif
+    spacecraft_camera: 2
+  model: core.image
+  pk: 50
+- fields:
+    coreg_notes: 'Initial tiepoints: Heather Lethcoe, Tobey Miner. Coregistration:
+      Tom Logan 2023.'
+    new_image: 50
+    old_image: 49
+    pairset: 2
+  model: core.pair
+  pk: 26
+- fields:
+    file_data: images/LO_5119_high_res_1_202LE_v1.tif
+    product_id: 5119_high_res_1_202LE_v1
+    spacecraft_camera: 1
+  model: core.image
+  pk: 51
+- fields:
+    file_data: images/NAC_M1293058202LE_5119_1_v1.tif
+    product_id: NAC_M1293058202LE_5119_1_v1.tif
+    spacecraft_camera: 3
+  model: core.image
+  pk: 52
+- fields:
+    coreg_notes: 'Initial tiepoints: Heather Lethcoe, Tobey Miner. Coregistration:
+      Tom Logan 2023.'
+    new_image: 52
+    old_image: 51
+    pairset: 2
+  model: core.pair
+  pk: 27
+- fields:
+    file_data: images/LO_5119_high_res_2_668LE_v1.tif
+    product_id: 5119_high_res_2_668LE_v1
+    spacecraft_camera: 1
+  model: core.image
+  pk: 53
+- fields:
+    file_data: images/NAC_M1114191668LE_5119_2_v1.tif
+    product_id: NAC_M1114191668LE_5119_2_v1.tif
+    spacecraft_camera: 3
+  model: core.image
+  pk: 54
+- fields:
+    coreg_notes: 'Initial tiepoints: Heather Lethcoe, Tobey Miner. Coregistration:
+      Tom Logan 2023.'
+    new_image: 54
+    old_image: 53
+    pairset: 2
+  model: core.pair
+  pk: 28
