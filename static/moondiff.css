@@ -167,7 +167,7 @@ button.reset {
     grid-column: 2;
 }
 
-#user-stats, #guidelines {
+#user-stats, #guidelines, #background {
     max-width: 50em;
     grid-area: bottom;
     justify-self: center;

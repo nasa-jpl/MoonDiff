@@ -49,6 +49,7 @@ inner_urlpatterns = [
     path('api/', include(router.urls)), # API urls
     path('', TemplateView.as_view(template_name='frontpage.html'), name='frontpage'),
     path('guidelines/', TemplateView.as_view(template_name='guidelines.html'), name='guidelines'),
+    path('background/', TemplateView.as_view(template_name='background.html'), name='background-information'),
     path('forum/', include(machina_urls))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{% static 'frontpage.css' %}">
     <div id="frontpage-links">
 
+        <a href="{% url 'background-information' %}">
             <fieldset class="tile">
                 <legend>Background information</legend>
                 <ul>
@@ -18,7 +19,7 @@
                 </ul>
                 (Coming soon.)
             </fieldset>
-
+        </a>
         
         <a href="{% url 'select-pair-to-compare' %}">
             <fieldset class="tile">
