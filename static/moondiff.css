@@ -99,13 +99,18 @@ fieldset {
     grid-area: topright;
 }
 
-#accounts-container, .centered {
+#accounts-container {
     position: absolute;
     width: 100%;
     height: 100%;
     display: grid;
     justify-content: center;
     align-content: center;
+}
+
+.centered {
+    display: grid;
+    justify-content: center;
 }
 
 #accounts-container > div {
