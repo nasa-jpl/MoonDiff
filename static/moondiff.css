@@ -111,6 +111,7 @@ fieldset {
 .centered {
     display: grid;
     justify-content: center;
+    align-items: start;
 }
 
 #accounts-container > div {
