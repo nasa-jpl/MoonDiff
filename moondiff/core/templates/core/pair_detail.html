@@ -80,7 +80,7 @@
 
     {# Comments box #}
     {% include "core/comments.html" %}
-    <script src="{% static 'comments.js' %}"></script>
+    <script src="{% static 'comments.js' %}" data-comments-url="{% url 'comment-list' %}"></script>
     
     {# Visit tracking #}
     <input type="hidden" id="visit_id" name="visit_id" value="{{ visit.pk }}">
