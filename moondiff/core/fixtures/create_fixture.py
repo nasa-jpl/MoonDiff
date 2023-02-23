@@ -22,7 +22,9 @@ lo_imgs = [
 'LO_5118_high_res_3_200LE_v1.tif',
 'LO_5118_high_res_3_200RE_v1.tif',
 'LO_5119_high_res_1_202LE_v1.tif',
-'LO_5119_high_res_2_668LE_v1.tif']
+'LO_5119_high_res_2_668LE_v1.tif',
+'LO_5119_high_res_3_200LE_v1.tif'
+]
 
 nac_imgs = [
 'NAC_M1114191668LE_5117_2_v1.tif',
@@ -41,6 +43,7 @@ nac_imgs = [
 'NAC_M181194407LE_5116_2_v1.tif',
 'NAC_M181194407RE_5116_2_v1.tif',
 'NAC_M188271069LE_5116_3_v1.tif',
+'NAC_M1300119200LE_5119_3_v1.tif'
 ]
 
 def dict_from_loganstyle_lists():
