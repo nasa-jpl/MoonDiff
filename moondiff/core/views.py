@@ -37,6 +37,7 @@ class PairDetailView(DetailView):
                 annot.shape.coords for annot in
                 self.object.annotation_set.filter(created_by=self.request.user)
             ]
+            context['annotations_full'] = self.object.annotation_set.filter(created_by=self.request.user)
         else:
             context['annotations'] = None
 

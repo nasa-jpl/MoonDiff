@@ -130,6 +130,9 @@ class Annotation(models.Model):
     def __str__(self):
         return f"{self.created_by} reported a difference in {self.pair}"
 
+    def get_absolute_url(self):
+        return reverse('annotation-detail', kwargs={'pk': self.pk})
+
 
 class AnnotationReview(models.Model):
     further_review_required = models.BooleanField()

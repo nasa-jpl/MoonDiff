@@ -81,6 +81,24 @@
     {# Comments box #}
     {% include "core/comments.html" %}
     <script src="{% static 'comments.js' %}" data-comments-url="{% url 'comment-list' %}"></script>
+
+    {# detections #}
+    <div id="detections" class="collapsed">
+        <span id="detections-title">detections</span>
+        <ul>
+        {% for detection in annotations_full %}
+            <li>
+                {{ detection.created_at.isoformat }} |
+                <button class="detection-del-button"
+                        data-detection-url="{{ detection.get_absolute_url }}"
+                >delete</button>
+            </li>
+        {% empty %}
+            {{ user }} has not reported any change detections for this pair yet.
+        {% endfor %}
+        </ul>
+    </div>
+    <script src="{% static 'detections.js' %}" data-comments-url="{% url 'annotation-list' %}"></script>
     
     {# Visit tracking #}
     <input type="hidden" id="visit_id" name="visit_id" value="{{ visit.pk }}">

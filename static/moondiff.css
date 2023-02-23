@@ -6,6 +6,7 @@ body {
     padding: 0;
     background: black;
     color: lightgray;
+    overflow-x: hidden;
 }
 
 
@@ -211,13 +212,36 @@ legend > h1 {
     border-radius: 1em 1em 0 0;
 }
 
-#comments.collapsed > form {
+.collapsed > form {
     display: none;
 }
 
 #comments button {
     display: block;
 }
+
+#detections {
+    position: absolute;
+    top: 40%;
+    left: -2px;
+    transform-origin: right;
+    border: thin white solid;
+    border-radius: 0 1em 1em 0;
+    padding: 1em;
+    max-width: 30em;
+}
+
+#detections.collapsed {
+    left: 1em;
+    transform: rotate(90deg);
+    transform-origin: left;
+    border-radius: 1em 1em 0 0;
+}
+
+#detections.collapsed ul {
+    display: none;
+}
+
 
 #version-container {
     position: absolute;
