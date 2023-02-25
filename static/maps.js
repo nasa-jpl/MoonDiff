@@ -259,7 +259,7 @@ const setup = (comparerMode) => {
                     }).then(
                         (response) => {
                             if (response.ok) {
-                                document.querySelector('.detections ul').textContent = 'Refresh the page to view new change detection reports.'
+                                document.querySelector('#detections ul').textContent = 'Refresh the page to view new change detection reports.'
                                 alert('Your change detection was successfully stored in the database.');
                             } else {
                                 alert('There was a problem submitting your change detection.');

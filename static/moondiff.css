@@ -242,6 +242,9 @@ legend > h1 {
     display: none;
 }
 
+#detections, #comments {
+    background: black;
+}
 
 #version-container {
     position: absolute;
