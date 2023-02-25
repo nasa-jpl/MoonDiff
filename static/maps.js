@@ -9,10 +9,11 @@ const setup = (comparerMode) => {
         "esri/layers/GraphicsLayer",
         "esri/Graphic",
         "esri/widgets/Sketch",
+        "esri/widgets/ScaleBar",
         "esri/layers/support/TileInfo",
         "https://unpkg.com/micromodal/dist/micromodal.min.js"
     ], function (
-        Map, MapView, ImageryTileLayer, Draw, GraphicsLayer, Graphic, Sketch, TileInfo, MicroModal) {
+        Map, MapView, ImageryTileLayer, Draw, GraphicsLayer, Graphic, Sketch, ScaleBar, TileInfo, MicroModal) {
         MicroModal.init();
 
         const makeTileMap = (tile_url, container) => {
@@ -21,7 +22,7 @@ const setup = (comparerMode) => {
                 url: tile_url,
             });
             webmap.layers.add(tileLayer);
-            return new MapView({
+            const mapView = new MapView({
                 container: container,
                 map: webmap,
                 constraints: {
@@ -30,6 +31,19 @@ const setup = (comparerMode) => {
                     lods: TileInfo.create().lods
                 }
             });
+            const scaleBar = new ScaleBar({
+                view: mapView,
+                unit: "dual"
+            })
+            mapView.ui.add(
+                scaleBar,
+                {
+                    position: "bottom-left"
+                }
+            )
+            // Don't need ESRI attribution because we are not using their maps or imagery
+            mapView.ui.remove('attribution')
+            return mapView
         };
 
         function createPoint(lat, lon) {
