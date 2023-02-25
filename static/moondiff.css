@@ -262,3 +262,8 @@ legend > h1 {
 #start-here img{
     height: 6em;
 }
+
+/* We are not using ESRI maps so do not need to display ESRI attribution */
+.esri-attribution{
+    display: none;
+}
