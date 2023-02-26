@@ -61,12 +61,8 @@ fieldset, form, .active-image-indicator {
     grid-area: topmid;
 }
 
-#user-stuff, #help-stuff {
+#user-stuff{
     grid-area: topright;
-}
-
-#help-stuff {
-    top: 2em;
 }
 
 fieldset {
@@ -184,15 +180,19 @@ button.reset {
     justify-self: center;
 }
 
-img#profile-icon, img#help-icon {
+.icon {
     vertical-align: middle;
     height: 1.5em;
 }
 
-div#user-stuff, div#help-stuff {
+div#user-stuff {
     padding: 1em;
     position: relative;
     z-index: 10;
+}
+
+#user-stuff>div, #user-stuff>img {
+    padding: 0.3em;
 }
 
 legend > h1 {
@@ -207,6 +207,7 @@ legend > h1 {
     border: thin white solid;
     border-radius: 1em 0 0 1em;
     padding: 1em;
+    max-width: 15em;
 }
 
 #comments.collapsed {
