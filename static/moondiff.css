@@ -61,8 +61,12 @@ fieldset, form, .active-image-indicator {
     grid-area: topmid;
 }
 
-#user-stuff {
+#user-stuff, #help-stuff {
     grid-area: topright;
+}
+
+#help-stuff {
+    top: 2em;
 }
 
 fieldset {
@@ -180,12 +184,12 @@ button.reset {
     justify-self: center;
 }
 
-img#profile-icon {
+img#profile-icon, img#help-icon {
     vertical-align: middle;
     height: 1.5em;
 }
 
-div#user-stuff {
+div#user-stuff, div#help-stuff {
     padding: 1em;
     position: relative;
     z-index: 10;

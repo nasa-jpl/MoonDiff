@@ -6,7 +6,7 @@
 #frontpage-links {
     display: grid;
     grid-area: bottom;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
     justify-content: space-around;
     align-content: space-around;
 }
