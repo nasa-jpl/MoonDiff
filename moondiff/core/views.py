@@ -62,7 +62,6 @@ class ProfileView(DetailView):
         context['compared'] = Pair.objects.compared_by_user(
             user=self.object)
         context['pairs'] = Pair.objects.all()
-        context['detections'] = Annotation.objects.all()
 
         return context
 
