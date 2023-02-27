@@ -61,6 +61,10 @@ fieldset, form, .active-image-indicator {
     grid-area: topmid;
 }
 
+#comparer-help{
+    display: none;
+}
+
 #user-stuff{
     grid-area: topright;
 }

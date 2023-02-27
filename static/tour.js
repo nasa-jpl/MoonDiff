@@ -1,4 +1,7 @@
+const comparerHelp = document.getElementById('comparer-help')
 const tourlink = document.getElementById('tour-link')
+
+comparerHelp.style.display = 'block';
 
 const tour = new Shepherd.Tour({
     useModalOverlay: true,
