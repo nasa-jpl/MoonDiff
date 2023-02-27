@@ -36,7 +36,7 @@ class PairSet(models.Model):
     notes = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return self.name
+        return f'{self.name} ({self.pair_set.count()} pairs)'
 
 
 class PairManager(models.Manager):
@@ -99,7 +99,7 @@ class Visit(models.Model):
     finished = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.user} viewed {self.pair} at {self.start}"
+        return f"{self.user} viewed pair {self.pair.pk} at {self.start}"
 
     def get_absolute_url(self):
         return reverse('visit-detail', kwargs={'pk': self.pk})

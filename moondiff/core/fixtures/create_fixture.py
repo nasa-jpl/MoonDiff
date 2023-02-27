@@ -55,8 +55,8 @@ def dict_from_loganstyle_lists():
                 outdict[lo_img] = nac_img
     return outdict
 
-def moondiff_fixture_from_dict(img_dict, img_first_pid=23,
-                               pair_first_pid=13, pairset_pk=2):
+def moondiff_fixture_from_dict(img_dict, img_first_pid=35,
+                               pair_first_pid=19, pairset_pk=3):
     imgpk = img_first_pid
     pairpk = pair_first_pid
 
