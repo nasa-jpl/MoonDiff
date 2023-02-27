@@ -101,6 +101,8 @@ class Visit(models.Model):
     def __str__(self):
         return f"{self.user} viewed {self.pair} at {self.start}"
 
+    def get_absolute_url(self):
+        return reverse('visit-detail', kwargs={'pk': self.pk})
 
 class Comment(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE,

@@ -1,5 +1,5 @@
 const nextButton = document.querySelector('#skip-button');
-const visitPk = document.querySelector('#visit_id').value;
+const visitUrl = document.currentScript.dataset.visitUrl;
 const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 const pairId = document.querySelector('[name=pair_id]').value;
 const comparerModeChooser = document.querySelector('#comparer-mode').value;
@@ -15,7 +15,7 @@ visitData.append('pair', pairId);
 
 doneButton.addEventListener('click', () => {
     visitData.append('finished', true);
-    fetch(`/api/visits/${visitPk}/`, {
+    fetch(visitUrl, {
             method: 'PUT',
             credentials: 'same-origin',
             body: visitData,
@@ -27,7 +27,7 @@ doneButton.addEventListener('click', () => {
 
 nextButton.addEventListener('click', () => {
     visitData.append('finished', false);
-    fetch(`/api/visits/${visitPk}/`, {
+    fetch(visitUrl, {
             method: 'PUT',
             credentials: 'same-origin',
             body: visitData,

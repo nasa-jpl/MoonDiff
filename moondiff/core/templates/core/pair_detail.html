@@ -106,7 +106,9 @@
     
     {# Visit tracking #}
     <input type="hidden" id="visit_id" name="visit_id" value="{{ visit.pk }}">
-    <script src="{% static 'visit.js' %}" defer></script>
+    <script src="{% static 'visit.js' %}" defer
+            data-visit-url="{{ visit.get_absolute_url }}"
+    ></script>
     
     <script src="{% static 'brightness_contrast.js' %}"></script>
     {{ annotations|json_script:"polylines" }}
