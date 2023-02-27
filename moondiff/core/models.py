@@ -27,6 +27,9 @@ class Image(models.Model):
     product_id = models.CharField(max_length=100)
     file_data = models.FileField(upload_to='images/')
     start_time = models.DateTimeField(blank=True, null=True)
+    version = models.CharField(max_length=10, blank=True, null=True)
+    cropped = models.BooleanField(default=False)
+
     def __str__(self):
         return self.product_id
 
