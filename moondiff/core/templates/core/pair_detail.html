@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="{% static 'MicroModal.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/shepherd.js@10.0.1/dist/js/shepherd.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shepherd.js@10.0.1/dist/css/shepherd.css"/>
-    <script src="{% static 'tour.js' %}" defer></script>
     <script src="https://js.arcgis.com/next/"></script>
 {% endblock head %}
 
@@ -52,6 +51,8 @@
         {% include "core/brightness_contrast.html" with image=pair.old_image side="left" only %}
         {% include "core/brightness_contrast.html" with image=pair.new_image side="right" only %}
     </div>
+
+    {% include "core/image_info_modal.html" %}
 
 
     <div class="modal micromodal-slide" id="annotation-notes-modal" aria-hidden="true">
@@ -119,5 +120,7 @@
             data-new-image-url="{{ pair.new_image.file_data.url }}"
             data-new-image-label="{{ pair.new_image }}"
     ></script>
+    <script src="{% static 'tour.js' %}" defer></script>
+    <script src="{% static 'img_info.js' %}" defer></script>
 {% endblock content %}
 

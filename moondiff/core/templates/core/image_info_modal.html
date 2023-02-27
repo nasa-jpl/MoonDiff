@@ -1,0 +1,38 @@
+<div class="modal micromodal-slide" id="pair-info-modal" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="pair-info-modal-title">
+            <header class="modal__header">
+                <h2 class="modal__title" id="pair-info-modal-title">
+                    {{ pair }}
+                </h2>
+                <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+            </header>
+            <main class="modal__content" id="pair-info-modal-content">
+                <p>Part of pairset: {{ pair.pairset }}</p>
+                <h3>Coregistration notes</h3>
+                <p>{{ pair.coreg_notes }}</p>
+                <h3>Old image</h3>
+                <p>
+                    {{ pair.old_image }} was taken by the {{ pair.old_image.spacecraft_camera }} camera
+                    {% if pair.old_image.start_time %}
+                        on {{ pair.old_image.start_time }}.
+                    {% else %}
+                        .
+                    {% endif %}
+                </p>
+                <h3>New image</h3>
+                <p>
+                    {{ pair.new_image }} was taken by the {{ pair.new_image.spacecraft_camera }} camera
+                    {% if pair.new_image.start_time %}
+                        on {{ pair.new_image.start_time }}.
+                    {% else %}
+                        .
+                    {% endif %}
+                </p>
+            </main>
+            <footer class="modal__footer">
+                <button id="img-info-close" class="modal__btn" data-micromodal-close aria-label="Close this dialog window">Close</button>
+            </footer>
+        </div>
+    </div>
+</div>
