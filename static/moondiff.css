@@ -16,7 +16,7 @@ body {
     grid-template-areas: "left right";
 }
 
-.image-id {
+span.image-id, span.start-time {
     grid-column: 1/3
 }
 

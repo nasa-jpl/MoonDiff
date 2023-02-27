@@ -8,6 +8,11 @@
             {{ image }}
             <img id="info-icon" class="icon" src="{% static 'icons/info.svg'%}" alt="image info">
         </span>
+        {% if image.start_time %}
+            <span class="start-time">
+                {{ image.start_time }}
+            </span>
+        {% endif %}
         <label class="gamma control {{ side }}" for="gamma-slider">Gamma:</label>
         <input class="gamma control {{ side }}" type="range" name="gamma-slider" min="0" max="2" step="0.05" />
         <label class="invert control {{ side }}" for="invert-toggle">Invert:</label>
