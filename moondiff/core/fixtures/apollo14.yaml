@@ -15,7 +15,7 @@
   fields:
     spacecraft_camera: 2
     product_id: M1096608496RE
-    file_data: images/M1096608496RE_crop.tif
+    file_data: images/M1096608496RE_cog_crop.tif
 - model: core.image
   pk: 9
   fields:
