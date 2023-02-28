@@ -170,13 +170,6 @@ const setup = (comparerMode) => {
             registerImageControlsOnLayer(oldImageLayer, 'left');
             mainview.map.add(newImageLayer);
             mainview.map.layers.add(annotationLayer); // re-add the annotation layer because otherwise it's underneath
-            let polylineGraphics = addPolylinesToLayer(annotationLayer, polylines);
-            mainview.when(() => {
-                    mainview.goTo({target: polylineGraphics}, {animate: false});
-                    // TODO next line doesn't seem to work, maybe firing too soon
-                    mainview.zoom = mainview.zoom - 2;
-                }
-            );
             const fader = document.querySelector('#fader');
             fader.addEventListener('input', e => {
                 oldImageLayer.opacity = 1 - e.target.value;
@@ -207,6 +200,9 @@ const setup = (comparerMode) => {
             const blinkToggle = document.querySelector('#blink-toggle');
             blinkToggle.addEventListener('input', updateBlinkfade);
             updateBlinkfade();
+            window.mainview = mainview
+            window.oldimg = oldImageLayer
+            window.newimg = newImageLayer
         }
 
 
