@@ -278,5 +278,5 @@ legend > h1 {
 }
 
 .loading{
-    position: fixed;
+    display: none;
 }

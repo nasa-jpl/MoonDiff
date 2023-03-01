@@ -16,6 +16,14 @@ const setup = (comparerMode) => {
         Map, MapView, ImageryTileLayer, Draw, GraphicsLayer, Graphic, Sketch, ScaleBar, TileInfo, MicroModal) {
         MicroModal.init();
 
+        const loadingIndicatorHandler = (updating) => {
+            if (updating === true) {
+                document.querySelector('.loading').style.display = 'inline';
+            } else {
+                document.querySelector('.loading').style.display = 'none';
+            }
+        };
+
         const makeTileMap = (tile_url, container) => {
             const webmap = new Map({});
             const tileLayer = new ImageryTileLayer({
@@ -139,8 +147,6 @@ const setup = (comparerMode) => {
             for (const view of views) {
                 view.when(() => {
                         view.goTo({target: polylineGraphics}, {animate: false});
-                        // TODO next line doesn't seem to work, maybe firing too son
-                        view.zoom = view.zoom - 2;
                     }
                 );
                 view.watch(["interacting", "animation"], () => {
@@ -149,13 +155,7 @@ const setup = (comparerMode) => {
 
                 view.watch("viewpoint", () => sync(view));
                 view.on("pointer-move", syncPointer);
-                // view.watch('updating', (evt) => {
-                //     if (evt === true) {
-                //         document.querySelector('.loading').style.display = 'inline';
-                //     } else {
-                //         document.querySelector('.loading').style.display = 'none';
-                //     }
-                // });
+                view.watch('updating', loadingIndicatorHandler);
             }
         } else {
             // assume blink mode
@@ -200,11 +200,8 @@ const setup = (comparerMode) => {
             const blinkToggle = document.querySelector('#blink-toggle');
             blinkToggle.addEventListener('input', updateBlinkfade);
             updateBlinkfade();
-            window.mainview = mainview
-            window.oldimg = oldImageLayer
-            window.newimg = newImageLayer
+            mainview.watch('updating', loadingIndicatorHandler)
         }
-
 
         const submitAnnotationModal = async () => {
             return new Promise((resolve, reject) => {
