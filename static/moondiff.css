@@ -80,7 +80,7 @@ fieldset {
     width: 100%;
     height: 100%;
     position: absolute;
-    grid-template-columns: auto minmax(min-content, 400px) minmax(min-content, 200px);
+    grid-template-columns: auto minmax(min-content, 400px) minmax(min-content, 300px);
     grid-template-rows: auto 1fr;
     grid-template-areas: 
         "topleft topmid topright"
