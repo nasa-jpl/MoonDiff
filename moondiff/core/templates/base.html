@@ -40,14 +40,14 @@
             {% if user.is_authenticated %}
                 <a href="{% url 'profile' user.pk %}">{{ user }}</a> | 
                 <a href="{% url 'account_logout' %}">sign out</a>
+                <div id="score">
+                    <img id="points-icon" class="icon" src="{% static 'icons/trophy.svg'%}" alt="trophy icon">
+                    0000 points
+                </div>
             {% else %}
                 <a href="{% url 'account_login' %}">sign in</a> | 
                 <a href="{% url 'account_signup' %}">sign up</a>
             {% endif %}
-        <div id="score">
-            <img id="points-icon" class="icon" src="{% static 'icons/trophy.svg'%}" alt="trophy icon">
-            0000 points
-        </div>
         <div id="comparer-help">
             <img id="help-icon" class="icon" src="{% static 'icons/help.svg'%}" alt="help icon">
             <a id="tour-link" href="">tour</a> | <a id="intro-link" href="">intro video</a>
