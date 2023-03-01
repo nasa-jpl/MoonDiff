@@ -149,13 +149,13 @@ const setup = (comparerMode) => {
 
                 view.watch("viewpoint", () => sync(view));
                 view.on("pointer-move", syncPointer);
-                view.watch('updating', (evt) => {
-                    if (evt === true) {
-                        document.querySelector('.loading').style.display = 'inline';
-                    } else {
-                        document.querySelector('.loading').style.display = 'none';
-                    }
-                });
+                // view.watch('updating', (evt) => {
+                //     if (evt === true) {
+                //         document.querySelector('.loading').style.display = 'inline';
+                //     } else {
+                //         document.querySelector('.loading').style.display = 'none';
+                //     }
+                // });
             }
         } else {
             // assume blink mode
