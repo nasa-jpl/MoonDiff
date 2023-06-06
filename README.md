@@ -3,9 +3,9 @@
 # MoonDiff web app
 _Compare, detect, discover!_
 
-This is a web application for the collaborative science project MoonDiff. It displays pairs of old and new lunar orbital
-imagery and provides an interface for the user to annotate differences they notice between the images. The idea is to
-find new craters, rockfall areas, spacecraft, etc.
+This is a web application for the collaborative science project MoonDiff, [live here](https://trek.nasa.gov/moondiff).
+It displays pairs of old and new lunar orbital imagery and provides an interface for the user to annotate differences
+they notice between the images. The idea is to find new craters, rockfall areas, spacecraft, etc.
 
 ## Technologies used
  - Django / [geodjango](https://docs.djangoproject.com/en/4.1/ref/contrib/gis/) with spatialite

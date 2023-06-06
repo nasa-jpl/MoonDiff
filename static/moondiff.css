@@ -132,14 +132,8 @@ fieldset {
     outline: none !important;
 }
 
-#accounts-container > div > form {
-    display: grid;
-    grid-template-columns: auto auto;
-}
-
-/* Make the submit button appear in the input column */
-#accounts-container > div > form > button {
-    grid-column: 2;
+th {
+    text-align: left;
 }
 
 a {
