@@ -148,6 +148,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Custom user model with group_name field
+AUTH_USER_MODEL = "core.MoonDiffUser"
+
+ACCOUNT_FORMS = {
+    'signup': 'moondiff.core.forms.MoonDiffSignupForm',
+}
+
+ACCOUNT_ADAPTER = 'moondiff.core.forms.RestrictGroupcodeAdapter'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
@@ -211,6 +219,5 @@ if os.name == 'nt':
 
 try:
     from .localsettings import *
-    MIDDLEWARE += LOCAL_MIDDLEWARE
 except ImportError:
     pass

@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.renderers import TemplateHTMLRenderer
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from moondiff.core.models import MoonDiffUser as User
 from django.utils.decorators import method_decorator
 from django.urls import reverse
 

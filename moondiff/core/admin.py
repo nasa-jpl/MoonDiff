@@ -4,6 +4,7 @@ from moondiff.core.models import *
 admin.site.site_header = "MoonDiff admin"
 admin.site.site_title = "MoonDiff admin"
 
+admin.site.register(MoonDiffUser)
 admin.site.register(SpacecraftCamera)
 admin.site.register(Image)
 admin.site.register(PairSet)
