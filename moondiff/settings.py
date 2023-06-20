@@ -38,7 +38,7 @@ if (res := os.environ.get("CSRF_TRUSTED_ORIGINS")):
     CSRF_TRUSTED_ORIGINS = [res]
 
 if (res := os.environ.get("SECRET_SIGNUP_CODES")):
-    SECRET_SIGNUP_CODES = res.replace("'","").replace('"','').split(', ')
+    SECRET_SIGNUP_CODES = res.split(', ')
 
 # Application definition
 
