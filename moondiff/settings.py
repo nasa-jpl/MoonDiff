@@ -37,9 +37,8 @@ ALLOWED_HOSTS = [os.environ.get("DJANGO_ALLOWED_HOSTS")]
 if (res := os.environ.get("CSRF_TRUSTED_ORIGINS")):
     CSRF_TRUSTED_ORIGINS = [res]
 
-# TODO parse list from env var
 if (res := os.environ.get("SECRET_SIGNUP_CODES")):
-    SECRET_SIGNUP_CODES = [res]
+    SECRET_SIGNUP_CODES = res.split(', ')
 
 # Application definition
 
