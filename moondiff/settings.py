@@ -27,7 +27,7 @@ DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL")
 EMAIL_VERIFICATION = os.environ.get("EMAIL_VERIFICATION")
 ACCOUNT_EMAIL_REQUIRED = os.environ.get("ACCOUNT_EMAIL_REQUIRED")
 ACCOUNT_EMAIL_VERIFICATION = os.environ.get("ACCOUNT_EMAIL_VERIFICATION")
-ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = None # This makes it use LOGIN_REDIRECT_URL
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/' + BASE_URL + '/accounts/profile/'
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 
 DEBUG = int(os.environ.get("DEBUG", default=0))
@@ -36,6 +36,9 @@ ALLOWED_HOSTS = [os.environ.get("DJANGO_ALLOWED_HOSTS")]
 
 if (res := os.environ.get("CSRF_TRUSTED_ORIGINS")):
     CSRF_TRUSTED_ORIGINS = [res]
+
+if (res := os.environ.get("SECRET_SIGNUP_CODES")):
+    SECRET_SIGNUP_CODES = res.split(', ')
 
 # Application definition
 
@@ -148,6 +151,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Custom user model with group_name field
+AUTH_USER_MODEL = "core.MoonDiffUser"
+
+ACCOUNT_FORMS = {
+    'signup': 'moondiff.core.forms.MoonDiffSignupForm',
+}
+
+ACCOUNT_ADAPTER = 'moondiff.core.forms.RestrictGroupcodeAdapter'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
@@ -211,6 +222,5 @@ if os.name == 'nt':
 
 try:
     from .localsettings import *
-    MIDDLEWARE += LOCAL_MIDDLEWARE
 except ImportError:
     pass

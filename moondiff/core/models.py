@@ -1,8 +1,11 @@
+from django.conf import settings
 from django.contrib.gis.db import models
-from django.contrib.auth.models import User
 from django.urls import reverse
+from django.contrib.auth.models import AbstractUser
 import random
 
+class MoonDiffUser(AbstractUser):
+    groupcode = models.CharField(max_length=100, blank=True, null=True)
 
 def get_random(queryset):
     # Return a random pair
@@ -98,7 +101,7 @@ class Visit(models.Model):
     pair = models.ForeignKey(Pair, on_delete=models.CASCADE)
     start = models.DateTimeField(auto_now_add=True)
     end = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, editable=False)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, editable=False)
     finished = models.BooleanField(default=False)
 
     def __str__(self):
@@ -108,7 +111,7 @@ class Visit(models.Model):
         return reverse('visit-detail', kwargs={'pk': self.pk})
 
 class Comment(models.Model):
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE,
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
                                    editable=False)
     created_on = models.DateTimeField(auto_now_add=True)
     comment_text = models.TextField()
@@ -118,7 +121,7 @@ class Comment(models.Model):
 
 
 class Annotation(models.Model):
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE,
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
                                    editable=False)
     shape = models.PolygonField()
     notes = models.TextField()
@@ -143,7 +146,7 @@ class AnnotationReview(models.Model):
     further_review_required = models.BooleanField()
     valid_discovery = models.BooleanField()
     comments = models.TextField(blank=True, null=True)
-    reviewer = models.ForeignKey(User, on_delete=models.CASCADE, editable=False)
+    reviewer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, editable=False)
     annotation = models.ForeignKey(Annotation, on_delete=models.CASCADE)
     created_at = models.DateField(auto_now_add=True)
 
