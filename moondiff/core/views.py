@@ -156,7 +156,7 @@ class SelectPairView(RedirectView):
 
 
 class AllDoneView(TemplateView):
-    template = "all_done.html"
+    template_name = "core/all_done.html"
 
 
 class SelectReviewView(RedirectView):
