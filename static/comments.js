@@ -14,6 +14,12 @@ commentsForm.addEventListener("submit", (evt) => {
     credentials: "same-origin",
     body: commentData,
     headers: { "x-csrftoken": _csrfToken },
+  }).then(resp => {
+    if (resp.ok){
+      alert("Comment successfully submitted, thanks!");
+      commentsForm.querySelector("textarea").value = "";
+      comments.classList.toggle("collapsed");
+    }
   });
   evt.preventDefault();
 });
