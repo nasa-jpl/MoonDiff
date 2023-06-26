@@ -3,9 +3,15 @@ from django.contrib.gis.db import models
 from django.urls import reverse
 from django.contrib.auth.models import AbstractUser
 import random
+import datetime
 
 class MoonDiffUser(AbstractUser):
     groupcode = models.CharField(max_length=100, blank=True, null=True)
+
+    @property
+    def avg_visit_duration(self):
+        visit_durations = [visit.duration for visit in self.visit_set.all()]
+        return sum(visit_durations, datetime.timedelta()).total_seconds() / len(visit_durations)
 
 def get_random(queryset):
     # Return a random pair
@@ -106,6 +112,10 @@ class Visit(models.Model):
 
     def __str__(self):
         return f"{self.user} viewed pair {self.pair.pk} at {self.start}"
+
+    @property
+    def duration(self):
+        return self.end - self.start
 
     def get_absolute_url(self):
         return reverse('visit-detail', kwargs={'pk': self.pk})

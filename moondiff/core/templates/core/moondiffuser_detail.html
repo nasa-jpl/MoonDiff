@@ -8,7 +8,7 @@
     <h2>Image pair comparing stats</h2>
     <p>
     {{ object }} has compared <b>{{ compared.count }}</b> out of the <b>{{ pairs.count }}</b> available lunar image pairs,
-    spending an average of (TODO avg_time_spent) on each.
+    spending an average of {{ object.avg_visit_duration | floatformat:0 }} seconds on each.
     </p>
     <p>
     {{ object }} reported <b>{{ detections.count }}</b> differences between those images. Expert reviewers have looked at
