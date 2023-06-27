@@ -13,6 +13,14 @@ class MoonDiffUser(AbstractUser):
         visit_durations = [visit.duration for visit in self.visit_set.all()]
         return sum(visit_durations, datetime.timedelta()).total_seconds() / len(visit_durations)
 
+    @property
+    def annotations_by_user_reviewed(self):
+        return AnnotationReview.objects.filter(annotation__created_by=self)
+
+    @property
+    def annotations_by_user_unreviewed_count(self):
+        return self.annotation_set.count() - self.annotations_by_user_reviewed.count()
+
 def get_random(queryset):
     # Return a random pair
     pks = queryset.values_list('pk', flat=True)

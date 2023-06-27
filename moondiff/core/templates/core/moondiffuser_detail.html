@@ -12,7 +12,8 @@
     </p>
     <p>
     {{ object }} reported <b>{{ detections.count }}</b> differences between those images. Expert reviewers have looked at
-    (TODO detections.reviewed_count) of those, and (TODO detections.unreviewed_count) are awaiting review.
+    <b>{{ object.annotations_by_user_reviewed.count }}</b> of those, and
+    <b>{{ object.annotations_by_user_unreviewed_count }}</b> are awaiting review.
     </p>
     <p><a href={% url 'select-pair-to-compare' %}>Click here to do more comparing!</a></p>
     
