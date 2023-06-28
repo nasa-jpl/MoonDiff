@@ -1,4 +1,4 @@
-from django.views.generic import DetailView, RedirectView, TemplateView
+from django.views.generic import DetailView, RedirectView, TemplateView, ListView
 from moondiff.core.models import Pair, Annotation, AnnotationReview, Visit, \
     Comment, get_random
 from moondiff.core.serializers import AnnotationSerializer, \
@@ -42,6 +42,12 @@ class PairDetailView(DetailView):
             context['annotations'] = None
 
         return context
+
+class ExamplePairsView(ListView):
+    queryset = Pair.objects.filter(pairset='examples')
+
+class ExamplePairView(DetailView):
+    queryset = Pair.objects.filter(pairset='examples')
 
 
 class ProfileView(DetailView):
