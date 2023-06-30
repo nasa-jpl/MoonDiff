@@ -101,7 +101,10 @@ class Pair(models.Model):
             return None
 
     def get_absolute_url(self):
-        return reverse('pair-detail', kwargs={'pk': self.pk})
+        if self.pairset.name == 'examples':
+            return reverse('example', kwargs={'pk': self.pk})
+        else:
+            return reverse('pair-detail', kwargs={'pk': self.pk})
 
     class Meta:
         unique_together = ['old_image', 'new_image']
