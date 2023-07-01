@@ -84,11 +84,14 @@ class Pair(models.Model):
     pairset = models.ForeignKey(PairSet, on_delete=models.CASCADE, blank=True,
                                 null=True)
     coreg_notes = models.TextField(blank=True, null=True)
-
+    name = models.CharField(blank=True, null=True, max_length=512)
     objects = PairManager()
 
     def __str__(self):
-        return f"{self.old_image} compared to {self.new_image}"
+        if self.name:
+            return self.name
+        else:
+            return f"{self.old_image} compared to {self.new_image}"
 
     def get_other(self):
         # Return a random pair other than this one
