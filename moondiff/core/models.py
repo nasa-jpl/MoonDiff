@@ -109,9 +109,6 @@ class Pair(models.Model):
         else:
             return reverse('pair-detail', kwargs={'pk': self.pk})
 
-    class Meta:
-        unique_together = ['old_image', 'new_image']
-
 
 class Visit(models.Model):
     """
