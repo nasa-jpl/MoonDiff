@@ -1,0 +1,56 @@
+- fields:
+    name: examples
+    notes: ''
+  model: core.pairset
+  pk: 4
+
+# Figure 1 from https://doi.org/10.1038/nature19829
+- fields:
+    file_data: images/M1104273380RE_cog.tif
+    product_id: M1104273380RE
+    spacecraft_camera: 2
+  model: core.image
+  pk: 100
+- fields:
+    file_data: images/M1180855200RE_cog.tif
+    product_id: M1180855200RE
+    spacecraft_camera: 3
+  model: core.image
+  pk: 101
+- fields:
+    name: Fig 1 from https://doi.org/10.1038/nature19829
+    old_image: 100
+    new_image: 101
+    pairset: 4
+  model: core.pair
+  pk: 100
+
+# Apollo 14 landing site
+# images should already be created by the apollo14.yaml fixture
+- model: core.pair
+  pk: 101
+  fields:
+    name: Apollo 14 landing site
+    old_image: 12
+    new_image: 9
+    pairset: 4
+    coreg_notes: Tom Logan delivered this coregistration on 2022-11-17
+- model: core.annotation
+  pk: 101
+  fields:
+    created_by: 1
+    shape: SRID=4326;POLYGON ((-4.761616479933712 -0.9922493551524936, -4.761828005867251
+      -0.9920908244641715, -4.761386318442239 -0.991898322903856, -4.759461014281928
+      -0.9921587661886688, -4.758804145803705 -0.9916831740878974, -4.75790944563509
+      -0.9911849346709407, -4.754194741137544 -0.9908452259345815, -4.751839074870811
+      -0.9903922808985817, -4.749981722622043 -0.9900978665919866, -4.750514012595774
+      -0.9906527243018469, -4.75370775243818 -0.9914680252579562, -4.755463176819639
+      -0.991637879598546, -4.758683222418889 -0.992294649633476, -4.758286836268237
+      -0.9923172968737344, -4.757573341197064 -0.9926570054590044, -4.754866590054039
+      -0.992736270790546, -4.758275510949645 -0.9927815652648599, -4.75914756048108
+      -0.9926456818400576, -4.759645874499043 -0.9927815652648599, -4.759985634056744
+      -0.9925211220290836, -4.761616479933712 -0.9922493551524936))
+    notes: Spacecraft and tracks from moon buggy
+    pair: 101
+    created_at: 2022-11-18
+    classification: HW
