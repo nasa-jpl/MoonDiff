@@ -52,11 +52,11 @@
 
     <script src="{% static 'comments.js' %}" data-comments-url="{% url 'comment-list' %}"></script>
 
-    {# detections #}
-    <div id="detections">
-        <span id="detections-title">Example list</span>
+    {# examples #}
+    <div id="examples">
+        <span id="examples-title">Example list ▼</span>
         <ul>
-            {% for example_pair in object_list %}
+            {% for example_pair in object.pairset.pair_set.all %}
                 <li>
                 <a href="{{ example_pair.get_absolute_url }}">{{ example_pair }}</a>
                 </li>
@@ -66,7 +66,7 @@
         </ul>
     </div>
 
-    <script src="{% static 'detections.js' %}" data-comments-url="{% url 'annotation-list' %}"></script>
+    <script src="{% static 'examples.js' %}" ></script>
     
     {# Visit tracking #}
     <input type="hidden" id="visit_id" name="visit_id" value="{{ visit.pk }}">

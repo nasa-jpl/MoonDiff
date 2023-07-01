@@ -236,14 +236,14 @@ legend > h1 {
     max-width: 15em;
 }
 
-#detections.collapsed {
+#detections.collapsed, #examples.collapsed {
     left: 1em;
     transform: rotate(90deg);
     transform-origin: left;
     border-radius: 1em 1em 0 0;
 }
 
-#detections.collapsed ul {
+#detections.collapsed ul, #examples.collapsed ul {
     display: none;
 }
 
