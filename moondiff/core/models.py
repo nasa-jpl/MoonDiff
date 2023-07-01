@@ -109,6 +109,18 @@ class Pair(models.Model):
         else:
             return reverse('pair-detail', kwargs={'pk': self.pk})
 
+    @property
+    def example_annotations(self):
+        if self.pairset.name == 'examples':
+            # All example pair annotations should be made by user 1, the admin
+            annots = [
+                annot.shape.coords for annot in
+                self.annotation_set.filter(created_by=MoonDiffUser.objects.get(pk=1))
+            ]
+            return annots
+        else:
+            return None
+
 
 class Visit(models.Model):
     """

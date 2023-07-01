@@ -49,8 +49,7 @@
         {% include "core/brightness_contrast.html" with image=pair.new_image side="right" only %}
     </div>
 
-
-    <script src="{% static 'comments.js' %}" data-comments-url="{% url 'comment-list' %}"></script>
+    {% include "core/image_info_modal.html" %}
 
     {# examples #}
     <div id="examples">
@@ -70,12 +69,9 @@
     
     {# Visit tracking #}
     <input type="hidden" id="visit_id" name="visit_id" value="{{ visit.pk }}">
-    <script src="{% static 'visit.js' %}" defer
-            data-visit-url="{{ visit.get_absolute_url }}"
-    ></script>
     
     <script src="{% static 'brightness_contrast.js' %}"></script>
-    {{ annotations|json_script:"polylines" }}
+    {{ object.example_annotations|json_script:"polylines" }}
     
     <script src="{% static 'maps.js' %}"
             defer
@@ -86,7 +82,6 @@
             data-new-image-url="{{ pair.new_image.file_data.url }}"
             data-new-image-label="{{ pair.new_image }}"
     ></script>
-    <script src="{% static 'tour.js' %}" defer></script>
     <script src="{% static 'img_info.js' %}" defer></script>
 {% endblock content %}
 
