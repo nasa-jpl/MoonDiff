@@ -45,7 +45,7 @@ inner_urlpatterns = [
     re_path('review_detection/(?P<pk>[a-z0-9]+)', AddReviewView.as_view(),
             name='review-detection'),
     re_path('example/(?P<pk>[a-z0-9]+)', ExamplePairView.as_view(), name='example'),
-    path('example/', SelectExamplePairView.as_view(), name='example'),
+    path('example/', SelectExamplePairView.as_view(), name='select-example'),
     path('pairsets/', PairSetsView.as_view(), name='pairsets'),
     path('all_done/', AllDoneView.as_view(), name='all_done'),
     path('api/', include(router.urls)), # API urls
