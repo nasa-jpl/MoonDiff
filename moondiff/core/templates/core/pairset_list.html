@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pairsets in MoonDiff database</title>
+</head>
+<body>
+{% for pairset in object_list %}
+    <ul>
+        {{ pairset }}
+        {% for pair in pairset.pair_set.all %}
+        <li>
+                <a href={{ pair.get_absolute_url }}>{{ pair }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% empty %}
+    No examples in the database.
+{% endfor %}
+</body>
+</html>

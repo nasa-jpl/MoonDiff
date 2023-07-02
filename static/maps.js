@@ -179,6 +179,10 @@ const setup = (comparerMode) => {
       registerImageControlsOnLayer(newImageLayer, "right");
       registerImageControlsOnLayer(oldImageLayer, "left");
       mainview.map.add(newImageLayer);
+      let polylineGraphics = addPolylinesToLayer(annotationLayer, polylines);
+      mainview.when(() => {
+        mainview.goTo({ target: polylineGraphics }, { animate: false });
+      });
       mainview.map.layers.add(annotationLayer); // re-add the annotation layer because otherwise it's underneath
       const fader = document.querySelector("#fader");
       fader.addEventListener("input", (e) => {

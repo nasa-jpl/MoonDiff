@@ -84,11 +84,14 @@ class Pair(models.Model):
     pairset = models.ForeignKey(PairSet, on_delete=models.CASCADE, blank=True,
                                 null=True)
     coreg_notes = models.TextField(blank=True, null=True)
-
+    name = models.CharField(blank=True, null=True, max_length=512)
     objects = PairManager()
 
     def __str__(self):
-        return f"{self.old_image} compared to {self.new_image}"
+        if self.name:
+            return self.name
+        else:
+            return f"{self.old_image} compared to {self.new_image}"
 
     def get_other(self):
         # Return a random pair other than this one
@@ -101,10 +104,22 @@ class Pair(models.Model):
             return None
 
     def get_absolute_url(self):
-        return reverse('pair-detail', kwargs={'pk': self.pk})
+        if self.pairset.name == 'examples':
+            return reverse('example', kwargs={'pk': self.pk})
+        else:
+            return reverse('pair-detail', kwargs={'pk': self.pk})
 
-    class Meta:
-        unique_together = ['old_image', 'new_image']
+    @property
+    def example_annotations(self):
+        if self.pairset.name == 'examples':
+            # All example pair annotations should be made by user 1, the admin
+            annots = [
+                annot.shape.coords for annot in
+                self.annotation_set.filter(created_by=MoonDiffUser.objects.get(pk=1))
+            ]
+            return annots
+        else:
+            return None
 
 
 class Visit(models.Model):
