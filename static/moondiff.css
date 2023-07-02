@@ -154,7 +154,7 @@ a {
     border-top-right-radius: 1em;
     border-top-left-radius: 1em;
     z-index: 20;
-    background: black;
+    background: rgba(0, 0, 0, 0.66);
     display: grid;
     grid-template-columns: auto auto;
     padding: 1em;
@@ -248,7 +248,7 @@ legend > h1 {
 }
 
 #detections, #comments, #examples {
-    background: black;
+    background: rgba(0, 0, 0, 0.66);
 }
 
 #version-container {
