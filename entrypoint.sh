@@ -11,6 +11,7 @@ then
   python manage.py loaddata apollo14.yaml
   python manage.py loaddata apollo12.yaml
   python manage.py loaddata alphonsus.yaml
+  python manage.py loaddata examples.yaml
 fi
 python manage.py collectstatic --noinput
 gunicorn moondiff.wsgi:application --bind 0.0.0.0:8000
