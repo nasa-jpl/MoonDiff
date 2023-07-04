@@ -4,7 +4,6 @@ source activate moondiff
 if ! [ -f /app/db/db.sqlite3 ]
 then
   # If the database doesn't exist yet, create it
-  python manage.py makemigrations
   python manage.py migrate
   python manage.py createsuperuser --username $DJANGO_SUPERUSER_USERNAME --email $DJANGO_SUPERUSER_EMAIL --noinput
 
