@@ -62,9 +62,7 @@ def moondiff_fixture_from_dict(img_dict, img_first_pid=23,
             'pk': imgpk,
             'fields': {
                 'spacecraft_camera': 1,
-                'product_id': oldimg.replace('_cog_c1.tif',
-                                                                 '').replace(
-                    'LO_', ''),
+                'product_id': oldimg.replace('_cog_c1.tif', '').replace('LO_', '').replace('_COSMETIC',''),
                 'file_data': f'images/{oldimg}'
             }
         })
@@ -80,7 +78,7 @@ def moondiff_fixture_from_dict(img_dict, img_first_pid=23,
             'pk': imgpk,
             'fields': {
                 'spacecraft_camera': camera_pk,
-                'product_id': newimg.replace('_cog_crop.tif', ''),
+                'product_id': newimg.split('_')[0],
                 'file_data': f'images/{newimg}',
                 'cropped': True
             }
