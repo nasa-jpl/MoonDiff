@@ -1,23 +1,28 @@
 import requests
 from datetime import datetime
+import django
+import os
+os.environ.setdefault(
+    'DJANGO_SETTINGS_MODULE', 'moondiff.settings'
+)
+django.setup()
 from moondiff.core.models import Image
 ODE_API_URL = 'https://oderest.rsl.wustl.edu/live2/'
 
 def get_start_time(pdsid):
+    if pdsid.startswith('M'):
+        pdsid = 'data.nac.' + pdsid
+    else:
+        pdsid = '_'.join(pdsid.split('_')[0:5])
     resp = requests.get(ODE_API_URL, params={
         'query':'product',
-        'results':'l',
+        'results':'m',
         'output':'json',
         'PDSID':pdsid
     })
-    try:
-        label = resp.json()['ODEResults']['Products']['Product']['label']['Line']
-        for label_line in label:
-            if label_line.startswith('START_TIME'):
-                print(f'line is {pdsid}: {label_line}')
-                return datetime.fromisoformat(label_line[-23:])
-    except:
-        return False
+    print(f'Using pdsid: {pdsid}')
+    starttime = resp.json()['ODEResults']['Products']['Product']['UTC_start_time']
+    return datetime.fromisoformat(starttime[:23])
 
 def set_start_times_from_ode():
     for image in Image.objects.all():
