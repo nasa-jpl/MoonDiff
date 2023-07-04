@@ -6,7 +6,7 @@
 - fields:
     cropped: true
     file_data: images/LO_5116_high_res_1_774RE_v1.tif
-    product_id: LO_5116_HIGH_RES_1
+    product_id: 5116_HIGH_RES_1
     spacecraft_camera: 1
   model: core.image
   pk: 35
@@ -28,7 +28,7 @@
 - fields:
     cropped: true
     file_data: images/LO_5116_high_res_2_400LE_v1.tif
-    product_id: LO_5116_HIGH_RES_2
+    product_id: 5116_HIGH_RES_2
     spacecraft_camera: 1
   model: core.image
   pk: 37
@@ -50,7 +50,7 @@
 - fields:
     cropped: true
     file_data: images/LO_5116_high_res_2_400RE_v1.tif
-    product_id: LO_5116_HIGH_RES_2
+    product_id: 5116_HIGH_RES_2
     spacecraft_camera: 1
   model: core.image
   pk: 39
@@ -72,7 +72,7 @@
 - fields:
     cropped: true
     file_data: images/LO_5116_high_res_2_407LE_v1.tif
-    product_id: LO_5116_HIGH_RES_2
+    product_id: 5116_HIGH_RES_2
     spacecraft_camera: 1
   model: core.image
   pk: 41
@@ -94,7 +94,7 @@
 - fields:
     cropped: true
     file_data: images/LO_5116_high_res_2_407RE_v1.tif
-    product_id: LO_5116_HIGH_RES_2
+    product_id: 5116_HIGH_RES_2
     spacecraft_camera: 1
   model: core.image
   pk: 43
@@ -116,7 +116,7 @@
 - fields:
     cropped: true
     file_data: images/LO_5116_high_res_3_069LE_v1.tif
-    product_id: LO_5116_HIGH_RES_3
+    product_id: 5116_HIGH_RES_3
     spacecraft_camera: 1
   model: core.image
   pk: 45
@@ -138,7 +138,7 @@
 - fields:
     cropped: true
     file_data: images/LO_5117_high_res_1_202LE_v1.tif
-    product_id: LO_5117_HIGH_RES_1
+    product_id: 5117_HIGH_RES_1
     spacecraft_camera: 1
   model: core.image
   pk: 47
@@ -160,7 +160,7 @@
 - fields:
     cropped: true
     file_data: images/LO_5117_high_res_2_668LE_v1.tif
-    product_id: LO_5117_HIGH_RES_2
+    product_id: 5117_HIGH_RES_2
     spacecraft_camera: 1
   model: core.image
   pk: 49
@@ -182,7 +182,7 @@
 - fields:
     cropped: true
     file_data: images/LO_5117_high_res_3_200LE_v1.tif
-    product_id: LO_5117_HIGH_RES_3
+    product_id: 5117_HIGH_RES_3
     spacecraft_camera: 1
   model: core.image
   pk: 51
@@ -204,7 +204,7 @@
 - fields:
     cropped: true
     file_data: images/LO_5117_high_res_3_200RE_v1.tif
-    product_id: LO_5117_HIGH_RES_3
+    product_id: 5117_HIGH_RES_3
     spacecraft_camera: 1
   model: core.image
   pk: 53
@@ -226,7 +226,7 @@
 - fields:
     cropped: true
     file_data: images/LO_5118_high_res_1_202LE_v1.tif
-    product_id: LO_5118_HIGH_RES_1
+    product_id: 5118_HIGH_RES_1
     spacecraft_camera: 1
   model: core.image
   pk: 55
@@ -248,7 +248,7 @@
 - fields:
     cropped: true
     file_data: images/LO_5118_high_res_2_653LE_v1.tif
-    product_id: LO_5118_HIGH_RES_2
+    product_id: 5118_HIGH_RES_2
     spacecraft_camera: 1
   model: core.image
   pk: 57
@@ -270,7 +270,7 @@
 - fields:
     cropped: true
     file_data: images/LO_5118_high_res_3_200LE_v1.tif
-    product_id: LO_5118_HIGH_RES_3
+    product_id: 5118_HIGH_RES_3
     spacecraft_camera: 1
   model: core.image
   pk: 59
@@ -292,7 +292,7 @@
 - fields:
     cropped: true
     file_data: images/LO_5118_high_res_3_200RE_v1.tif
-    product_id: LO_5118_HIGH_RES_3
+    product_id: 5118_HIGH_RES_3
     spacecraft_camera: 1
   model: core.image
   pk: 61
@@ -314,7 +314,7 @@
 - fields:
     cropped: true
     file_data: images/LO_5119_high_res_1_202LE_v1.tif
-    product_id: LO_5119_HIGH_RES_1
+    product_id: 5119_HIGH_RES_1
     spacecraft_camera: 1
   model: core.image
   pk: 63
@@ -336,7 +336,7 @@
 - fields:
     cropped: true
     file_data: images/LO_5119_high_res_2_668LE_v1.tif
-    product_id: LO_5119_HIGH_RES_2
+    product_id: 5119_HIGH_RES_2
     spacecraft_camera: 1
   model: core.image
   pk: 65
@@ -358,7 +358,7 @@
 - fields:
     cropped: true
     file_data: images/LO_5119_high_res_3_200LE_v1.tif
-    product_id: LO_5119_HIGH_RES_3
+    product_id: 5119_HIGH_RES_3
     spacecraft_camera: 1
   model: core.image
   pk: 67
