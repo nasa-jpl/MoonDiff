@@ -11,7 +11,7 @@ class MoonDiffUser(AbstractUser):
     @property
     def avg_visit_duration(self):
         visit_durations = [visit.duration for visit in self.visit_set.all()]
-        if len(visit_durations > 0):
+        if len(visit_durations) > 0:
             return sum(visit_durations, datetime.timedelta()).total_seconds() / len(visit_durations)
         else:
             return 0
