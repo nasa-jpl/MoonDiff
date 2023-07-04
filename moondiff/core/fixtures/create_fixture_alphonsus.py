@@ -7,7 +7,7 @@ Probably upgrade it later.
 import yaml
 
 lo_imgs = [
-'LO_5116_high_res_1_v1.tif',
+'LO_5116_high_res_1_774RE_v1.tif',
 'LO_5116_high_res_2_400LE_v1.tif',
 'LO_5116_high_res_2_400RE_v1.tif',
 'LO_5116_high_res_2_407LE_v1.tif',
@@ -49,9 +49,13 @@ nac_imgs = [
 def dict_from_loganstyle_lists():
     outdict = {}
     for lo_img in lo_imgs:
-        nac_suffix = lo_img.split('_')[5]
+        lo_fname_split = lo_img.split('_')
+        nac_suffix = lo_fname_split[5]
+        lo_setnum = lo_fname_split[1]
+        lo_imgnum = lo_fname_split[4]
         for nac_img in nac_imgs:
-            if nac_suffix in nac_img:
+            nac_fname_split = nac_img.split('_')
+            if nac_suffix in nac_img and nac_fname_split[2] == lo_setnum and nac_fname_split[3] == lo_imgnum:
                 outdict[lo_img] = nac_img
     return outdict
 
@@ -99,7 +103,7 @@ def moondiff_fixture_from_dict(img_dict, img_first_pid=35,
             'pk': imgpk,
             'fields': {
                 'spacecraft_camera': camera_pk,
-                'product_id': newimg.replace('_cog.tif', ''),
+                'product_id': newimg.replace('.tif', ''),
                 'file_data': f'images/{newimg}'
             }
         })

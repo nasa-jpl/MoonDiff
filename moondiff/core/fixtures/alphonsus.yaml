@@ -4,15 +4,15 @@
   model: core.pairset
   pk: 3
 - fields:
-    file_data: images/LO_5116_high_res_1_v1.tif
-    product_id: 5116_high_res_1_v1
+    file_data: images/LO_5116_high_res_1_774RE_v1.tif
+    product_id: 5116_high_res_1_774RE_v1
     spacecraft_camera: 1
   model: core.image
   pk: 35
 - fields:
-    file_data: images/NAC_M1300119200LE_5119_3_v1.tif
-    product_id: NAC_M1300119200LE_5119_3_v1.tif
-    spacecraft_camera: 3
+    file_data: images/NAC_M1238975774RE_5116_1_v1.tif
+    product_id: NAC_M1238975774RE_5116_1_v1
+    spacecraft_camera: 2
   model: core.image
   pk: 36
 - fields:
@@ -31,7 +31,7 @@
   pk: 37
 - fields:
     file_data: images/NAC_M1287200400LE_5116_2_v1.tif
-    product_id: NAC_M1287200400LE_5116_2_v1.tif
+    product_id: NAC_M1287200400LE_5116_2_v1
     spacecraft_camera: 3
   model: core.image
   pk: 38
@@ -51,7 +51,7 @@
   pk: 39
 - fields:
     file_data: images/NAC_M1287200400RE_5116_2_v1.tif
-    product_id: NAC_M1287200400RE_5116_2_v1.tif
+    product_id: NAC_M1287200400RE_5116_2_v1
     spacecraft_camera: 2
   model: core.image
   pk: 40
@@ -71,7 +71,7 @@
   pk: 41
 - fields:
     file_data: images/NAC_M181194407LE_5116_2_v1.tif
-    product_id: NAC_M181194407LE_5116_2_v1.tif
+    product_id: NAC_M181194407LE_5116_2_v1
     spacecraft_camera: 3
   model: core.image
   pk: 42
@@ -91,7 +91,7 @@
   pk: 43
 - fields:
     file_data: images/NAC_M181194407RE_5116_2_v1.tif
-    product_id: NAC_M181194407RE_5116_2_v1.tif
+    product_id: NAC_M181194407RE_5116_2_v1
     spacecraft_camera: 2
   model: core.image
   pk: 44
@@ -111,7 +111,7 @@
   pk: 45
 - fields:
     file_data: images/NAC_M188271069LE_5116_3_v1.tif
-    product_id: NAC_M188271069LE_5116_3_v1.tif
+    product_id: NAC_M188271069LE_5116_3_v1
     spacecraft_camera: 3
   model: core.image
   pk: 46
@@ -130,8 +130,8 @@
   model: core.image
   pk: 47
 - fields:
-    file_data: images/NAC_M1293058202LE_5119_1_v1.tif
-    product_id: NAC_M1293058202LE_5119_1_v1.tif
+    file_data: images/NAC_M1293058202LE_5117_1_v1.tif
+    product_id: NAC_M1293058202LE_5117_1_v1
     spacecraft_camera: 3
   model: core.image
   pk: 48
@@ -150,8 +150,8 @@
   model: core.image
   pk: 49
 - fields:
-    file_data: images/NAC_M1114191668LE_5119_2_v1.tif
-    product_id: NAC_M1114191668LE_5119_2_v1.tif
+    file_data: images/NAC_M1114191668LE_5117_2_v1.tif
+    product_id: NAC_M1114191668LE_5117_2_v1
     spacecraft_camera: 3
   model: core.image
   pk: 50
@@ -170,8 +170,8 @@
   model: core.image
   pk: 51
 - fields:
-    file_data: images/NAC_M1300119200LE_5119_3_v1.tif
-    product_id: NAC_M1300119200LE_5119_3_v1.tif
+    file_data: images/NAC_M1300119200LE_5117_3_v1.tif
+    product_id: NAC_M1300119200LE_5117_3_v1
     spacecraft_camera: 3
   model: core.image
   pk: 52
@@ -190,8 +190,8 @@
   model: core.image
   pk: 53
 - fields:
-    file_data: images/NAC_M1300119200RE_5118_3_v1.tif
-    product_id: NAC_M1300119200RE_5118_3_v1.tif
+    file_data: images/NAC_M1300119200RE_5117_3_v1.tif
+    product_id: NAC_M1300119200RE_5117_3_v1
     spacecraft_camera: 2
   model: core.image
   pk: 54
@@ -210,8 +210,8 @@
   model: core.image
   pk: 55
 - fields:
-    file_data: images/NAC_M1293058202LE_5119_1_v1.tif
-    product_id: NAC_M1293058202LE_5119_1_v1.tif
+    file_data: images/NAC_M1293058202LE_5118_1_v1.tif
+    product_id: NAC_M1293058202LE_5118_1_v1
     spacecraft_camera: 3
   model: core.image
   pk: 56
@@ -231,7 +231,7 @@
   pk: 57
 - fields:
     file_data: images/NAC_M1149530653LE_5118_2_v1.tif
-    product_id: NAC_M1149530653LE_5118_2_v1.tif
+    product_id: NAC_M1149530653LE_5118_2_v1
     spacecraft_camera: 3
   model: core.image
   pk: 58
@@ -250,8 +250,8 @@
   model: core.image
   pk: 59
 - fields:
-    file_data: images/NAC_M1300119200LE_5119_3_v1.tif
-    product_id: NAC_M1300119200LE_5119_3_v1.tif
+    file_data: images/NAC_M1300119200LE_5118_3_v1.tif
+    product_id: NAC_M1300119200LE_5118_3_v1
     spacecraft_camera: 3
   model: core.image
   pk: 60
@@ -271,7 +271,7 @@
   pk: 61
 - fields:
     file_data: images/NAC_M1300119200RE_5118_3_v1.tif
-    product_id: NAC_M1300119200RE_5118_3_v1.tif
+    product_id: NAC_M1300119200RE_5118_3_v1
     spacecraft_camera: 2
   model: core.image
   pk: 62
@@ -291,7 +291,7 @@
   pk: 63
 - fields:
     file_data: images/NAC_M1293058202LE_5119_1_v1.tif
-    product_id: NAC_M1293058202LE_5119_1_v1.tif
+    product_id: NAC_M1293058202LE_5119_1_v1
     spacecraft_camera: 3
   model: core.image
   pk: 64
@@ -311,7 +311,7 @@
   pk: 65
 - fields:
     file_data: images/NAC_M1114191668LE_5119_2_v1.tif
-    product_id: NAC_M1114191668LE_5119_2_v1.tif
+    product_id: NAC_M1114191668LE_5119_2_v1
     spacecraft_camera: 3
   model: core.image
   pk: 66
@@ -331,7 +331,7 @@
   pk: 67
 - fields:
     file_data: images/NAC_M1300119200LE_5119_3_v1.tif
-    product_id: NAC_M1300119200LE_5119_3_v1.tif
+    product_id: NAC_M1300119200LE_5119_3_v1
     spacecraft_camera: 3
   model: core.image
   pk: 68
