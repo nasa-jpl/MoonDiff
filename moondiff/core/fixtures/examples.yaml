@@ -6,7 +6,7 @@
 
 # Figure 1 from https://doi.org/10.1038/nature19829
 - fields:
-    file_data: images/M1104273380RE_cog.tif
+    file_data: images/M1104273380RE_shifted_cog.tif
     product_id: M1104273380RE
     spacecraft_camera: 2
   model: core.image
@@ -18,7 +18,7 @@
   model: core.image
   pk: 101
 - fields:
-    name: Fig 1 from https://doi.org/10.1038/nature19829
+    name: Speyerer et al (2016) Fig 1
     old_image: 100
     new_image: 101
     pairset: 4
