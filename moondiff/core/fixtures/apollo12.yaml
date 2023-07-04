@@ -1,17 +1,18 @@
 - fields:
-    name: Apollo 12 landing site area
+    name: Alphonsus area
     notes: ''
   model: core.pairset
   pk: 2
 - fields:
     file_data: images/LO_3153_HIGH_RES_1_COSMETIC_cog_c1.tif
-    product_id: 3153_HIGH_RES_1_COSMETIC_c1
+    product_id: 3153_HIGH_RES_1_COSMETIC
     spacecraft_camera: 1
   model: core.image
   pk: 23
 - fields:
-    file_data: images/M1108432631RE_3154_1_cog_crop.tif
-    product_id: M1108432631RE_3154_1_crop
+    cropped: true
+    file_data: images/M1184980308RE_3153_1_cog_crop.tif
+    product_id: M1184980308RE_3153_1
     spacecraft_camera: 2
   model: core.image
   pk: 24
@@ -25,13 +26,14 @@
   pk: 13
 - fields:
     file_data: images/LO_3153_HIGH_RES_2_COSMETIC_cog_c1.tif
-    product_id: 3153_HIGH_RES_2_COSMETIC_c1
+    product_id: 3153_HIGH_RES_2_COSMETIC
     spacecraft_camera: 1
   model: core.image
   pk: 25
 - fields:
-    file_data: images/M1142596053RE_3153_3_cog_crop.tif
-    product_id: M1142596053RE_3153_3_crop
+    cropped: true
+    file_data: images/M1154371500RE_3153_2_cog_crop.tif
+    product_id: M1154371500RE_3153_2
     spacecraft_camera: 2
   model: core.image
   pk: 26
@@ -45,14 +47,15 @@
   pk: 14
 - fields:
     file_data: images/LO_3153_HIGH_RES_3_COSMETIC_cog_c1.tif
-    product_id: 3153_HIGH_RES_3_COSMETIC_c1
+    product_id: 3153_HIGH_RES_3_COSMETIC
     spacecraft_camera: 1
   model: core.image
   pk: 27
 - fields:
-    file_data: images/M1154371500LE_3154_3_cog_crop.tif
-    product_id: M1154371500LE_3154_3_crop
-    spacecraft_camera: 3
+    cropped: true
+    file_data: images/M1142596053RE_3153_3_cog_crop.tif
+    product_id: M1142596053RE_3153_3
+    spacecraft_camera: 2
   model: core.image
   pk: 28
 - fields:
@@ -65,13 +68,14 @@
   pk: 15
 - fields:
     file_data: images/LO_3154_HIGH_RES_1_COSMETIC_cog_c1.tif
-    product_id: 3154_HIGH_RES_1_COSMETIC_c1
+    product_id: 3154_HIGH_RES_1_COSMETIC
     spacecraft_camera: 1
   model: core.image
   pk: 29
 - fields:
-    file_data: images/M1154371500RE_3153_2_cog_crop.tif
-    product_id: M1154371500RE_3153_2_crop
+    cropped: true
+    file_data: images/M1108432631RE_3154_1_cog_crop.tif
+    product_id: M1108432631RE_3154_1
     spacecraft_camera: 2
   model: core.image
   pk: 30
@@ -85,13 +89,14 @@
   pk: 16
 - fields:
     file_data: images/LO_3154_HIGH_RES_2_COSMETIC_cog_c1.tif
-    product_id: 3154_HIGH_RES_2_COSMETIC_c1
+    product_id: 3154_HIGH_RES_2_COSMETIC
     spacecraft_camera: 1
   model: core.image
   pk: 31
 - fields:
+    cropped: true
     file_data: images/M1184980308LE_3154_2_cog_crop.tif
-    product_id: M1184980308LE_3154_2_crop
+    product_id: M1184980308LE_3154_2
     spacecraft_camera: 3
   model: core.image
   pk: 32
@@ -105,20 +110,21 @@
   pk: 17
 - fields:
     file_data: images/LO_3154_HIGH_RES_3_COSMETIC_cog_c1.tif
-    product_id: 3154_HIGH_RES_3_COSMETIC_c1
+    product_id: 3154_HIGH_RES_3_COSMETIC
     spacecraft_camera: 1
   model: core.image
   pk: 33
 - fields:
-    file_data: images/M1184980308RE_3153_1_cog_crop.tif
-    product_id: M1184980308RE_3153_1_crop
-    spacecraft_camera: 2
+    cropped: true
+    file_data: images/M1154371500LE_3154_3_cog_crop.tif
+    product_id: M1154371500LE_3154_3
+    spacecraft_camera: 3
   model: core.image
   pk: 34
 - fields:
     coreg_notes: 'Initial tiepoints: Heather Lethcoe, Tobey Miner. Coregistration:
       Tom Logan 2022-12-12.'
-    new_image: 28
+    new_image: 34
     old_image: 33
     pairset: 2
   model: core.pair
