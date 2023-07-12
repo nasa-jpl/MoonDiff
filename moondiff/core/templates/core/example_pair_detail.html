@@ -42,6 +42,13 @@
     <div id="map-area">
         <div id="left_mapview_container" ></div>
         <div id="right_mapview_container" ></div>
+        {# example pair notes #}
+        <div id="example-notes">
+            <div id="example-notes-title">Change example: {{ object.name }} <div class="collapser">▲</div></div>
+            <p>
+                {{ object.coreg_notes }}
+            </p>
+        </div>
     </div>
 
     <div id="all-image-controls">
@@ -53,7 +60,7 @@
 
     {# examples #}
     <div id="examples">
-        <span id="examples-title">Example list ▼</span>
+        <div id="examples-title">Example list <div class="collapser">▲</div></div>
         <ul>
             {% for example_pair in object.pairset.pair_set.all %}
                 <li>

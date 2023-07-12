@@ -22,6 +22,8 @@
     old_image: 100
     new_image: 101
     pairset: 4
+    coreg_notes: Comparing two Lunar Reconnaissance Orbiter images, from 2012 and 2015, reveals a new impact crater
+      from a meteor that hit the moon between those two images.
   model: core.pair
   pk: 100
 - model: core.annotation
@@ -47,7 +49,11 @@
     old_image: 12
     new_image: 9
     pairset: 4
-    coreg_notes: Tom Logan delivered this coregistration on 2022-11-17
+    coreg_notes: Comparing a 1967 Lunar Orbiter image with a 2021 Lunar Reconnaissance Orbiter image reveals the Apollo 
+      14 landing site. The bright object is the descent stage of the lunar module 
+      Antares. Dark lines are where astronauts Alan Shepard and Edgar Mitchell walked, pulling their Modular Equipment 
+      Transporter -- a two-wheeled cart. At the west end of the paths, the two bright dots are glints from the Apollo
+      Lunar Surface Experiments Package.
 - model: core.annotation
   pk: 101
   fields:

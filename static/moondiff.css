@@ -1,3 +1,7 @@
+p {
+    margin-block-end: 0;
+}
+
 body {
     position: absolute;
     height: 100%;
@@ -247,8 +251,35 @@ legend > h1 {
     display: none;
 }
 
-#detections, #comments, #examples {
+#detections, #comments, #examples, #example-notes {
     background: rgba(0, 0, 0, 0.66);
+}
+
+#example-notes {
+    position: absolute;
+    border: thin white solid;
+    border-top: none;
+    border-radius: 0 0 1em 1em;
+    padding: 1em;
+    max-width: 45em;
+    left: 50%;
+    transform: translate(-50%, 0px);
+}
+
+#example-notes.collapsed p{
+    display: none;
+}
+
+.collapser{
+    float: right;
+}
+
+.collapsed .collapser{
+    transform: rotate(180deg);
+}
+
+#examples-title, #example-notes-title {
+    font-weight: bold;
 }
 
 #version-container {
