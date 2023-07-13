@@ -7,45 +7,47 @@
 {% endblock subtitle %}
 
 {% block call_to_action %}
-    <div id="callToAction">Drag to look around. If you see a difference, click a few times to draw a polygon around it.</div>
+    <div id="callToAction">Drag to look around. If you see a difference, click a few times to draw a polygon around it. <span class="loading"> LOADING...</span></div>
 {% endblock call_to_action %}
 
 {% block head %}
-<link rel="stylesheet" href="https://js.arcgis.com/4.27/esri/themes/light/main.css">
-<link rel="stylesheet" href="{% static 'MicroModal.css'}">
-<script src="https://js.arcgis.com/next/"></script>
+    {% csrf_token %}
+    <link rel="stylesheet" href="https://js.arcgis.com/4.27/esri/themes/light/main.css">
+    <link rel="stylesheet" href="{% static 'MicroModal.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/shepherd.js@10.0.1/dist/js/shepherd.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shepherd.js@10.0.1/dist/css/shepherd.css"/>
+    <script src="https://js.arcgis.com/4.27/"></script>
 {% endblock head %}
 
 
 {% block page_tools %}
     <fieldset id="page-tools">
-    <legend>Review detection {{ annotations.0.pk }}</legend>
-    
-    <form>
-    <label class="controls" for="comparer-mode">Comparer:</label>
-    <select id="comparer-mode" class="controls">
-        <option value="sideBySide">Side-by-side</option>
-        <option value="blinkFade">Blink / fade</option>
-    </select>
-    <label class="blinkfade controls" for="fader">Crossfade:</label>
-    <input class="blinkfade controls" type="range" id="fader" name="fader" min="0" max="1" step="0.05" />
-    <label class="blinkfade controls" for="blink-toggle">Blink:</label>
-    <input class="blinkfade controls" type="checkbox" id="blink-toggle" name="blink-toggle" value="false" checked/>
-    <label class="blinkfade controls" for="blink-speed-slider">Blink speed:</label>
-    <input class="blinkfade controls" type="range" id="blink-speed-slider" name="blink-speed-slider" min="0" max="5" step="0.5" />
-    </form>
-    <form id="review-form" method="post">
-        {% render_form review_serializer %}
-        <button id="skip-button">Skip</button>
-        <button id="submit">Submit</button>
-        <input type="hidden" name="annotation_id" value="{{ annotations.0.pk }}">
-        {% csrf_token %}
-    </form>
+        <legend>Review detection {{ annotations.0.pk }}</legend>
+
+        <form>
+            <label class="controls" for="comparer-mode">Comparer:</label>
+            <select id="comparer-mode" class="controls">
+                <option value="sideBySide">Side-by-side</option>
+                <option value="blinkFade">Blink / fade</option>
+            </select>
+            <label class="blinkfade controls" for="fader">Crossfade:</label>
+            <input class="blinkfade controls" type="range" id="fader" name="fader" min="0" max="1" step="0.05" />
+            <label class="blinkfade controls" for="blink-toggle">Blink:</label>
+            <input class="blinkfade controls" type="checkbox" id="blink-toggle" name="blink-toggle" value="false" checked/>
+            <label class="blinkfade controls" for="blink-speed-slider">Blink speed:</label>
+            <input class="blinkfade controls" type="range" id="blink-speed-slider" name="blink-speed-slider" min="0" max="5" step="0.5" />
+        </form>
+        <form id="review-form" method="post">
+            {% render_form review_serializer %}
+            <button id="skip-button">Skip</button>
+            <button id="submit">Submit</button>
+            <input type="hidden" name="annotation_id" value="{{ annotations.0.pk }}">
+            {% csrf_token %}
+        </form>
     </fieldset>
 {% endblock page_tools %}
 
 {% block content %}
-    <span class="loading">LOADING</span>
     <div id="map-area">
         <div id="left_mapview_container" ></div>
         <div id="right_mapview_container" ></div>
@@ -55,10 +57,13 @@
         {% include "core/brightness_contrast.html" with image=pair.old_image side="left" only %}
         {% include "core/brightness_contrast.html" with image=pair.new_image side="right" only %}
     </div>
-    <script src="{% static 'brightness_contrast.js'}"></script>
+
+    {% include "core/image_info_modal.html" %}
+
+    <script src="{% static 'brightness_contrast.js' %}"></script>
     {{ annotations|json_script:"polylines" }}
 
-    <script src="{% static 'maps.js'}"
+    <script src="{% static 'maps.js' %}"
             defer
             data-next-url = "{% url 'select-pair-to-compare' %}"
             data-annotation-post-url = "{% url 'annotation-list' %}"
@@ -67,5 +72,6 @@
             data-new-image-url="{{ pair.new_image.file_data.url }}"
             data-new-image-label="{{ pair.new_image }}"
     ></script>
+    <script src="{% static 'img_info.js' %}" defer></script>
 {% endblock content %}
 
