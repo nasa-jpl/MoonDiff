@@ -101,6 +101,11 @@ fieldset {
     max-width: 100%;
 }
 
+#nasa-logo {
+    position: relative;
+    height: 100%;
+}
+
 #about-this-page {
     grid-area: topmid;
 }

@@ -21,8 +21,11 @@
 
 <div class="foreground">
     <div id="logo">
+        <a href="https://www.nasa.gov">
+            <img id="nasa-logo" src="{% static 'nasa_logo.svg'%}" alt="NASA logo">
+        </a>
         <a href="{% url 'frontpage' %}">
-            <img src="{% static 'logo_light.png'%}" alt="MoonDiff logo">
+            <img id="moondiff-logo" src="{% static 'logo_light.png'%}" alt="MoonDiff logo">
         </a>
         <span id="version-container">
         <span id="version">v0.4 beta</span>
