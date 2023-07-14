@@ -1,0 +1,25 @@
+# Figure 1 from https://doi.org/10.1038/nature19829
+- fields:
+    file_data: images/M1104273380RE_shifted_cog.tif
+    product_id: M1104273380RE
+    spacecraft_camera: 2
+  model: core.image
+  pk: 69
+- fields:
+    file_data: images/M1180855200RE_cog.tif
+    product_id: M1180855200RE
+    spacecraft_camera: 3
+  model: core.image
+  pk: 70
+- fields:
+    old_image: 69
+    new_image: 70
+    pairset: 5
+    coreg_notes: Coregistered (affine transformation) by Aaron Curtis using isis coreg, July 2023
+  model: core.pair
+  pk: 36
+- fields:
+    name: nac-nac pairs
+    notes: ''
+  model: core.pairset
+  pk: 5
