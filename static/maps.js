@@ -192,6 +192,8 @@ const setup = (comparerMode) => {
           1 - e.target.value;
         document.querySelector(".active-image-indicator.right").style.opacity =
           e.target.value;
+        newImageLayer.refresh();
+        oldImageLayer.refresh();
       });
       let blinkSpeed = 1;
       let blinkHandle = null;
