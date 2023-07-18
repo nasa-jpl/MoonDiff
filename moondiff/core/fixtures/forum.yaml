@@ -1,0 +1,179 @@
+- model: forum.forum
+  pk: 1
+  fields:
+    created: 2023-07-04 23:04:00.313812+00:00
+    updated: 2023-07-12 00:35:38.026820+00:00
+    parent: null
+    name: MoonDiff Beta Forum
+    slug: moondiff-beta-forum
+    description: A place to discuss experiences beta testing MoonDiff
+    image: ''
+    link: null
+    link_redirects: false
+    type: 0
+    direct_posts_count: 1
+    direct_topics_count: 1
+    link_redirects_count: 0
+    display_sub_forum_list: true
+    _description_rendered: <p>A place to discuss experiences beta testing MoonDiff</p>
+    lft: 1
+    rght: 2
+    tree_id: 1
+    level: 0
+- model: forum_permission.forumpermission
+  pk: 1
+  fields:
+    codename: can_see_forum
+- model: forum_permission.forumpermission
+  pk: 2
+  fields:
+    codename: can_read_forum
+- model: forum_permission.forumpermission
+  pk: 3
+  fields:
+    codename: can_start_new_topics
+- model: forum_permission.forumpermission
+  pk: 4
+  fields:
+    codename: can_reply_to_topics
+- model: forum_permission.forumpermission
+  pk: 5
+  fields:
+    codename: can_post_announcements
+- model: forum_permission.forumpermission
+  pk: 6
+  fields:
+    codename: can_post_stickies
+- model: forum_permission.forumpermission
+  pk: 7
+  fields:
+    codename: can_delete_own_posts
+- model: forum_permission.forumpermission
+  pk: 8
+  fields:
+    codename: can_edit_own_posts
+- model: forum_permission.forumpermission
+  pk: 9
+  fields:
+    codename: can_post_without_approval
+- model: forum_permission.forumpermission
+  pk: 10
+  fields:
+    codename: can_create_polls
+- model: forum_permission.forumpermission
+  pk: 11
+  fields:
+    codename: can_vote_in_polls
+- model: forum_permission.forumpermission
+  pk: 12
+  fields:
+    codename: can_attach_file
+- model: forum_permission.forumpermission
+  pk: 13
+  fields:
+    codename: can_download_file
+- model: forum_permission.forumpermission
+  pk: 14
+  fields:
+    codename: can_lock_topics
+- model: forum_permission.forumpermission
+  pk: 15
+  fields:
+    codename: can_move_topics
+- model: forum_permission.forumpermission
+  pk: 16
+  fields:
+    codename: can_edit_posts
+- model: forum_permission.forumpermission
+  pk: 17
+  fields:
+    codename: can_delete_posts
+- model: forum_permission.forumpermission
+  pk: 18
+  fields:
+    codename: can_approve_posts
+- model: forum_permission.forumpermission
+  pk: 19
+  fields:
+    codename: can_reply_to_locked_topics
+- model: forum_permission.userforumpermission
+  pk: 1
+  fields:
+    permission: 2
+    has_perm: true
+    forum: null
+    user: null
+    anonymous_user: false
+    authenticated_user: true
+- model: forum_permission.userforumpermission
+  pk: 2
+  fields:
+    permission: 1
+    has_perm: true
+    forum: null
+    user: null
+    anonymous_user: false
+    authenticated_user: true
+- model: forum_permission.userforumpermission
+  pk: 3
+  fields:
+    permission: 7
+    has_perm: true
+    forum: null
+    user: null
+    anonymous_user: false
+    authenticated_user: true
+- model: forum_permission.userforumpermission
+  pk: 4
+  fields:
+    permission: 8
+    has_perm: true
+    forum: null
+    user: null
+    anonymous_user: false
+    authenticated_user: true
+- model: forum_permission.userforumpermission
+  pk: 5
+  fields:
+    permission: 9
+    has_perm: true
+    forum: null
+    user: null
+    anonymous_user: false
+    authenticated_user: true
+- model: forum_permission.userforumpermission
+  pk: 6
+  fields:
+    permission: 4
+    has_perm: true
+    forum: null
+    user: null
+    anonymous_user: false
+    authenticated_user: true
+- model: forum_permission.userforumpermission
+  pk: 7
+  fields:
+    permission: 3
+    has_perm: true
+    forum: null
+    user: null
+    anonymous_user: false
+    authenticated_user: true
+- model: forum_permission.userforumpermission
+  pk: 8
+  fields:
+    permission: 2
+    has_perm: true
+    forum: 1
+    user: null
+    anonymous_user: true
+    authenticated_user: false
+- model: forum_permission.userforumpermission
+  pk: 9
+  fields:
+    permission: 1
+    has_perm: true
+    forum: 1
+    user: null
+    anonymous_user: true
+    authenticated_user: false
