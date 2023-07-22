@@ -45,7 +45,7 @@
                 <a href="{% url 'account_logout' %}">sign out</a>
                 <div id="score">
                     <img id="points-icon" class="icon" src="{% static 'icons/trophy.svg'%}" alt="trophy icon">
-                    0000 points
+                    {{ user.score_zeropadded }}
                 </div>
             {% else %}
                 <a href="{% url 'account_login' %}">sign in</a> | 

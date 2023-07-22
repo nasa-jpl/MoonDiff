@@ -10,9 +10,18 @@ class MoonDiffUser(AbstractUser):
 
     @property
     def avg_visit_duration(self):
-        visit_durations = [visit.duration for visit in self.visit_set.all()]
+        """
+        Compute the average time this user spends looking at an image pair.
+        Caps the maximum time a user can spend in one session with one image at 10 minutes.
+        :return:
+        """
+        visit_durations = [
+            min(visit.duration, 600)
+            for visit
+            in self.visit_set.all()
+        ]
         if len(visit_durations) > 0:
-            return sum(visit_durations, datetime.timedelta()).total_seconds() / len(visit_durations)
+            return sum((visit_durations, datetime.timedelta()).total_seconds() / len(visit_durations))
         else:
             return 0
 
@@ -24,6 +33,22 @@ class MoonDiffUser(AbstractUser):
     @property
     def annotations_by_user_unreviewed_count(self):
         return self.annotation_set.count() - self.annotations_by_user_reviewed.count()
+
+    @property
+    def score(self):
+        # 1 point for every 20 seconds looking at pairs
+        pts_for_looking = self.visit_set.count() * self.avg_visit_duration / 20
+        # 10 points for every reported detection
+        pts_for_reporting_changes = self.annotation_set.count() * 10
+        # 250 points for every confirmed detection
+        pts_for_discoveries = AnnotationReview.objects.filter(
+            annotation__created_by=self,
+            valid_discovery=True).count()
+        return sum((pts_for_looking, pts_for_reporting_changes, pts_for_discoveries))
+
+    @property
+    def score_zeropadded(self):
+        return f"{self.score:>05.0f}"
 
 def get_random(queryset):
     # Return a random pair
