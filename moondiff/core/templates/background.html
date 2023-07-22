@@ -4,6 +4,8 @@
     <span>guidelines</span>
 {% endblock %}
 {% block content %}
+    <link rel="stylesheet" href="{% static 'carousel.css'%}">
+    <script src="{% static 'carousel.js'%}" defer></script>
     <div id="background" class="centered">
     <fieldset>
         <span class="aside">Want to skip the wall of text? Try our <a id="intro-link" href="{% static 'moondiff_intro.webm'%}">intro video</a>.</span>
@@ -18,7 +20,7 @@
         </ul>
         <p>One way to keep track of changes on the moon is to compare images collected by the various cameras that have orbited the Moon since the first orbiter arrived in 1966. (Another way is to <a href="https://britastro.org/section_information_/lunar-section-overview/lunar-section-observation-activities/lunar-geological-change-detection/observing-lunar-impact-flashes" target="_blank" rel="noopener">watch, from Earth, for flashes,</a> an approach with obvious limitations). From 2009 until today (February 2023), the Lunar Reconnaissance Orbiter (LRO) has continuously delivered amazing imagery, with resolution as high as half a meter ground sampling distance. To create before-and-after imagery spanning many years, the LRO team has been able to automatically compare certain images taken with similar lighting from similar perspectives, and <a href="https://doi.org/10.1038/nature19829" target="_blank" rel="noopener">found 222 impact craters</a> that appeared during the 14 years that LRO has flown.</p>
         <p>We can look back in time much further than 2009, but it&rsquo;ll take some elbow grease, and that&rsquo;s where MoonDiff comes in. We have images covering 99% of the moon from the five 1966-1967 Lunar Orbiter (LO, not to be confused with LRO) missions. LO photographed selected areas in high resolution; as high as 2m ground sampling distance. A far cry from LRO&rsquo;s digital cameras, the LO cameras exposed film, developed it onboard, and then used an analog scanner to read it and transmit it back to Earth, where the radio signals were recorded on analog magnetic tape. Starting in 2008, a coalition of volunteer enthusiasts and private companies called the Lunar Orbiter Image Recovery Project (LOIRP) worked with NASA to digitize the images, rescuing them from their degrading magnetic tapes.</p>
-        <p>The LRO team was able to use algorithms to automatically compare their before-and-after images, but that won&rsquo;t work with LO images. The LRO-LRO pairs share geometry and lighting, and benefit from 2009-era camera and avionics technology. Even given all that, they still had humans go through the automatic detections to remove false positives and classify the detected changes.</p>
+        <p>The LRO team was able t use algorithms to automatically compare their before-and-after images, but that won&rsquo;t work with LO images. The LRO-LRO pairs share geometry and lighting, and benefit from 2009-era camera and avionics technology. Even given all that, they still had humans go through the automatic detections to remove false positives and classify the detected changes.</p>
         <p>So, we need brains 🧟. MoonDiff seeks to compare the 60s-era LO images to recent LRO images. This means comparing images that are taken from different angles, and in different lighting. Additionally, they have relatively poor spatial control. Doing change detection between image pairs like that is beyond the capabilities of today&rsquo;s cleverest software. So, MoonDiff wields the best available tool for the job: the human brain&rsquo;s vision system.</p>
         <h1>Image preparation</h1>
         <p>The MoonDiff team of scientists and programmers has to do quite a bit of prep work on the image pairs before they&rsquo;re ready for the community of MoonDiffers to do the comparison work. To begin with, we focused on the areas where the highest-resolution Lunar Orbiter data is available, shown in red here:</p>
@@ -49,6 +51,78 @@
         <h1>Source code, issue tracker, and forum</h1>
         <p>The MoonDiff web app is developed in the open <a href="https://github.com/nasa-jpl/moondiff">here. </a>You can get involved by <a href="https://github.com/nasa-jpl/MoonDiff/issues/new">submitting an issue</a> with a bug report or feature request. If you'd like to implement a feature or fix a bug yourself, please submit a pull request.</p>
         <p>We also have a <a href="https://trek.nasa.gov/moondiff/forum/">community forum</a> for discussing MoonDiff and related topics. Additionally, you can submit comments on any image pair from within the MoonDiff comparer.</p>
+        <h1>MoonDiff committee</h1>
+        These are the people who manage and develop MoonDiff:
+        <section class="slider-wrapper">
+            <button class="slide-arrow" id="slide-arrow-prev">
+                &#8249;
+            </button>
+            <button class="slide-arrow" id="slide-arrow-next">
+                &#8250;
+            </button>
+            <ul class="slides-container" id="slides-container">
+                <li class="slide">
+                    <h2>Shan Malhotra</h2>
+                    <img class="mug" src={% static 'mugs/shan.jpg' %}/>
+                    <div>Shan manages the computing infrastructure that powers MoonDiff. At JPL, he keeps the Deep Space
+                        Network running ..</div>
+                </li>
+                <li class="slide">
+                    <h2>Heather Lethcoe</h2>
+                    <img class="mug" src={% static 'mugs/heather.jpg' %}/>
+                    <div>I work at JPL as a data engineer and GIS analyst. Throughout the years I have learned image
+                        coregistration techniques that I have applied to many different datasets for several of the
+                        bodies in our solar system. With this experience I was able to help out on the MoonDiff team to
+                        coregister the older Lunar Orbiter images and the newer Lunar Reconnaissance Orbiter to each
+                        other. This way we can compare any differences we might observe between the two sets of
+                        imagery.</div>
+                </li>
+                <li class="slide">
+                    <h2>Emily Law</h2>
+                    <img class="mug" src={% static 'mugs/emily.jpg' %}/>
+                    <div>Emily serves as the Solar System Treks Project (SSTP) manager and a key staff of the Chief Data
+                        and Analytics Office at JPL. SSTP offers a suite of web-based Trek portals enabling users to
+                        explore a growing number of planetary bodies. One of the notable Trek portals is Moon Trek which
+                        serves as the parent project of MoonDiff.</div>
+                </li>
+                <li class="slide">
+                    <h2>Jim Green</h2>
+                    <img class="mug" src={% static 'mugs/jim.jpg' %}/>
+                    <div>Jim Green has worked at NASA for 42 years before retiring in December 2022. He received his Ph.D.
+                        in Physics from the University of Iowa in 1979 and worked at Marshall Space Flight Center,
+                        Goddard Space Flight Center, and NASA Headquarters. During Jim’s long career at NASA, he has
+                        been NASA’s Chief Scientist and was the longest serving director of the Planetary Science
+                        Division with the overall programmatic responsibility for the New Horizons spacecraft flyby of
+                        Pluto, the Juno spacecraft to Jupiter, and the landing of the Curiosity rover on Mars, just to
+                        name a few. Jim has received the NASA Exceptional Achievement Medal for the New Horizons flyby
+                        of the Pluto system and NASA’s highest honor, the Distinguish Service Medal. He has written over
+                        125 scientific articles in refereed journals and over 80 technical and popular articles. In
+                        2015, Jim coordinated NASA’s involvement with the film The Martian. In 2017 Asteroid 25913 was
+                        renamed Jamesgreen in his honor.</div>
+                </li>
+                <li class="slide">
+                    <h2>Dave Williams</h2>
+                </li>
+                <li class="slide">
+                    <h2>Noah Petro</h2>
+                </li>
+                <li class="slide">
+                    <h2>Dave Draper</h2>
+                </li>
+                <li class="slide">
+                    <h2>Tom Logan</h2>
+                </li>
+                <li class="slide">
+                    <h2>Aaron Curtis</h2>
+                    <img class="mug" src={% static 'mugs/aaron.jpg' %}/>
+                    <div>Aaron leads MoonDiff and does most of the web app development. He completed a PhD studying the
+                        geochemistry and
+                    geophysics of ice caves on Mt Erebus,
+                    joined JPL to build the world's first ice climbing robot, and now operates the Curiosity rover and Ingenuity
+                    helicopter. He's also fascinated by lunar imagery and geology.</div>
+                </li>
+            </ul>
+        </section>
         <h1>Citizen science</h1>
         <p>MoonDiff is made possible by <a href="https://nspires.nasaprs.com/external/solicitations/summary!init.do?solId=A08B277F1BFE46633E6FC178EBA87C8C&amp;stack=redirect" target="_blank" rel="noopener">NASA&rsquo;s Citizen Science Seed Funding Program</a> (proposal 21-CSSFP21-0016).</p>
         <p>NASA funds tons of other great citizen science projects. <a href="https://science.nasa.gov/citizenscience">Check them out here.</a></p>
