@@ -16,12 +16,13 @@ class MoonDiffUser(AbstractUser):
         :return:
         """
         visit_durations = [
-            min(visit.duration, 600)
+            min(visit.duration.seconds, 600)
             for visit
             in self.visit_set.all()
+            if visit.duration.seconds > 0
         ]
         if len(visit_durations) > 0:
-            return sum((visit_durations, datetime.timedelta()).total_seconds() / len(visit_durations))
+            return sum(visit_durations) / len(visit_durations)
         else:
             return 0
 
