@@ -2,13 +2,26 @@ const slidesContainer = document.getElementById("slides-container");
 const slide = document.querySelector(".slide");
 const prevButton = document.getElementById("slide-arrow-prev");
 const nextButton = document.getElementById("slide-arrow-next");
+const slideWidth = slide.clientWidth;
 
-nextButton.addEventListener("click", () => {
-    const slideWidth = slide.clientWidth;
-    slidesContainer.scrollLeft += slideWidth;
-});
+const goForwards = ()=>{
+    if (slidesContainer.scrollLeft < slidesContainer.clientWidth + 100){
+        slidesContainer.scrollLeft += slideWidth;
+    } else {
+        slidesContainer.scrollLeft = 0;
+    }
+}
 
-prevButton.addEventListener("click", () => {
-    const slideWidth = slide.clientWidth;
-    slidesContainer.scrollLeft -= slideWidth;
-});
+const goBackwards = ()=>{
+    if (slidesContainer.scrollLeft > 0){
+        slidesContainer.scrollLeft -= slideWidth;
+    } else {
+        slidesContainer.scrollLeft = slidesContainer.scrollWidth - slideWidth;
+    }
+}
+
+nextButton.addEventListener("click",goForwards);
+
+prevButton.addEventListener("click", goBackwards);
+
+setInterval(goForwards, 10000);
