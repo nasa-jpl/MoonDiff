@@ -158,7 +158,9 @@ const setup = (comparerMode) => {
       for (const view of views) {
         view.when(() => {
           view.goTo({ target: polylineGraphics }, { animate: false }).then(
-              ()=>{view.zoom = view.zoom - 2}
+              ()=>{if (polylineGraphics.length > 0){
+                view.zoom = view.zoom - 2
+              }}
           )
         });
         view.watch(["interacting", "animation"], () => {
@@ -185,7 +187,9 @@ const setup = (comparerMode) => {
       mainview.when(() => {
         // when ready, zoom to the extent of the polygons and then out a bit for context
         mainview.goTo({target: polylineGraphics}, {animate: false}).then(
-            ()=>{mainview.zoom = mainview.zoom - 2}
+            ()=>{if (polylineGraphics.length > 0){
+              mainview.zoom = mainview.zoom - 2
+            }}
         )
       })
       mainview.map.layers.add(annotationLayer); // re-add the annotation layer because otherwise it's underneath
