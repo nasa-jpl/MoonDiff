@@ -5,7 +5,7 @@ const nextButton = document.getElementById("slide-arrow-next");
 const slideWidth = slide.clientWidth;
 
 const goForwards = ()=>{
-    if (slidesContainer.scrollLeft < slidesContainer.clientWidth + 100){
+    if (slidesContainer.scrollLeft < slidesContainer.scrollWidth - slideWidth - 50){
         slidesContainer.scrollLeft += slideWidth;
     } else {
         slidesContainer.scrollLeft = 0;
