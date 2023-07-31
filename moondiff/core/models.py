@@ -91,19 +91,19 @@ class PairSet(models.Model):
 
 class PairManager(models.Manager):
     def unvisited_by_user(self, user):
-        return self.get_queryset().difference(self.visited_by_user(user=user))
+        return self.get_queryset().exclude(pairset__name='examples').difference(self.visited_by_user(user=user))
 
     def visited_by_user(self, user):
-        return self.get_queryset().filter(visit__user=user).distinct()
+        return self.get_queryset().exclude(pairset__name='examples').filter(visit__user=user).distinct()
 
     def compared_by_user(self, user):
         # Returns the pairs that this user clicked "Done" on
-        return self.get_queryset().filter(visit__user=user,
+        return self.get_queryset().exclude(pairset__name='examples').filter(visit__user=user,
                                           visit__finished=True).distinct()
 
     def not_compared_by_user(self, user):
         # Returns the pairs that this user clicked "Done" on
-        return self.get_queryset().difference(self.compared_by_user(user=user))
+        return self.get_queryset().exclude(pairset__name='examples').difference(self.compared_by_user(user=user))
 
 
 class Pair(models.Model):
