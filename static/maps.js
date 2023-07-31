@@ -198,9 +198,14 @@ const setup = (comparerMode) => {
         oldImageLayer.opacity = 1 - e.target.value;
         newImageLayer.opacity = e.target.value;
         document.querySelector(".active-image-indicator.left").style.opacity =
-          1 - e.target.value;
+            oldImageLayer.opacity;
         document.querySelector(".active-image-indicator.right").style.opacity =
-          e.target.value;
+            newImageLayer.opacity;
+        document.querySelector('#left-image-controls').style.boxShadow =
+            `0 0 10px 10px rgba(255,255,255,${oldImageLayer.opacity})`
+        document.querySelector('#right-image-controls').style.boxShadow =
+            `0 0 10px 10px rgba(255,255,255,${newImageLayer.opacity})`
+
         newImageLayer.refresh();
         oldImageLayer.refresh();
       });
