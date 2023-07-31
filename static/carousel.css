@@ -23,6 +23,10 @@
     flex: 1 0 100%;
 }
 
+img.mug {
+    width: 250px;
+}
+
 .slide-arrow {
     position: absolute;
     display: flex;
