@@ -73,3 +73,52 @@
     pair: 101
     created_at: 2022-11-18
     classification: HW
+
+# anti-examples / red herrings
+- fields:
+    name: antiexamples
+    notes: ''
+  model: core.pairset
+  pk: 5
+
+# Unknown image processing artefact
+- model: core.pair
+  pk: 102
+  fields:
+    pairset: 5
+    name: Film developing fault
+    old_image: 53
+    new_image: 54
+    coreg_notes: Blemishes such as this are caused by minor mishaps during the chemical development of film aboard the Lunar Orbiter, before it was scanned and transmitted back to Earth, where it was recorded on analog magnetic tape.
+- model: core.annotation
+  pk: 102
+  fields:
+    created_by: 1
+    shape: POLYGON ((-1.290323963392706 -3.789662039442196, -1.288735254820807 -3.77796402595967, -1.281284764205253 
+      -3.759596736112866, -1.272409914093936 -3.751123599018185, -1.269013365684545 -3.751670254617485, 
+      -1.27542297965383 -3.758066109466399, -1.281394328584165 -3.768343112147677, -1.289063952973078 
+      -3.790372657899579, -1.290433529025502 -3.792723173648137, -1.290323963392706 -3.789662039442196))
+    pair: 102
+    created_at: 2023-07-31
+    classification: SPLOTCH
+
+# Reseau mark
+- model: core.pair
+  pk: 103
+  fields:
+    pairset: 5
+    name: Reseau mark
+    old_image: 29
+    new_image: 30
+    coreg_notes: These crosses were pre-exposed on the film before it was loaded onto the cameras. They were intended to
+       be used to correct the image for distortion. Unfortunately, this means the camera didn't record any light from 
+       the lunar surface at those locations. If we were to remove the reseau crosses from the images, we wouldn't know 
+       what to put in their place.
+- model: core.annotation
+  pk: 103
+  fields:
+    created_by: 1
+    shape: POLYGON ((-6.395642188768083 -0.8627887945842251, -6.395623709123512 -0.8627960096380581, -6.395601181546057 -0.8627747164566926, -6.395574430082068 -0.862788266654242, -6.395583757881177 -0.862811495573421,  -6.395562462301509 -0.8628308530167025, -6.39557777400701 -0.862850034461746, -6.395589037779625  -0.8628401797742483, -6.395613853302334 -0.8628736153446027, -6.395644124741589 -0.8628565456195727, -6.395630572991496 -0.862829621174719, -6.395660844414639 -0.8628125514333804, -6.395642188768083 -0.8627887945842251))
+    pair: 103
+    created_at: 2023-07-31
+    classification: SPLOTCH

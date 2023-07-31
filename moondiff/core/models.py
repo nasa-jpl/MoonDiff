@@ -91,19 +91,19 @@ class PairSet(models.Model):
 
 class PairManager(models.Manager):
     def unvisited_by_user(self, user):
-        return self.get_queryset().exclude(pairset__name='examples').difference(self.visited_by_user(user=user))
+        return self.get_queryset().exclude(pairset__name_in=['examples', 'antiexamples']).difference(self.visited_by_user(user=user))
 
     def visited_by_user(self, user):
-        return self.get_queryset().exclude(pairset__name='examples').filter(visit__user=user).distinct()
+        return self.get_queryset().exclude(pairset__name_in=['examples', 'antiexamples']).filter(visit__user=user).distinct()
 
     def compared_by_user(self, user):
         # Returns the pairs that this user clicked "Done" on
-        return self.get_queryset().exclude(pairset__name='examples').filter(visit__user=user,
+        return self.get_queryset().exclude(pairset__name_in=['examples', 'antiexamples']).filter(visit__user=user,
                                           visit__finished=True).distinct()
 
     def not_compared_by_user(self, user):
         # Returns the pairs that this user clicked "Done" on
-        return self.get_queryset().exclude(pairset__name='examples').difference(self.compared_by_user(user=user))
+        return self.get_queryset().exclude(pairset__name_in=['examples', 'antiexamples']).difference(self.compared_by_user(user=user))
 
 
 class Pair(models.Model):
@@ -134,14 +134,14 @@ class Pair(models.Model):
             return None
 
     def get_absolute_url(self):
-        if self.pairset.name == 'examples':
+        if self.pairset.name in ['examples', 'antiexamples']:
             return reverse('example', kwargs={'pk': self.pk})
         else:
             return reverse('pair-detail', kwargs={'pk': self.pk})
 
     @property
     def example_annotations(self):
-        if self.pairset.name == 'examples':
+        if self.pairset.name in ['examples','antiexamples']:
             # All example pair annotations should be made by user 1, the admin
             annots = [
                 annot.shape.coords for annot in

@@ -46,12 +46,20 @@ class PairDetailView(DetailView):
 class SelectExamplePairView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         pair = get_random(
-            Pair.objects.filter(pairset__name='examples'))
+            Pair.objects.filter(pairset__name__in=['examples', 'antiexamples'])
+        )
         return pair.get_absolute_url()
 
 class ExamplePairView(DetailView):
-    queryset = Pair.objects.filter(pairset__name='examples')
+    queryset = Pair.objects.filter(pairset__name__in=['examples', 'antiexamples'])
     template_name = "core/example_pair_detail.html"
+
+    def get_context_data(self, **kwargs):
+        orig_context = super().get_context_data(**kwargs)
+        print(orig_context)
+        orig_context['antiexamples'] = Pair.objects.filter(pairset__name='antiexamples')
+        orig_context['examples'] = Pair.objects.filter(pairset__name='examples')
+        return orig_context
 
 @method_decorator(login_required, name='dispatch')
 class PairSetsView(ListView):

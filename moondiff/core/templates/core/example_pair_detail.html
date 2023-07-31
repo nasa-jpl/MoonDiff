@@ -61,13 +61,24 @@
     {# examples #}
     <div id="examples">
         <div id="examples-title">Example list <div class="collapser">▲</div></div>
+        <h4>Lunar surface changes</h4>
         <ul>
-            {% for example_pair in object.pairset.pair_set.all %}
+            {% for example_pair in examples.all %}
                 <li>
                 <a href="{{ example_pair.get_absolute_url }}">{{ example_pair }}</a>
                 </li>
                 {% empty %}
                 No examples in the database.
+            {% endfor %}
+        </ul>
+        <h4>Tricky non-changes</h4>
+        <ul>
+            {% for example_pair in antiexamples.all %}
+                <li>
+                    <a href="{{ example_pair.get_absolute_url }}">{{ example_pair }}</a>
+                </li>
+                {% empty %}
+                No antiexamples in the database.
             {% endfor %}
         </ul>
     </div>
