@@ -179,6 +179,10 @@ a {
     opacity: 0;
 }
 
+.active-image-indicator p{
+    margin-top: 5px;
+}
+
 button.reset {
     grid-column: 2;
 }
