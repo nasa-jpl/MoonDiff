@@ -24,7 +24,7 @@
         <p>So, we need brains 🧟. MoonDiff seeks to compare the 60s-era LO images to recent LRO images. This means comparing images that are taken from different angles, and in different lighting. Additionally, they have relatively poor spatial control. Doing change detection between image pairs like that is beyond the capabilities of today&rsquo;s cleverest software. So, MoonDiff wields the best available tool for the job: the human brain&rsquo;s vision system.</p>
         <h1>Image preparation</h1>
         <p>The MoonDiff team of scientists and programmers has to do quite a bit of prep work on the image pairs before they&rsquo;re ready for the community of MoonDiffers to do the comparison work. To begin with, we focused on the areas where the highest-resolution Lunar Orbiter data is available, shown in red here:</p>
-        <img src="{% static 'lo_highres_ftpts.jpg' %}">
+        <img src="{% static 'lo_highres_ftpts.jpg' %}" alt="Footprints of the high-resolution Lunar Orbiter Images shown on top of a global mosaic of the moon.">
         <p>We&rsquo;ve been preparing images from these clusters of high-res LO images one cluster at a time. Although we&rsquo;ve been iterating on these methods, here&rsquo;s how it worked for our initial image set (34 pairs), which we&rsquo;re calling MoonDiffImgSet1:</p>
         <ol>
             <li><strong>Select pairs.</strong> We choose one cluster of the high-resolution LO images to work on at a time (between 9 and 16 LO images). Using <a href="https://ode.rsl.wustl.edu/moon/datafile/derived_products/coverageshapefiles/moon/" target="_blank" rel="noopener">image footprints and metadata from the Orbital Data Explorer</a> and some python code (not yet in the <a href="https://github.com/nasa-jpl/moondiff" target="_blank" rel="noopener">MoonDiff repository</a> but will be soon), we find all of the LRO Narrow Angle Camera images that overlap the LO images. We then rank them using a &ldquo;goodness metric&rdquo; we created, which combines three factors:</li>
@@ -35,7 +35,7 @@
             </ol>
         </ol>
         <p>Finally, one of us manually chooses a set of LRO-LO pairs from that list which covers the LO cluster area at least once over. For each pair, we produce a finder plot like the below:</p>
-        <img src="{% static 'ftpt_pair.png' %}">
+        <img src="{% static 'ftpt_pair.png' %}" alt="A diagram of Lunar Orbiter footprints and corresponding Lunar Reconnaissance Orbiter footprints, showing overlap.">
         <p>This image shows a cluster of LO 24&rdquo; camera image footprints in light red, with LRO NAC image footprints in light blue. The particular pair in question (LO image 5117_HIGH_RES_2 with LRO NAC image M1114191668LE) is shown in bolded red and blue.</p>
         <ol>
             <li><strong>Retrieve and project raw images.</strong> Once we know which pairs we want to work with, we download Engineering Data Record (EDR) image files from the <a href="http://pds-geosciences.wustl.edu/geocopy/imaging/lunar_orbiter/" target="_blank" rel="noopener">Planetary Data System Geosciences Node</a> in for LO and from the <a href="https://pds.lroc.asu.edu/data/" target="_blank" rel="noopener">LROC PDS archive</a> for LO and use <a href="https://isis.astrogeology.usgs.gov/7.0.0/index.html" target="_blank" rel="noopener">USGS ISIS</a> to turn them into map-projected geospatial images. We project everything to IAU2000:30110 with 1m pixel spacing. LRO images are projected onto a lunar elevation model based on stereo reconstructions from the LRO Wide Angle Camera. Due to position uncertainty, we do not use an elevation model for LO images; for that projection we model the moon as a sphere.</li>
@@ -64,7 +64,7 @@
 
                 <li class="slide">
                     <h2>Heather Lethcoe</h2>
-                    <img class="mug" src={% static 'mugs/heather.jpg' %} />
+                    <img class="mug" src={% static 'mugs/heather.jpg' %} alt="Portrait photo of Heather Lethcoe" />
                     <div>I work at JPL as a data engineer and GIS analyst. Throughout the years I have learned image
                         coregistration techniques that I have applied to many different datasets for several of the
                         bodies in our solar system. With this experience I was able to help out on the MoonDiff team to
@@ -74,7 +74,7 @@
                 </li>
                 <li class="slide">
                     <h2>Emily Law</h2>
-                    <img class="mug" src={% static 'mugs/emily.jpg' %} />
+                    <img class="mug" src={% static 'mugs/emily.jpg' %} alt="Portrait photo of Emily Law" />
                     <div>Emily serves as the Solar System Treks Project (SSTP) manager and a key staff of the Chief Data
                         and Analytics Office at JPL. SSTP offers a suite of web-based Trek portals enabling users to
                         explore a growing number of planetary bodies. One of the notable Trek portals is Moon Trek which
@@ -82,7 +82,7 @@
                 </li>
                 <li class="slide">
                     <h2>Brian Day</h2>
-                    <img class="mug" src={% static 'mugs/brian.jpg' %} />
+                    <img class="mug" src={% static 'mugs/brian.jpg' %} alt="Portrait photo of Brian Day" />
                     <div>Brian sets up and manages MoonDiff's many collaborations with educational and volunteer
                         groups. He is the staff scientist at NASA’s Solar System Exploration Research Virtual Institute
                         (SSERVI). Part of that role includes serving as the science lead and the institute-level project
@@ -92,7 +92,7 @@
                 </li>
                 <li class="slide">
                     <h2>Jim Green</h2>
-                    <img class="mug" src={% static 'mugs/jim.jpg' %} />
+                    <img class="mug" src={% static 'mugs/jim.jpg' %} alt="Portraid photo of Jim Green" />
                     <div>Jim has an advisory role on the MoonDiff Committee. He has worked at NASA for 42 years before
                         retiring in December 2022. He received his Ph.D.
                         in Physics from the University of Iowa in 1979 and worked at Marshall Space Flight Center,
@@ -106,7 +106,7 @@
                 </li>
                 <li class="slide">
                     <h2>Richard Kim</h2>
-                    <img class="mug" src={% static 'mugs/richard.jpg' %} />
+                    <img class="mug" src={% static 'mugs/richard.jpg' %} alt="Portraid photo of Richard Kim" />
                     <div>Richard Kim is a senior Science Application and Data Interaction Engineer at NASA Jet
                         Propulsion Laboratory (JPL). With 19 years at JPL, he played a pivotal role in developing
                         numbers of GIS applications for NASA projects including Solar System Trek, Lunar Mapping and
@@ -116,7 +116,7 @@
                 </li>
                 <li class="slide">
                     <h2>Dave Williams</h2>
-                    <img class="mug" src={% static 'mugs/davew.jpg' %} />
+                    <img class="mug" src={% static 'mugs/davew.jpg' %} alt="Portraid photo of Dave Williams" />
                     <div>Dave Williams works with the Planetary Data System to make sure MoonDiff discoveries and
                         coregistrations are stored for the future. He is the acting head of the NASA Space Science Data
                         Coordinated Archive, one of NASA’s deep archives for spacecraft data. It holds NASA’s largest
@@ -127,7 +127,7 @@
                 </li>
                 <li class="slide">
                     <h2>Aaron Curtis</h2>
-                    <img class="mug" src={% static 'mugs/aaron.jpg' %} />
+                    <img class="mug" src={% static 'mugs/aaron.jpg' %} alt="Portraid photo of Aaron Curtis" />
                     <div>Aaron leads MoonDiff and does most of the web app development. He completed a PhD studying the
                         geochemistry and geophysics of ice caves on Mt Erebus, joined JPL to build the world's first ice
                         climbing robot, and now operates the Curiosity rover and Ingenuity helicopter. He's fascinated
@@ -139,12 +139,6 @@
                     <div>[Other committee members will be added soon]</div>
                 </li>
                 <!--
-                <li class="slide">
-                    <h2>Shan Malhotra</h2>
-                    <img class="mug" src={% static 'mugs/shan.jpg' %}/>
-                    <div>Shan manages the computing infrastructure that powers MoonDiff. At JPL, he keeps the Deep Space
-                        Network running ..</div>
-                </li>
                 <li class="slide">
                     <h2>Dave Williams</h2>
                 </li>
