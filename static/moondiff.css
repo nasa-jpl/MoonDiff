@@ -97,13 +97,14 @@ fieldset {
     z-index: 10;
 }
 
-#logo img {
-    max-width: 100%;
+#moondiff-logo {
+    max-width: 80%;
 }
 
 #nasa-logo {
     position: relative;
     height: 70%;
+    max-width: 18%;
 }
 
 #about-this-page {
@@ -127,6 +128,8 @@ fieldset {
     display: grid;
     justify-content: center;
     align-items: start;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #accounts-container > div {
@@ -317,4 +320,8 @@ legend > h1 {
 
 .aside{
     font-style: italic;
+}
+
+#background img{
+    max-width: 80vw;
 }

@@ -11,6 +11,7 @@
     padding: 0;
     overflow: scroll;
     scroll-behavior: smooth;
+    max-width: 80vw;
 }
 
 .slides-container::-webkit-scrollbar {
