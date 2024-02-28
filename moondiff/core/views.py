@@ -102,11 +102,13 @@ class VisitsViewSet(viewsets.ModelViewSet):
 
 
 class CommentsViewSet(viewsets.ModelViewSet):
-    queryset = Comment.objects.all()
     serializer_class = CommentSerializer
 
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)
+
+    def get_queryset(self):
+        return Comment.objects.filter(created_by=self.request.user)
 
 
 class AnnotationViewSetThisUser(viewsets.ModelViewSet):
