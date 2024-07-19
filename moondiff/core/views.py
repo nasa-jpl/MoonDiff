@@ -69,7 +69,7 @@ class ProfileView(DetailView):
     model = User
 
     def get_object(self):
-        userpk = self.kwargs.get('pk') or self.request.user.pk
+        userpk = self.request.user.pk
         return User.objects.get(pk=userpk)
 
     def get_context_data(self, **kwargs):
