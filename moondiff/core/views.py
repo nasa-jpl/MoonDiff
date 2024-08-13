@@ -25,14 +25,12 @@ class PairDetailView(DetailView):
         context['annotation_serializer'] = AnnotationForPairSerializer(
             context={'request': self.request})
 
-        # Create a Visit record and pass the pk
-        new_visit = Visit.objects.create(pair=self.object,
-                                         user=self.request.user)
-        new_visit.save()
-        context['visit'] = new_visit
-
-        # Add in this user's annotations to the context
         if self.request.user.is_authenticated:
+            # Create a Visit record and pass the pk
+            new_visit = Visit.objects.create(pair=self.object,
+                                             user=self.request.user)
+            new_visit.save()
+            context['visit'] = new_visit
             context['annotations'] = [
                 annot.shape.coords for annot in
                 self.object.annotation_set.filter(created_by=self.request.user)
